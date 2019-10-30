@@ -1,11 +1,11 @@
 <?php
-    function pass_reset_auth($login, $newpasswd)
+    function pass_reset_auth($user, $newpasswd)
     {
-        if ($login == NULL || $passwd == NULL)
+        if ($user == NULL || $passwd == NULL)
         {   
             return FALSE;
         }
-        $usr['login'] = $login;
+        $usr['user'] = $user;
         $usr['passwd'] = hash("sha512", $passwd);
 
         if (!file_exists("../private"))
@@ -18,9 +18,9 @@
         {
             foreach ($usr_array as $usr_pw_pair)
             {
-                if ($usr_pw_pair['login'] === $usr['login'] && $usr_pw_pair['passwd'] === $usr['passwd'])
+                if ($usr_pw_pair['user'] === $usr['user'] && $usr_pw_pair['passwd'] === $usr['passwd'])
                 {
-                    echo("Welcome ".$usr['login']."\n");
+                    echo("Welcome \n");
                     return TRUE;
                 }
             }

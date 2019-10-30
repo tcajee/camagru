@@ -1,109 +1,46 @@
 <?php
 
-	date_default_timezone_set('UTC');
-	include_once("./inc/config.php");
-	
-	//
-	// CREATING THE DATABASE----------------------------------------------------
-	//
+$drop_database = "DROP DATABASE IF EXISTS camagru;";
 
-	$sql = "CREATE DATABASE Camagru";
-	if (mysqli_query($conn, $sql)){
-		echo "Database created successfully\n";
-	}else{
-		echo "Error creating Database " . mysqli_error($conn) . "\n";
-	}
+$create_database = "CREATE DATABASE IF NOT EXISTS camagru;";
 
-	//
-	// CREATING THE TABLES------------------------------------------------------
-	//
-
-	$conn = mysqli_connect(SERVERNAME, DB_USERNAME, DB_PASS, "Camagru");
-
-	$user_table = "CREATE TABLE users (
-		user.id int NOT NULL AUTO_INCREMENT,
-		user.name varchar(255) NOT NULL, 
-		user.email varchar(255) NOT NULL, 
-		user.hash varchar(255) NOT NULL,
-	 	PRIMARY KEY (user.id)
+$create_users = "CREATE TABLE IF NOT EXISTS users (
+		id int NOT NULL AUTO_INCREMENT,
+		name varchar(255) UNIQUE,
+		email varchar(255) UNIQUE,
+		hash varchar(255),
+	 	PRIMARY KEY (id)
 		);";
-	if (mysqli_query($conn, $user_table)){
-		echo "User Table created successfully\n";
-	} else {
-		echo "Error creating User Table " . mysqli_error($conn) . "\n";
-	}
-	
-	$vuser_table = "CREATE TABLE vusers (
-		user.verify tinyint NOT NULL,
-	 	PRIMARY KEY (user.verify)
+
+$create_vusers = "CREATE TABLE IF NOT EXISTS vusers (
+		user int REFERENCES users(id)
 		);";
-	if (mysqli_query($conn, $vusers_table)){
-		echo "User Table created successfully\n";
-	} else {
-		echo "Error creating User Table " . mysqli_error($conn) . "\n";
-	}
-	
-	$post_table = "CREATE TABLE posts (
-		post.id int NOT NULL,
-		post.img blob NOT NULL,
-		post.likes int,
-		post.time INT UNSIGNED NOT NULL,
-		PRIMARY KEY (post.id)
+
+$create_posts = "CREATE TABLE IF NOT EXISTS posts (
+		id int NOT NULL AUTO_INCREMENT,
+		img varchar(255),
+		likes int DEFAULT 0,
+		time DATETIME DEFAULT NOW(),
+		user int REFERENCES users(id),
+		PRIMARY KEY (id)
 		);";
-	if (mysqli_query($conn, $post_table)){
-		echo "Post Table created successfully\n";
-	} else {
-		echo "Error creating post Table " . mysqli_error($conn) . "\n";
-	}
 
-	$comments_table = "CREATE TABLE comments (
-		post.id int NOT NULL,
-		user.id int NOT NULL,
-		comment.text text NOT NULL,
-		comment.time INT UNSIGNED NOT NULL,
-		FOREIGN KEY (post.id),
-		FOREIGN KEY (user.id)
+$create_comments = "CREATE TABLE IF NOT EXISTS comments (
+		post int REFERENCES posts(id),
+		user int REFERENCES users(id),
+		text text NOT NULL,
+		time DATETIME DEFAULT NOW()
 		);";
-	if (mysqli_query($conn, $comments_table)){
-		echo "Comments Table created successfully\n";
-	}else{
-		echo "Error creating Comment Table " . mysqli_error($conn) . "\n";
-	}
 
-	//
-	// CREATING DEFAULT TABLE DATA----------------------------------------------
-	//
+$test_users = "INSERT INTO `users` (`name`, `email`, `hash`) VALUES
+			('admin', 'tcajee@student.wethinkcode.co.za.','" . hash('sha256', '1234567') . "');";
 
-	$test_users = "INSERT INTO `users` (`user.id`, `user.name`, `user.email`, `user.hash`) VALUES
-					('1', 'admin', 'tcajee@student.wethinkcode.co.za.', hash('sha256', '1234567')),
-					;";
-	if (mysqli_query($conn, $test_users)){
-		echo "Default_user created successfully\n";
-	}else{
-		echo "Error creating Default user " . mysqli_error($conn) . "\n";
-	}
+$test_posts = "INSERT INTO posts (`img`, `user`) VALUES
+                    ('../somewhere/img1.png', 1)
+                    ;";
 
-	$test_posts = "INSERT INTO `posts` (`post.id`, `post.img`, `post.likes`, `post.time`) VALUES 
-					('1', '../somewhere/img1.png', '42', UNIX_TIMESTAMP()),
-					('2', '../somewhere/img1.png', '42', UNIX_TIMESTAMP()),
-					;";
-	if (mysqli_query($conn, $test_posts)){
-		echo "Test posts created successfully\n";
-	}else{
-		echo "Error creating test posts" . mysqli_error($conn) . "\n";
-	}
+$test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
+                    (1, 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste mollitia expedita laudantium facere dignissimos enim alias deserunt asperiores commodi recusandae repellat, in esse at ab beatae ducimus quas aperiam vasdf.')
+                    ;";
 
-	$test_comments = "INSERT INTO `comments` (`post.id`, `user.id`, `comment.text`, `comment.time`) VALUES 
-					('1', '1', 'Lorem ipsum sit amet, adipisicing . Iste expedita facere enim alias asperiores commodi recusandae , in at ab  ducimus quas  velit.', UNIX_TIMESTAMP()), 
-					('2', '1', 'Lorem ipsum dolor amet, consectetur elit. mollitia laudantium dignissimos alias deserunt commodi , in esse at ab  quas aperiam .', UNIX_TIMESTAMP()), 
-					;";
-	if (mysqli_query($conn, $test_comments)){
-		echo "Test comments created successfully\n";
-	}else{
-		echo "Error creating test comments" . mysqli_error($conn) . "\n";
-	}
-	?>
-
-
-
-
+?>

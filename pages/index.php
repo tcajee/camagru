@@ -8,7 +8,7 @@ include_once 'database.php';
 
 $hostname =  'localhost';
 $username = 'root';
-$password = '1234567';
+$password = '123456';
 $dbname = 'Camagru';
 
 $dsn = "mysql:host=" . $hostname . ";dbname=" . $dbname;

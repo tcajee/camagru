@@ -21,6 +21,8 @@
   </div>
   <div id="login">
     <form method="post" action="pass_reset_func.php">
+        <label id="login">Passwords must match</label>
+        <br />
         <label id="login">Choose New Password: </label><input class="login_submit" type="password" name="new_passwd" value="" />
         <br />
         <br />

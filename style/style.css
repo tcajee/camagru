@@ -151,6 +151,7 @@ ol li {
     height: 52px;
     padding: 0;
     background: transparent;
+    justify-content: center;
 } 
 
 ul#menu, ul#menu li {

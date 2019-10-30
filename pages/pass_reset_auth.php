@@ -1,9 +1,8 @@
 <?php
-    function auth($login, $passwd)
+    function pass_reset_auth($login, $newpasswd)
     {
         if ($login == NULL || $passwd == NULL)
         {   
-            echo "Please enter Username and Password\n";
             return FALSE;
         }
         $usr['login'] = $login;

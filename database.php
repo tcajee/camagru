@@ -4,7 +4,7 @@
     $password = "1234567";
 	$dbname = "camagru";
 
-	require_once("table5.php");
+	require_once("tables.php");
 
 	try{
 		$conn = new PDO("mysql:hostname=$hostname", $username, $password);

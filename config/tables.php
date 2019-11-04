@@ -40,7 +40,8 @@ $test_posts = "INSERT INTO posts (`img`, `user`) VALUES
                     ;";
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
-                    (1, 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste mollitia expedita laudantium facere dignissimos enim alias deserunt asperiores commodi recusandae repellat, in esse at ab beatae ducimus quas aperiam vasdf.')
+                    (1, 1, 'TESTNOW')
+                    -- (1, 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste mollitia expedita laudantium facere dignissimos enim alias deserunt asperiores commodi recusandae repellat, in esse at ab beatae ducimus quas aperiam vasdf.')
                     ;";
 
 ?>

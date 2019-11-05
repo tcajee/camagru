@@ -1,26 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="style/tstyle.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+    <title>Camagru | Register</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="tstyle.css" title="style" />
 </head>
 <body>
 <div id="main">
-      <div id="navbar">
-        <ul id="menu">
-          <li><a href="index.php">pic</a></li>
-          <li><a href="#">pipe</a></li>
-          <li><a href="#">logo</a></li>
-          <li><a href="#">serach</a></li>
-          <li><a href="#">explore</a></li>
-        </ul>
-      </div>
-    </div>
   </div>
     <div class="wrapper">
         <h2>Sign Up</h2>
@@ -50,7 +40,7 @@
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+            <p>Already have an account? <a href="login">Login here</a>.</p>
         </form>
     </div>
 </body>

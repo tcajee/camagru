@@ -6,8 +6,13 @@ Route::set('index.php', function() {
 });
 
 Route::set('register', function() {
+    Register::CreateView('Register');
+    Register::test();
+    Register::Verify_username();
+    Register::Verify_email();
+    Register::Verify_passwd();
+    // Register::CreateView('Login');
 
-     Register::CreateView('Register');
 });
 
 Route::set('contact', function() {

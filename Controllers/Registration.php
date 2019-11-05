@@ -1,6 +1,6 @@
 <?php
 
-class Registration extends Database {
+class Registration extends Controller {
 
     public static function CreateView($viewName) {
         require_once("./Views/$viewName.php");

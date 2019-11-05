@@ -1,30 +1,3 @@
-<!-- <?php
-    include('auth.php');
-    session_start();
-    if (!$_GET['login'] || !$_GET['passwd'])
-    {
-        $_SESSION['logged_on_user'] = "";
-        echo "ERROR\n";
-        if (!$_GET['login'])
-            echo "Enter Username\n";
-        if (!$_GET['login'])
-            echo "Enter Password\n";
-    }
-    else
-    {
-        if (auth($_GET['login'], $_GET['passwd']) === TRUE)
-        {
-            $_SESSION['logged_on_user'] = $_GET['login'];
-            echo "OK\n";
-        }
-        else
-        {
-            $_SESSION['logged_on_user'] = "";
-            echo "ERROR\n";
-            echo "No user by that name exists\n";
-        }
-    }
-?> -->
 
 <?php
 // Initialize the session
@@ -143,7 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="test.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="Registration.php">Sign up now</a>.</p>
         </form>
     </div>
 </body>

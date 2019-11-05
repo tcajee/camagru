@@ -7,10 +7,10 @@ Route::set('index.php', function() {
 
 });
 
-Route::set('about', function() {
 
-     About::CreateView('About');
-     About::test();
+Route::set('register', function() {
+
+     Register::CreateView('Register');
 
 });
 
@@ -20,9 +20,4 @@ Route::set('contact', function() {
 
 });
 
-Route::set('registration.php', function() {
-
-    Contact::CreateView('Registration');
-
-});
 ?>

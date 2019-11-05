@@ -18,4 +18,9 @@ Route::set('contact', function() {
 
 });
 
+Route::set('registration.php', function() {
+
+    Contact::CreateView('Registration');
+
+});
 ?>

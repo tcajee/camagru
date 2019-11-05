@@ -1,6 +1,6 @@
 <?php
 
-class Registration extends Controller {
+class Register extends Controller {
 
 
 }

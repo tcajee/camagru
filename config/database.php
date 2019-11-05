@@ -1,7 +1,7 @@
 <?php
     $DB_DSN = 'mysql:hostname=127.0.0.1;dbname=camagru';
     $DB_USER = 'root';
-    $DB_PASSWORD = '123456';
+    $DB_PASSWORD = '';
 
 	require_once("tables.php");
 
@@ -17,6 +17,6 @@
         $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
-        echo "Connection to database $dbname failed: " . $e->getMessage() . "<br />";
+        echo "Connection to database failed: " . $e->getMessage() . "<br />";
     }
 ?>

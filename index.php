@@ -1,6 +1,6 @@
 <?php
 
- require_once('./config/Setup.php');
+require_once('./config/setup.php');
 
 spl_autoload_register(function ($class_name) {
     if (file_exists('Classes/' . $class_name . '.php'))
@@ -10,8 +10,5 @@ spl_autoload_register(function ($class_name) {
 });
 
 require_once('./Includes/Routes.php');
-
-echo "THIS FUCKING BALLSSSS";
-
 
 ?>

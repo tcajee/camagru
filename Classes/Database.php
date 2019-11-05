@@ -3,9 +3,9 @@ class Database {
 
   public static $hostname = "127.0.0.1";
   public static $username = "root";
-  public static $password = "1234567";
-  public static $dbname = "test";
-  // public static $dbname = "camagru";
+  public static $password = "";
+  // public static $dbname = "test";
+  public static $dbname = "camagru";
 
   private static function connect() {
     $pdo =new PDO("mysql:hostname=".self::$hostname.";dbname=".self::$dbname, self::$username, self::$password);

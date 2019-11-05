@@ -3,26 +3,16 @@
 Route::set('index.php', function() {
 
 	Index::CreateView('Index');
-
-
 });
 
-Route::set('about', function() {
+Route::set('register', function() {
 
-     About::CreateView('About');
-     About::test();
-
+     Register::CreateView('Register');
 });
 
 Route::set('contact', function() {
 
     Contact::CreateView('Contact');
-
 });
 
-Route::set('registration.php', function() {
-
-    Contact::CreateView('Registration');
-
-});
 ?>

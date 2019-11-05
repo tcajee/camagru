@@ -3,6 +3,6 @@
 class Contact extends Controller {
 
 
-} 
+}
 
 ?>

@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+
   <title>Camagru | Password Reset</title>
   <meta name="description" content="Camagru - a basic Instagram clone" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />

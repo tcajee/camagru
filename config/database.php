@@ -6,9 +6,9 @@
 	require_once("tables.php");
 
 	try {
-        
+
 	 	$pdo = new PDO("mysql:hostname=127.0.0.1", $DB_USER, $DB_PASSWORD);
-       
+
         $db = $pdo->prepare($drop_database);
 		$db->execute();
 		$db = $pdo->prepare($create_database);

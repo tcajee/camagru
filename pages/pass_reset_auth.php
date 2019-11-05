@@ -2,7 +2,7 @@
     function pass_reset_auth($user, $newpasswd)
     {
         if ($user == NULL || $passwd == NULL)
-        {   
+        {
             return FALSE;
         }
         $usr['user'] = $user;

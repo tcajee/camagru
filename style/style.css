@@ -13,7 +13,7 @@ body {
     font-size: .80em;
     background-color: yellow;
     color: black;
-    font-family:Arial, Helvetica, sans-serif; 
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 p {
@@ -60,19 +60,19 @@ a:hover {
 }
 
 .right {
-    float: right; 
+    float: right;
     width: auto;
     margin-left: 10px;
 }
 
-.center { 
+.center {
     display: block;
     text-align: center;
     margin: 20px auto;
 }
 
-blockquote { 
-    margin: 20px 0; 
+blockquote {
+    margin: 20px 0;
     padding: 10px 20px 0 20px;
     border: 1px solid #E5E5DB;
     background: #FFF;
@@ -84,7 +84,7 @@ ul {
 
 ul li {
     list-style-type: circle;
-    margin: 0 0 6px 0; 
+    margin: 0 0 6px 0;
     padding: 0 0 4px 5px;
 }
 
@@ -97,7 +97,7 @@ ol li {
 }
 
 #main, #logo, #navbar, #site_content, #footer {
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
 }
 
@@ -136,11 +136,11 @@ ol li {
     text-decoration: none;
 }
 
-#logo_text h1 a .logo_colour { 
+#logo_text h1 a .logo_colour {
     color: #555;
 }
 
-#logo_text h2 { 
+#logo_text h2 {
     font-size: 100%;
     padding: 20px 0 0 0;
     color: #555;
@@ -151,7 +151,7 @@ ol li {
     height: 52px;
     padding: 0;
     background: transparent;
-} 
+}
 
 ul#menu, ul#menu li {
     display: flex;
@@ -164,11 +164,11 @@ ul#menu li {
     list-style: none;
 }
 
-ul#menu li a { 
+ul#menu li a {
     letter-spacing: 0.1em;
     font: normal 100% arial, sans-serif;
-    display: block; 
-    float: left; 
+    display: block;
+    float: left;
     height: 17px;
     margin: 10px 0 0 10px;
     padding: 9px 26px 6px 26px;
@@ -177,7 +177,7 @@ ul#menu li a {
     text-transform: uppercase;
     text-decoration: none;
     background: transparent;
-} 
+}
 
 ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover {
     color: #222;
@@ -190,7 +190,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover {
     overflow: hidden;
     margin: 0 auto 0 auto;
     padding: 0 24px 20px 20px;
-} 
+}
 
 .sidebar {
     float: right;
@@ -199,13 +199,13 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover {
 }
 
 .sidebar ul {
-    width: 198px; 
-     padding: 4px 0 0 0; 
+    width: 198px;
+     padding: 4px 0 0 0;
       margin: 4px 0 30px 0;
 }
 
 .sidebar li {
-    list-style: none; 
+    list-style: none;
     padding: 0 0 7px 0;
 }
 
@@ -213,12 +213,12 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover {
     padding: 0 0 0 40px;
     display: block;
     background: transparent url(link.png) no-repeat left center;
-} 
+}
 
 .sidebar li a.selected {
     color: #7E2451;
     text-decoration: none;
-} 
+}
 
 #content {
     text-align: left;
@@ -234,7 +234,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover {
 #content ul li {
     list-style-type: none;
     background: url(bullet.png) no-repeat;
-    margin: 0 0 6px 0; 
+    margin: 0 0 6px 0;
     padding: 0 0 4px 25px;
     line-height: 1.5em;
 }
@@ -244,7 +244,7 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover {
     font: normal 100% 'lucida sans unicode', arial, sans-serif;
     height: 33px;
     padding: 24px 0 5px 0;
-    text-align: center; 
+    text-align: center;
     background: transparent;
     color: black;
     text-transform: uppercase;
@@ -341,9 +341,9 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover {
     text-align: center;
 }
 
-::placeholder { 
+::placeholder {
     color: #555;
-    opacity: 1; 
+    opacity: 1;
  }
 
 .login_button {
@@ -351,7 +351,6 @@ ul#menu li a:hover, ul#menu li.selected a, ul#menu li.selected a:hover {
     box-shadow: 5px 0px 5px 1px #444;
     color: black;
     width: 150px;
-
 }
 
 

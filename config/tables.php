@@ -10,7 +10,7 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 		email varchar(255) UNIQUE,
 		hash varchar(255),
 	 	PRIMARY KEY (id)
-		);";
+		);" ;
 
 $create_vusers = "CREATE TABLE IF NOT EXISTS vusers (
 		user int REFERENCES users(id)

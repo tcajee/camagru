@@ -30,12 +30,12 @@
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
-            </div> 
+            </div>
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
                 <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
                 <span class="help-block"><?php echo $email_err; ?></span>
-            </div>   
+            </div>
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
                 <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
@@ -52,6 +52,6 @@
             </div>
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
-    </div>    
+    </div>
 </body>
 </html>

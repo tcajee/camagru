@@ -1,6 +1,6 @@
 <?php
 class Database {
-  
+
   public static $hostname = "127.0.0.1";
   public static $username = "root";
   public static $password = "1234567";
@@ -8,7 +8,7 @@ class Database {
   // public static $dbname = "camagru";
 
   private static function connect() {
-    $pdo =new PDO("mysql:hostname=".self::$hostname.";dbname=".self::$dbname, self::$username, self::$password); 
+    $pdo =new PDO("mysql:hostname=".self::$hostname.";dbname=".self::$dbname, self::$username, self::$password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $pdo;
 

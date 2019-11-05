@@ -9,7 +9,6 @@
             echo $error . " has failed: " . $e->getMessage() . "<br />";
         }
     }
-
     executeSQL($create_users, "Creation of users table", $pdo);
     executeSQL($create_posts, "Creation of posts table", $pdo);
     executeSQL($create_comments, "Creation of comments table", $pdo);

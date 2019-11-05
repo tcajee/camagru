@@ -7,6 +7,6 @@ class About extends Controller {
         print_r(self::query("SELECT * FROM test"));
 
     }
-} 
+}
 
 ?>

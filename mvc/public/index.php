@@ -10,9 +10,10 @@
 // });
 
 // require_once('../app/core/config/routes.php');
-require_once('../app/core/config/init.php');
 
-$app = new Route;
+require_once('../app/init.php');
+
+$app = new App;
 
 ?>
 

@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <title>Camagru | Password Reset</title>
+  <title>Camagru | Forgot Password</title>
   <meta name="description" content="Camagru - a basic Instagram clone" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <meta http-equiv="expires" content="0">
@@ -21,11 +21,8 @@
     </div>
   </div>
   <div id="login">
-    <form method="post" action="pass_reset_func.php">
-        <label id="login">Choose New Password: </label><input class="login_submit" type="password" name="new_passwd" value="" />
-        <br />
-        <br />
-        <label id=login>Retype New Password: </label><input class="login_submit" type="password" name="new_passwd_re" value="" />
+    <form method="post" action="forgot_mail.php">
+        <label id="login">Enter email of account: </label><input class="login_submit" type="text" name="email" value="" />
         <br />
         <br />
         <div id=login>

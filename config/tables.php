@@ -10,7 +10,7 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 		email varchar(255) UNIQUE,
 		hash varchar(255),
 	 	PRIMARY KEY (id)
-		);";
+		);" ;
 
 $create_vusers = "CREATE TABLE IF NOT EXISTS vusers (
 		user int REFERENCES users(id)
@@ -33,14 +33,21 @@ $create_comments = "CREATE TABLE IF NOT EXISTS comments (
 		);";
 
 $test_users = "INSERT INTO `users` (`name`, `email`, `hash`) VALUES
-			('admin', 'tcajee@student.wethinkcode.co.za.','" . hash('sha256', '1234567') . "');";
+				('admin', 'tcajee@student.wethinkcode.co.za', '" . hash('sha256', '1234567') . "'),
+				('admin2', 'sminnaar@student.wethinkcode.co.za', '" . hash('sha256', '123456') . "'),
+				('dee83', 'cprohaska@yahoo.com','" . hash('sha256', '234567') . "'),
+				('Toy', 'itrantow@kunde.com','" . hash('sha256', '34567') . "'),
+ 				('Buckridge', 'tsporer@kub.com','" . hash('sha256', '4567')  . "'),
+ 				('Collins', 'mraz.christy@reilly.net','" . hash('sha256', '567') . "'),
+				('Huels', 'kristina39@hotmail.com','" . hash('sha256', '67') . "')
+				";
 
 $test_posts = "INSERT INTO posts (`img`, `user`) VALUES
-                    ('../somewhere/img1.png', 1)
-                    ;";
+					('../somewhere/img1.png', 1);
+					";
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
-                    (1, 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste mollitia expedita laudantium facere dignissimos enim alias deserunt asperiores commodi recusandae repellat, in esse at ab beatae ducimus quas aperiam vasdf.')
-                    ;";
+					(1, 1, 'THIS IS FUCKIONG NEw');
+					";
 
 ?>

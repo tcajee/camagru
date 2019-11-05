@@ -2,7 +2,7 @@
     function auth($login, $passwd)
     {
         if ($login == NULL || $passwd == NULL)
-        {   
+        { 
             echo "Please enter Username and Password\n";
             return FALSE;
         }

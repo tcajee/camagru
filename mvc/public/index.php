@@ -1,14 +1,20 @@
 <?php
 
-// require_once('./config/setup.php');
+//require_once('../app/core/config/setup.php');
 
-spl_autoload_register(function ($class_name) {
-    if (file_exists('Classes/' . $class_name . '.php'))
-        require_once('Classes/' . $class_name . '.php');
-    else if (file_exists('Controllers/' . $class_name . '.php'))
-        require_once('Controllers/' . $class_name . '.php');
-});
+// spl_autoload_register(function ($class_name) {
+//     if (file_exists('../app/core/classes/' . $class_name . '.php'))
+//         require_once('../app/core/classes/' . $class_name . '.php');
+//     else if (file_exists('../app/controllers/' . $class_name . '.php'))
+//         require_once('../app/controllers/' . $class_name . '.php');
+// });
 
-require_once('./Includes/Routes.php');
+// require_once('../app/core/config/routes.php');
+require_once('../app/core/config/init.php');
+
+$app = new Route;
 
 ?>
+
+
+

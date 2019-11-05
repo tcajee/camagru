@@ -1,6 +1,6 @@
 <?php
 
-require_once('./config/setup.php');
+//require_once('./config/setup.php');
 
 spl_autoload_register(function ($class_name) {
     if (file_exists('Classes/' . $class_name . '.php'))

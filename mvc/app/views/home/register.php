@@ -1,12 +1,12 @@
 <?php
 
-if (isset($_POST['username'])) {
+if (isset($_POST['register'])) {
 
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if (!Database::query('SELECT name FROM users WHERE name=:username', array(':username' => $username))) {
+    if (!Database::query('SELECT username FROM users WHERE username=:username', array(':username' => $username))) {
         if (!Database::query('SELECT email FROM users WHERE email=:email', array(':email' => $email))) {
             if (strlen($username) >= 3 && strlen($username) <= 32) {
                 if (preg_match('/[a-zA-Z0-9_]+/', $username)) {

@@ -9,7 +9,7 @@ if (isset($_POST['login'])) {
         if (password_verify($password, Database::query('SELECT password FROM users WHERE username=:username', array(':username' => $username))[0]['password'])) {
 
             $cstrong = True;
-            $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
+            $token = bin2hex(openssl_random_pseudo_bytes(65, $cstrong));
 
             // echo "$token";
             $user_id = Database::query('SELECT id FROM users WHERE username=:username', array(':username' => $username))[0]['id'];

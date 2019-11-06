@@ -7,23 +7,27 @@ if (isset($_POST['username'])) {
     $password = $_POST['password'];
 
     if (!Database::query('SELECT name FROM users WHERE name=:username', array(':username' => $username))) {
-        if (strlen($username) >= 3 && strlen($username) <= 32) {
-            if (preg_match('/[a-zA-Z0-9_]+/', $username)) {
-                if (strlen($password >= 6 && strlen($password) <= 32)) {
-                    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                        Database::query('INSERT INTO users VALUES (id, :username, :email, :password)', array(':username' => $username, ':email' => $email, ':password' => password_hash($password, PASSWORD_BCRYPT))); 
-                        echo "User added";
+        if (!Database::query('SELECT email FROM users WHERE email=:email', array(':email' => $email))) {
+            if (strlen($username) >= 3 && strlen($username) <= 32) {
+                if (preg_match('/[a-zA-Z0-9_]+/', $username)) {
+                    if (strlen($password >= 6 && strlen($password) <= 32)) {
+                        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                            Database::query('INSERT INTO users VALUES (id, :username, :email, :password)', array(':username' => $username, ':email' => $email, ':password' => password_hash($password, PASSWORD_BCRYPT))); 
+                            echo "User added";
+                        } else {
+                            echo "Please enter a valid email address.";
+                        }
                     } else {
-                        echo "Please enter a valid email address.";
+                        echo "Passwords must be between 6 and 32 characters long";
                     }
                 } else {
-                    echo "Passwords must be between 6 and 32 characters long";
+                        echo "Usernames can only contain uppercase, lowercase and digits.";
                 }
             } else {
-                    echo "Usernames can only contain uppercase, lowercase and digits.";
+                echo "Username must be between 3 and 32 characters long.";
             }
         } else {
-            echo "Username must be between 3 and 32 characters long.";
+            echo "Email $email exists";
         }
     } else {
         echo "User $username exists";
@@ -32,7 +36,7 @@ if (isset($_POST['username'])) {
 ?>
 
 <h1>Register</h1>
-<form action="index.php" method="post">
+<form action="" method="post">
     <input type="text" name="username" value="" placeholder="Username"><p />
     <input type="password" name="password" value="" placeholder="Password"><p />
     <input type="email" name="email" value="" placeholder="x@x.x"><p />

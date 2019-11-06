@@ -15,6 +15,23 @@ require_once('../app/init.php');
 
 $app = new App;
 
+function isLoggedIn() {
+
+    if (isset($_COOKIE['SNID']))  {
+        if (Database::query('SELECT user FROM tokens WHERE token=:token', array(':token' => sha1($_COOKIE['SNID'])))) {
+            $user = Database::query('SELECT user FROM tokens WHERE token=:token', array(':token' => sha1($_COOKIE['SNID'])))[0]['user'];
+            return user;
+        }
+    }
+    return false;
+}
+
+if (isLoggedIn()) {
+    echo "Logged in";
+} else {
+    echo "Not logged";
+}
+
 ?>
 
 

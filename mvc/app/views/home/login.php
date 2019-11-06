@@ -14,7 +14,10 @@ if (isset($_POST['login'])) {
             // echo "$token";
             $user_id = Database::query('SELECT id FROM users WHERE username=:username', array(':username' => $username))[0]['id'];
             Database::query('INSERT INTO tokens VALUES (id, :token, :user)', array(':token' => sha1($token), ':user' => $user_id)); 
-            echo "Logged in!";
+
+            // echo "Logged in!";
+
+            setcookie("SNID", $token, time() + 60 * 60 * 24, '/', NULL, NULL, TRUE);
 
         } else {
             echo "Incorrect password";

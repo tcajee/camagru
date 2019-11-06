@@ -11,21 +11,11 @@
 </head>
 <body>
 <div id="main">
-      <div id="navbar">
-        <ul id="menu">
-          <li><a href="index.php">pic</a></li>
-          <li><a href="#">pipe</a></li>
-          <li><a href="#">logo</a></li>
-          <li><a href="#">serach</a></li>
-          <li><a href="#">explore</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-    <div class="wrapper">
-        <h2>Sign Up</h2>
+
+        <h1>Register</h1>
+        
         <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form class="register" action="index.html" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
@@ -52,6 +42,8 @@
             </div>
             <p>Already have an account? <a href="login.php">Login here</a>.</p>
         </form>
+        
     </div>
+
 </body>
 </html>

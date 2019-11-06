@@ -10,9 +10,11 @@
         }
     }
     executeSQL($create_users, "Creation of users table", $pdo);
+    executeSQL($create_tokens, "Creation of token table", $pdo);
     executeSQL($create_posts, "Creation of posts table", $pdo);
     executeSQL($create_comments, "Creation of comments table", $pdo);
     executeSQL($test_users, "Insertion of test users", $pdo);
     executeSQL($test_posts, "Insertion of test posts", $pdo);
     executeSQL($test_comments, "Insertion of test comments", $pdo);
+    executeSQL($test_tokens, "Insertion of test token", $pdo);
 ?>

@@ -4,15 +4,30 @@ if (isset($_POST['username'])) {
 
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $hash = hash('sha256', $_POST['password']);
+    $password = $_POST['password'];
 
     if (!Database::query('SELECT name FROM users WHERE name=:username', array(':username' => $username))) {
-        Database::query('INSERT INTO users VALUES (id, :username, :email, hash)', array(':username' => $username, ':email' => $email, 'hash' => $hash)); 
-        echo "User added";
+        if (strlen($username) >= 3 && strlen($username) <= 32) {
+            if (preg_match('/[a-zA-Z0-9_]+/', $username)) {
+                if (strlen($password >= 6 && strlen($password) <= 32)) {
+                    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        Database::query('INSERT INTO users VALUES (id, :username, :email, :password)', array(':username' => $username, ':email' => $email, ':password' => password_hash($password, PASSWORD_BCRYPT))); 
+                        echo "User added";
+                    } else {
+                        echo "Please enter a valid email address.";
+                    }
+                } else {
+                    echo "Passwords must be between 6 and 32 characters long";
+                }
+            } else {
+                    echo "Usernames can only contain uppercase, lowercase and digits.";
+            }
+        } else {
+            echo "Username must be between 3 and 32 characters long.";
+        }
     } else {
         echo "User $username exists";
     }
-
 }
 ?>
 

@@ -21,8 +21,10 @@ class Database {
    
     $stmt = self::connect()->prepare($query);
     $stmt->execute($params);
-    $data = $stmt->fetchAll();
-  
-    return $data;
+   
+    if (explode(' ', $query)[0] == 'SELECT') {
+      $data = $stmt->fetchAll();
+      return $data;
+    }
   }
 }

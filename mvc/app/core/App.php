@@ -8,7 +8,8 @@ class App {
 
 	public function __construct() {
 
-        // print_r($url = $this->parseUrl());
+		// print_r($url = $this->parseUrl());
+
         $url = $this->parseUrl();
 
         if (file_exists('../app/controllers/' . $url[0] . '.php')) {
@@ -18,7 +19,8 @@ class App {
 
         require_once('../app/controllers/' . $this->controller . '.php');
 
-        // echo $this->controller;
+		// echo $this->controller;
+
         $this->controller = new $this->controller;
 
 		// var_dump($this->controller);
@@ -42,4 +44,3 @@ class App {
 		}
 	}
 }
-?>

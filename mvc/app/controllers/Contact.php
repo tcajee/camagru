@@ -4,5 +4,3 @@ class Contact extends Controller {
 
 
 }
-
-?>

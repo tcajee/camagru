@@ -2,4 +2,6 @@
 
 class Register extends Controller {
 
+	//
+
 }

@@ -2,17 +2,28 @@
 
 Route::set('index.php', function() {
 
-	Index::CreateView('Index');
+	Index::view('Index_View');
+});
+
+Route::set('setup', function() {
+
+	Setup::view('Setup_View');
 });
 
 Route::set('register', function() {
 
-    Register::CreateView('Register');
+    Register::view('Register_View');
 });
 
 Route::set('login', function() {
 
-    Register::CreateView('Register');
+    Login::view('Login_View');
+});
+
+
+Route::set('logout', function() {
+
+    Login::view('Logout_View');
 });
 
 ?>

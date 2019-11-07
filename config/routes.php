@@ -7,12 +7,12 @@ Route::set('index.php', function() {
 
 Route::set('register', function() {
 
-     Register::CreateView('Register');
+    Register::CreateView('Register');
 });
 
-Route::set('contact', function() {
+Route::set('login', function() {
 
-    Contact::CreateView('Contact');
+    Register::CreateView('Register');
 });
 
 ?>

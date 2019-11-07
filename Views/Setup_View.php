@@ -15,13 +15,6 @@
         
         <h1>Database created!<h1>
 
-        <div>
-            <form action="" method="post">
-                <input type="submit" name="logout" value="Logout">
-            </form>
-        <div/>
-
-
     </div>
   </body>
 </html>

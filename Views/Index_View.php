@@ -12,7 +12,7 @@
   <body>
     <div id="main">
         
-        <h1> Welcome, <?=$data['name']?>!<h1>
+        <h1> Welcome!<h1>
 
         <div>
             <form action="" method="post">

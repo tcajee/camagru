@@ -2,11 +2,6 @@
 
 class Login extends Controller {
 
-	public function index($name = '') {
-
-		$this->view('home/login', []);
-	}
-
 	public static function isLoggedIn() {
 
 		if (isset($_COOKIE['SNID']))  {
@@ -19,11 +14,9 @@ class Login extends Controller {
 
 	public function logout() {
 
-		// $this->view('home/index?name=ass', []);		
-		// $this->view('home/index', ['name' => $user->name]);
-		// if (!Login::isLoggedIn()) {
-		// 	die("Not logged in");
-		// }
+		if (!Login::isLoggedIn()) {
+			die("Not logged in");
+		}
 
 		if (isset($_POST['logout'])) {
 			if (isset($_COOKIE['SNID'])) {
@@ -31,16 +24,5 @@ class Login extends Controller {
 			}
 			setcookie('SNID', '1', time() - 1);
 		}
-
-		Index::index();
-
-
-
-
-
-
-
-
-
 	}
 }

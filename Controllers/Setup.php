@@ -1,8 +1,8 @@
 <?php
 
-class Index extends Controller {
+class Setup extends Controller {
 
-	public function index($name = 'Guest') {
+	public function index($name = '') {
 
 		$user = $this->model('User');
 		$user->name = $name;

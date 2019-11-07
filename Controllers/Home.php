@@ -2,6 +2,5 @@
 
 class Home extends Controller {
 
-	//
 
 }

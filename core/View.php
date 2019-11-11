@@ -19,7 +19,7 @@ class View {
         $viewString = implode(DS, $viewArray);
         if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')) {
             include(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php');
-            // include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
+            include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
         } else {
             die('The view \"' . $viewName . '\" does not exists.');
         }
@@ -52,9 +52,10 @@ class View {
         }
     }
 
-    public function setTitle() {
+    public function siteTitle() {
 
-        return $this->_siteTitle;
+        // return $this->_siteTitle;
+        return SITE_TITLE . ' | ' . $this->_siteTitle;
     }
 
     public function setSiteTitle($title) {

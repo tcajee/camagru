@@ -26,7 +26,4 @@ class Router {
             die('That method does not exist in \"' . $controller . '\"');
         }
     }
-
-
-
 }

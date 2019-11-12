@@ -1,20 +1,15 @@
 <?php
     include("database.php");
 
-    function executeSQL($SQLstatement, $error, $pdo){
+    function execute($sql, $pdo){
         try {
-            $db = $pdo->prepare($SQLstatement);
+            $db = $pdo->prepare($sql);
             $db->execute();
         } catch(PDOException $e) {
-            echo $error . " has failed: " . $e->getMessage() . "<br />";
+            die($e->getMessage());
         }
     }
-    executeSQL($create_users, "Creation of users table", $pdo);
-    executeSQL($create_tokens, "Creation of token table", $pdo);
-    executeSQL($create_posts, "Creation of posts table", $pdo);
-    executeSQL($create_comments, "Creation of comments table", $pdo);
-    executeSQL($test_users, "Insertion of test users", $pdo);
-    executeSQL($test_posts, "Insertion of test posts", $pdo);
-    executeSQL($test_comments, "Insertion of test comments", $pdo);
-    executeSQL($test_tokens, "Insertion of test token", $pdo);
-?>
+
+    foreach ($statements as $statement) {
+        execute($$statement, $pdo);
+    }

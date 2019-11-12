@@ -1,5 +1,7 @@
 <?php
 
+require_once('./config/setup.php');
+
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 
@@ -27,13 +29,3 @@ $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'], 
 
 // Routing
 Router::route($url);
-
-// $url = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
-// var_dump($url);
-// if (isset($_SERVER['PATH_INFO'])) {
-//    echo $_SERVER['PATH_INFO'];
-// }
-// echo $_SERVER['REQUEST_URL'];
-
-// require_once("./config/routes.php");
-// require_once("./config/setup.php");

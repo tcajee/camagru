@@ -62,11 +62,9 @@ class DB {
         $fieldString = rtrim($fieldString, ',');
         $valueString = rtrim($valueString, ',');
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
-        if (!$this->query($sql, $values)->error()) {
+        if (!$this->query($sql, $values)->error())
             return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     public function update($table, $id, $fields = []) {
@@ -78,11 +76,16 @@ class DB {
         }
         $fieldString = rtrim(trim($fieldString), ','); 
         $sql = "UPDATE {$table} SET {$fieldString} WHERE id = {$id}";
-        if (!$this->query($sql, $values)->error()) {
+        if (!$this->query($sql, $values)->error())
             return true;
-        } else {
-            return false;
-        }
+        return false;
+    }
+
+    public function delete($table, $id) {
+        $sql = "DELETE FROM {$table} WHERE id = {$id}";
+        if (!$this->query($sql)->error())
+            return true;
+        return false;
     }
 
     public function error() {

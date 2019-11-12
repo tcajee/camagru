@@ -8,8 +8,13 @@ class Home extends Controller {
 
     public function indexAction() {
        $db = DB::getInstance(); 
-       $columns = $db->getColumns('users');
-       dnd($columns);
+       $find = $db->find('users', [
+           'conditions' => ['username = ?'],
+           'bind' => ['admin'],
+        //    'order' => "username",
+        //    'limit' => 2
+       ]);
+       dnd($find);
        $this->view->render('home/index');
     }
 }

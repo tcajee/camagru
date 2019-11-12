@@ -2,14 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?=PROOT?>css/custom.css">
-    <title><?=$this->siteTitle(); ?></title>
-    <?=$this->content('head'); ?>
+    
+    <?=$this->content('head');?>
+    
+    <title><?=$this->siteTitle();?></title>
   </head>
   <body>
-    <?=$this->content('header'); ?>
+
     <?=$this->content('body'); ?>
-    <?=$this->content('footer'); ?>
+
   </body>
 </html>

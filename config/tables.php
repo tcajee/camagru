@@ -22,6 +22,7 @@ $create_sessions = "CREATE TABLE IF NOT EXISTS sessions (
 		user INT REFERENCES users(id),
 		session varchar(255),
 		agent varchar(255),
+		deleted TINYINT DEFAULT 0,
 	 	PRIMARY KEY (id)
 		);";
 

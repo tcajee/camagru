@@ -8,6 +8,8 @@
     <?=$this->content('head'); ?>
   </head>
   <body>
+    <?=$this->content('header'); ?>
     <?=$this->content('body'); ?>
+    <?=$this->content('footer'); ?>
   </body>
 </html>

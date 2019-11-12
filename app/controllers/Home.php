@@ -8,9 +8,12 @@ class Home extends Controller {
 
     public function indexAction() {
        $db = DB::getInstance(); 
-       $sql = "SELECT * FROM users";
-       $contacts = $db->query($sql);
-       dnd($contacts);
-        $this->view->render('home/index');
+       $fields = [
+        'username' => 'TESTING',
+        'email' => 'TESTING@testing.com',
+       ];
+       $contacts = $db->update('users', 8, $fields);
+    //    dnd($contacts);
+       $this->view->render('home/index');
     }
 }

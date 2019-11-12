@@ -7,7 +7,10 @@ class Home extends Controller {
     }
 
     public function indexAction() {
-        // echo $name;
+       $db = DB::getInstance(); 
+       $sql = "SELECT * FROM users";
+       $contacts = $db->query($sql);
+       dnd($contacts);
         $this->view->render('home/index');
     }
 }

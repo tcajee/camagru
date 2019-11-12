@@ -16,7 +16,7 @@ class DB {
 
     private function __construct() {
         try {
-            $this->pdo = new PDO($this->DB_DSN, $this->DB_USER, $this->DB_PASSWORD);
+            $this->_pdo = new PDO($this->DB_DSN, $this->DB_USER, $this->DB_PASSWORD);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -32,22 +32,24 @@ class DB {
     public function query($sql, $params = []) {
 
         $this->_error = false;
+        // dnd($this->_pdo);
         if ($this->_query = $this->_pdo->prepare($sql)) {
             $count = 1;
-            if (count($parms)) {
+            if (count($params)) {
                 foreach ($params as $param) {
-                    $this->_query->bindValue($count, $params);
+                    $this->_query->bindValue($count, $param);
                     $count++;
                 }
             }
 
             if ($this->_query->execute()) {
-                $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
-                $this->_count
-
-                21/70 6:20
+                $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                $this->_count = $this->_query->rowCount();
+                $this->_lastInsertID = $this->_pdo->lastInsertId();
+            } else {
+                $this->_error = true;
             }
-
         }
+        return $this;
     }
 }

@@ -8,7 +8,8 @@ class Home extends Controller {
 
     public function indexAction() {
        $db = DB::getInstance(); 
-       $contacts = $db->delete('users', 8);
+       $columns = $db->getColumns('users');
+       dnd($columns);
        $this->view->render('home/index');
     }
 }

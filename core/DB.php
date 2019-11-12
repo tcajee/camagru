@@ -30,9 +30,7 @@ class DB {
     }
 
     public function query($sql, $params = []) {
-
         $this->_error = false;
-        // dnd($this->_pdo);
         if ($this->_query = $this->_pdo->prepare($sql)) {
             $count = 1;
             if (count($params)) {
@@ -41,7 +39,6 @@ class DB {
                     $count++;
                 }
             }
-
             if ($this->_query->execute()) {
                 $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
                 $this->_count = $this->_query->rowCount();
@@ -51,5 +48,44 @@ class DB {
             }
         }
         return $this;
+    }
+
+    public function insert($table, $fields = []) {
+        $fieldString = '';
+        $valueString = '';
+        $values = [];
+        foreach ($fields as $field => $value) {
+            $fieldString .= '`' . $field . '`,';
+            $valueString .= '?,';
+            $values[] = $value;
+        }
+        $fieldString = rtrim($fieldString, ',');
+        $valueString = rtrim($valueString, ',');
+        $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
+        if (!$this->query($sql, $values)->error()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update($table, $id, $fields = []) {
+        $fieldString = '';
+        $values = [];
+        foreach ($fields as $field => $value) {
+            $fieldString .= ' ' . $field . '= ?,';
+            $values[] = $value;
+        }
+        $fieldString = rtrim(trim($fieldString), ','); 
+        $sql = "UPDATE {$table} SET {$fieldString} WHERE id = {$id}";
+        if (!$this->query($sql, $values)->error()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function error() {
+        return $this->_error;
     }
 }

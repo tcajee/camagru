@@ -17,6 +17,14 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 	 	PRIMARY KEY (id)
 		);";
 
+$create_sessions = "CREATE TABLE IF NOT EXISTS sessions (
+		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+		user INT REFERENCES users(id),
+		session varchar(255),
+		agent varchar(255),
+	 	PRIMARY KEY (id)
+		);";
+
 $create_vusers = "CREATE TABLE IF NOT EXISTS vusers (
 		user INT REFERENCES users(id)
 		);";
@@ -65,4 +73,4 @@ $test_tokens = "INSERT INTO tokens (`id`, `token`, `user`) VALUES
 				(1, '" . sha1(bin2hex(openssl_random_pseudo_bytes(64, $cstring))) . "', 1)
 				";
 
-$statements = ['create_users', 'create_tokens', 'create_posts', 'create_comments', 'test_users', 'test_posts', 'test_comments', 'test_tokens']; 
+$statements = ['create_users', 'create_sessions', 'create_tokens', 'create_posts', 'create_comments', 'test_users', 'test_posts', 'test_comments', 'test_tokens']; 

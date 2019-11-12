@@ -40,13 +40,3 @@ if (isset($_POST['login'])) {
         // } else {
         //     echo "Username must be between 3 and 32 characters long.";
         // }
-
-
-?>
-
-<h1>Login</h1>
-<form action="" method="post">
-    <input type="text" name="username" value="" placeholder="Username"><p />
-    <input type="password" name="password" value="" placeholder="Password"><p />
-    <input type="submit" name="login" value="Login">
-</form>

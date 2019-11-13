@@ -23,7 +23,7 @@ class Session {
     public static function uagent_version() {
          $uagent = $_SERVER['HTTP_USER_AGENT'];
          $regex = "/\/[a-zA-Z0-9.]+/";
-         $new =preg_replace($regex, '', $uagent);
+         $new = preg_replace($regex, '', $uagent);
          return $new;
     }
 }

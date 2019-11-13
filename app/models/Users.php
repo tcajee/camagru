@@ -44,12 +44,26 @@ class Users extends Model {
         Session::set($this->_sessionName, $this->id);
         if ($rememberMe) {
             $hash = md5(uniqid() + rand(0, 100));
-            $user_agent = Session::uagent_version();
+            $agent = Session::uagent_version();
             Cookie::set($this->_cookieName, $hash, REMEMBER_ME_EXPIRY);
-            $fields = ['session'=>$hash, 'user_agent'=>$user_agent, 'user_id'=>$this->id];
-            $this->_db->query("DELETE FROM sessions WHERE user = ? AND agent = ?", [$this->id, $user_agent]);
-            $this->_db->insert('session', $fields);
+            $fields = ['session'=>$hash, 'agent'=>$user_agent, 'user'=>$this->id];
+            $this->_db->query("DELETE FROM sessions WHERE user = ? AND agent = ?", [$this->id, $agent]);
+            $this->_db->insert('sessions', $fields);
         }
+    }
+
+    public static function loginCookie() {
+        $userModel = new UserSessions();
+        $userSession = $userModel->findFirst([
+            'conditions' => "user_agent = ? AND session = ?",
+            'bind' => [Session::uagent_version(), Cookie::get(REMEMBER_ME)],
+        ]);
+        if ($userSession->user_id != '') {
+            $user = new self($userSession->user_id);
+        }
+        $user->login();
+        // return self::$loggedIn;   
+        return $user;  
     }
 
     public function logout() {

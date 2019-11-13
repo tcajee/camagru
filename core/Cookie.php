@@ -18,6 +18,6 @@ class Cookie {
     }
     
     public static function exists($name) { 
-        return issset($_COOKIE[$name]);
+        return isset($_COOKIE[$name]);
     }
 }

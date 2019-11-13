@@ -27,9 +27,12 @@ class Register extends Controller {
                     $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
                     $user->login($remember);
                     Router::redirect('');   
+                } else {
+                    $validation->addError("Invalid Username or Password");
                 }
             }
         }
+        $this->view->displayErrors = $validation->displayErrors();
         $this->view->render('register/login');
     }
 }

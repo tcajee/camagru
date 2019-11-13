@@ -11,7 +11,7 @@ class Model {
     public $id;
 
     public function __construct($table) {
-        $this->_db = DB::__construct();
+        $this->_db = DB::getInstance();
         $this->_table = $table;
         $this->_setTableColumns();
         $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $this->_table)));
@@ -20,6 +20,7 @@ class Model {
     protected function _setTableColumns() {
         $columns = $this->getColumns();
         foreach ($columns as $column) {
+            $columnName = $column->Field;
             $this->_columnNames[] = $column->Field;
             $this->{$columnName} = null;
         }
@@ -43,8 +44,10 @@ class Model {
     public function findFirst($params = []) {
         $resultsQuery = $this->_db->findFirst($this->_table, $params);
         $result = new $this->_modelName($this->_table);
-        $result = fillObj($resultQuery); 
-        return $results;
+        if ($resultsQuery) {
+            $result->fillObj($resultsQuery); 
+        }
+        return $result;
     }
 
     public function findById($id) {
@@ -115,7 +118,7 @@ class Model {
 
     protected function fillObj($result) {
         foreach ($result as $key => $value) {
-            $this->$conditiokey = $value;
+            $this->$key = $value;
         }
     }
 }

@@ -24,6 +24,7 @@ function autoload($className) {
 
 spl_autoload_register('autoload');
 session_start();
+// dnd($_SESSION);
 
 $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : [];    
 

@@ -10,7 +10,7 @@ define('DEF_CONTROLLER', 'Home');
 define('DEF_LAYOUT', 'default');
 
 // Set to '/' for live sever
-define('PROOT', '/Camagru/');
+define('PROOT', '/camagru_git/');
 
 // Use default layout if none set in controller
 define('SITE_TITLE', 'Camagru');

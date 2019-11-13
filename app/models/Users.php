@@ -29,7 +29,7 @@ class Users extends Model {
     }
 
     public function findByUsername($username) {
-        return $this->findFirst(['conditions'=>'username = ?', 'bind'=>[$user]]);
+        return $this->findFirst(['conditions'=>'username = ?', 'bind'=>[$username]]);
     }
 
     public function login($rememberMe = false) {

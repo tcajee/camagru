@@ -7,7 +7,7 @@ class Home extends Controller {
     }
 
     public function indexAction() {
-       $db = DB::getInstance(); 
+        // dnd($_SESSION);
        $this->view->render('home/index');
     }
 }

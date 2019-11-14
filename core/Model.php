@@ -11,6 +11,7 @@ class Model {
     public $id;
 
     public function __construct($table) {
+        dump("Constructing instance of class Model based on table: " . $table);
         $this->_db = DB::getInstance();
         $this->_table = $table;
         $this->_setTableColumns();
@@ -24,9 +25,11 @@ class Model {
             $this->_columnNames[] = $column->Field;
             $this->{$columnName} = null;
         }
+        dump("Set columns to:    ", $this->_columnNames);
     }
 
     public function getColumns() {
+        dump("Fetching columns");
         return $this->_db->getColumns($this->_table);
     }
     
@@ -78,6 +81,7 @@ class Model {
         if (empty($fields) || $id == '') {
             return false;
         }
+        dump("Updating " . $this->_table . " with params:   ", [$id, $fields]);
         return $this->_db->update($this->_table, $id, $fields);
     }
 
@@ -87,8 +91,10 @@ class Model {
         }
         $id = ($id == '') ? $this->id : $id;
         if ($this->_softDelete) {
+            dump("Soft deleted: " . $id);
             return $this->update($id, ['deleted' => 1]);
         }
+        dump("Hard deleted: " . $id);
         return $this->_db->delete($this->_table, $id);
     }
 
@@ -101,6 +107,7 @@ class Model {
         foreach ($this->_columnNames as $column) {
             $data->column = $this->column;
         }
+        dump("Retrning stdClass with:   ", $data);
         return $data;
     }
 
@@ -111,6 +118,7 @@ class Model {
                     $this->$key = sanitze($value);
                 }
             }
+            dump("Assigned params:  ", $params);
             return true;
         }
         return false;
@@ -120,5 +128,6 @@ class Model {
         foreach ($result as $key => $value) {
             $this->$key = $value;
         }
+        dump("Filled result:    ", $result);
     }
 }

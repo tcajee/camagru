@@ -3,11 +3,12 @@
 class Home extends Controller {
     
     public function __construct($controller, $action) {
+        dump("constructing instance of class Home with paramaters:  ", [$controller, $action]);
         parent::__construct($controller, $action);
     }
 
     public function indexAction() {
-        // dnd($_SESSION);
+        dump("rendering view: home/index" . "<br>");
        $this->view->render('home/index');
     }
 }

@@ -8,6 +8,15 @@ function dnd($data) {
     die();
 }
 
+function dump($text, $data = '') {
+
+    echo '<pre>';
+    echo $text;
+    if ($data != '')
+        var_dump($data);
+    echo '</pre>';
+}
+
 function sanitize($dirty) {
     return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
 }

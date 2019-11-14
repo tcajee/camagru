@@ -9,6 +9,7 @@ class Users extends Model {
     public static $loggedIn;
 
     public function __construct($user = '') {
+        dump("Constructing instance of class Users with parameters:    ", $user);
         $table = 'users';
         parent::__construct($table);
         $this->_sessionName = SESSION_NAME;        
@@ -29,10 +30,12 @@ class Users extends Model {
     }
 
     public function findByUsername($username) {
+        dump("Finding username: " . $username);
         return $this->findFirst(['conditions'=>'username = ?', 'bind'=>[$username]]);
     }
 
     public static function currentUser() {
+        dump("Checking for current user");
         if (!isset(self::$loggedIn) && Session::exists(SESSION_NAME)) {
             $user = new Users((int)Session::get(SESSION_NAME));
             self::$loggedIn = $user;
@@ -46,7 +49,8 @@ class Users extends Model {
             $hash = md5(uniqid() + rand(0, 100));
             $agent = Session::uagent_version();
             Cookie::set($this->_cookieName, $hash, REMEMBER_ME_EXPIRY);
-            $fields = ['session'=>$hash, 'agent'=>$user_agent, 'user'=>$this->id];
+            $fields = ['session'=>$hash, 'agent'=>$agent, 'user'=>$this->id];
+            dump("Querying database with parameters:    ", ["DELETE FROM sessions WHERE user = ? AND agent = ?", [$this->id, $agent]]);
             $this->_db->query("DELETE FROM sessions WHERE user = ? AND agent = ?", [$this->id, $agent]);
             $this->_db->insert('sessions', $fields);
         }
@@ -55,7 +59,7 @@ class Users extends Model {
     public static function loginCookie() {
         $userModel = new UserSessions();
         $userSession = $userModel->findFirst([
-            'conditions' => "user_agent = ? AND session = ?",
+            'conditions' => "agent = ? AND session = ?",
             'bind' => [Session::uagent_version(), Cookie::get(REMEMBER_ME)],
         ]);
         if ($userSession->user_id != '') {
@@ -67,8 +71,8 @@ class Users extends Model {
     }
 
     public function logout() {
-        $user_agent = Session::uagent_version();
-        $this->_db->query("DELETE FROM sessions WHERE user = ? AND agent = ?", [$this->id, $user_agent]);
+        $agent = Session::uagent_version();
+        $this->_db->query("DELETE FROM sessions WHERE user = ? AND agent = ?", [$this->id, $agent]);
         Session::delete(SESSION_NAME);
         if (Cookie::exists(REMEMBER_ME)) {
             Cookie::delete(REMEMBER_ME);

@@ -27,6 +27,9 @@ function autoload($className) {
 
 
 session_start();
+
+// dnd($_SESSION);
+
 dump("Session start");
 spl_autoload_register('autoload');
 

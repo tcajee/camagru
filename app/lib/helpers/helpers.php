@@ -25,18 +25,18 @@ function dump($text, $data = '') {
    
     ob_end_clean();
    
-    // echo '<pre>';
-    // echo '<hr>';
-    // if ($trace) {
-    //         foreach ($trace as $line) {
-    //             echo "  > " . $line;
-    //         } 
-    //     }
-    //     echo "--> 1  " . $text . " || " . $dump;
-    //     if ($data) {
-    //         print_r($data);
-    //     }
-    // echo '</pre>';
+    echo '<pre>';
+    echo '<hr>';
+    if ($trace) {
+            foreach ($trace as $line) {
+                echo "  > " . $line;
+            } 
+        }
+        echo "--> 1  " . $text . " || " . $dump;
+        if ($data) {
+            print_r($data);
+        }
+    echo '</pre>';
 
 }
 

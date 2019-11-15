@@ -16,6 +16,14 @@
     <div class="center">
       <div class="bar black card">
         <a href="#" class="bar-item button padding-large">HEADER</a>
+
+        <?php
+        if (isset($_SESSION[SESSION_NAME])) {
+          echo "<a href=\"#\" class=\"bar-item button padding-large\">LOGGED IN</a>";
+        } else  {
+          echo "<a href=\"#\" class=\"bar-item button padding-large\"> NOT LOGGED IN</a>";
+        }
+        ?>
       </div>
     </div>
     

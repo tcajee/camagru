@@ -8,7 +8,7 @@ class Home extends Controller {
     }
 
     public function indexAction() {
-        dump("rendering view: home/index" . "<br>");
+        dump("rendering view: home/index");
        $this->view->render('home/index');
     }
 }

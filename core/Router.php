@@ -29,7 +29,7 @@ class Router {
 
     public static function redirect($location) {
         if (!headers_sent()) {
-            dump("Header sent. Redirecting to" . "<br>", $location);
+            dump("Header sent. Redirecting to", $location);
             sleep(60);
             dump("ABOUT TO REDIRECT");
             header('Location: ' . PROOT . $location);

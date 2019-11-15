@@ -56,10 +56,10 @@ class View {
             $this->_body = ob_get_clean();
         } else if ($this->_outputBuffer == 'header') {
             dump("Cleaning buffer for header");
-            $this->_body = ob_get_clean();
+            $this->_header = ob_get_clean();
         } else if ($this->_outputBuffer == 'footer') {
             dump("Cleaning buffer for footer");
-            $this->_body = ob_get_clean();
+            $this->_footer = ob_get_clean();
         } else {
             die('You must first run the start method');
         }

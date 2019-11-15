@@ -38,8 +38,8 @@ function dump($text, $data = '') {
     // var_dump($call);
     
     
-    echo "<html><head><style></style></head><body>";
-        echo '<div>';
+    // echo "<html><head><style></style></head><body>";
+        // echo '<div>';
             echo '<hr>';
                 if ($call[1]) {
                     foreach ($call[1] as $line) {
@@ -49,11 +49,11 @@ function dump($text, $data = '') {
                 echo "--> 1  " . $text . " || " . $call[0];
                 
                 if ($data) {
-                    var_dump($data);
+                    print_r($data);
                 }
             
-        echo '</div>';
-    echo "</body></html>";
+        // echo '</div>';
+    // echo "</body></html>";
 
     echo '</pre>';
 }

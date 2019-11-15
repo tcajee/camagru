@@ -9,53 +9,35 @@ function dnd($data) {
 }
 
 
-function debug_string_backtrace() {
+function dump($text, $data = '') {
+    
     ob_start();
     debug_print_backtrace();
     $trace = ob_get_contents();
-    ob_end_clean();
 
     $trace = preg_split('/#/', $trace);
-    array_shift($trace);
     array_shift($trace);
     $dump = $trace[0];
     $dump = preg_split('/ /', $dump);
     $dump = preg_replace('/\s\s+/', '', $dump[array_key_last($dump)]); 
     array_shift($trace);
     $trace = array_reverse($trace);
-    return [$dump, $trace]; 
-    
-    return $trace; 
-}
-
-function dump($text, $data = '') {
    
-    $call = debug_string_backtrace();
-    
-    echo '<pre>';
+    ob_end_clean();
+   
+    // echo '<pre>';
+    // echo '<hr>';
+    // if ($trace) {
+    //         foreach ($trace as $line) {
+    //             echo "  > " . $line;
+    //         } 
+    //     }
+    //     echo "--> 1  " . $text . " || " . $dump;
+    //     if ($data) {
+    //         print_r($data);
+    //     }
+    // echo '</pre>';
 
-    // debug_print_backtrace();
-    // var_dump($call);
-    
-    
-    // echo "<html><head><style></style></head><body>";
-        // echo '<div>';
-            echo '<hr>';
-                if ($call[1]) {
-                    foreach ($call[1] as $line) {
-                        echo "  > " . $line;
-                    } 
-                }
-                echo "--> 1  " . $text . " || " . $call[0];
-                
-                if ($data) {
-                    print_r($data);
-                }
-            
-        // echo '</div>';
-    // echo "</body></html>";
-
-    echo '</pre>';
 }
 
 function sanitize($dirty) {

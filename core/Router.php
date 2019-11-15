@@ -17,11 +17,11 @@ class Router {
         // Paramaters
         $queryParams = $url;
 
-        $dispatch = new $controller($controller_name, $action);
+        $classObject = new $controller($controller_name, $action);
 
         if (method_exists($controller, $action)) {
-            dump("Initiating callback on function array with paramaters:    ", [[$dispatch, $action], $queryParams]);
-            call_user_func_array([$dispatch, $action], $queryParams);
+            dump("Initiating callback on function array with paramaters:    ", [[$classObject, $action], $queryParams]);
+            call_user_func_array([$classObject, $action], $queryParams);
         } else {
             die('Method ' . $action . ' does not exist in controller: ' . $controller);
         }

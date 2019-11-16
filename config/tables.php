@@ -55,6 +55,7 @@ $create_comments = "CREATE TABLE IF NOT EXISTS comments (
 
 $test_users = "INSERT INTO `users` (`username`, `email`, `password`, `fname`, `lname`, `acl`) VALUES
 				('admin', 'tcajee@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Tameem', 'Cajee', 'text'),
+				('admin2', 'sminnaar@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'LeRoux', 'Minnaar', 'text'),
 				('dee83', 'cprohaska@yahoo.com','$2y$10$1GYzTYf6MGHJlGbsqOcXsOToZhMOjEm0znucR/DrM57q3ZUWNP7ri', 'Dee', 'Prohaska', 'text'),
 				('Toy', 'itrantow@kunde.com','$2y$10$1GYzTYf6MGHJlGbsqOcXsOToZhMOjEm0znucR/DrM57q3ZUWNP7ri', 'Toy', 'Rantow', 'text'),
 				('Buckridge', 'tsporer@kub.com','$2y$10$1GYzTYf6MGHJlGbsqOcXsOToZhMOjEm0znucR/DrM57q3ZUWNP7ri', 'Buck', 'Porer', 'text'),

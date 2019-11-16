@@ -99,7 +99,7 @@ class Validate {
         $html = '<ul>';
         foreach ($this->_errors as $error) {
             if (is_array($error)) {
-                $html .= '<li>' . $error[0] . '</li>';
+                $html .= '<li id="red">' . $error[0] . '</li>';
             } else {
                 $html .= '<li>' . $error . '</li>';
             }

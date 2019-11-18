@@ -10,11 +10,9 @@ function dnd($data) {
 
 
 function dump($text, $data = '') {
-    
     ob_start();
     debug_print_backtrace();
     $trace = ob_get_contents();
-
     $trace = preg_split('/#/', $trace);
     array_shift($trace);
     $dump = $trace[0];
@@ -22,7 +20,6 @@ function dump($text, $data = '') {
     $dump = preg_replace('/\s\s+/', '', $dump[array_key_last($dump)]); 
     array_shift($trace);
     $trace = array_reverse($trace);
-   
     ob_end_clean();
    
     echo '<pre>';
@@ -37,7 +34,6 @@ function dump($text, $data = '') {
             print_r($data);
         }
     echo '</pre>';
-
 }
 
 function sanitize($dirty) {
@@ -46,4 +42,12 @@ function sanitize($dirty) {
 
 function currentUser() {
     return Users::currentUser();
+}
+
+
+function getConstants() {
+    $constants = get_defined_constants();
+    $new_constants = get_defined_constants();
+    $myconstants = array_diff_assoc($new_constants, $constants); //compares array keys and values, and returns the differences.
+    var_export($myconstants); //return the structured value of $myconstants 
 }

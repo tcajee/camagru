@@ -9,7 +9,7 @@ class Controller extends Database {
     }
 
     public function indexAction() {
-        die('Welcome to Home/index');
+        // die('Welcome to Home/index');
     }
 
 }

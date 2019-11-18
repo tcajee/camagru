@@ -7,13 +7,11 @@ class Validate {
     private $_db = null;
 
     public function __construct() {
-        dump("Constructing instance of class Validate with no parameters");
         $this->_db = DB::getInstance();
     }
 
     public function check($source, $items = []) {
         $this->_errors = [];
-        dump("Preparing validation check with source " . $source . " and parameters:    ", $items);
         foreach ($items as $item => $rules) {
             $item = Input::sanitize($item);
             $display = $rules['display'];
@@ -76,7 +74,6 @@ class Validate {
     }
 
     public function addError($error) {
-        dump("adding error " . $error . " to array: ", $this->_errors);
         $this->_errors[] = $error;
         if (empty($this->_errors)) {
             $this->_passed = true;
@@ -90,12 +87,10 @@ class Validate {
     }
 
     public function passed() {
-        dump("Check passed");
         return $this->_passed;
     }
 
     public function displayErrors() {
-        dump("Preparing to display errors based on: ", $this->_errors);
         $html = '<ul>';
         foreach ($this->_errors as $error) {
             if (is_array($error)) {

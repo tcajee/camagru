@@ -9,7 +9,6 @@ class Users extends Model {
     public static $loggedIn;
 
     public function __construct($user = '') {
-        dump("Constructing instance of class Users with parameters:    ", $user);
         $table = 'users';
         parent::__construct($table);
         $this->_sessionName = SESSION_NAME;        
@@ -30,12 +29,10 @@ class Users extends Model {
     }
 
     public function findByUsername($username) {
-        dump("Finding username: " . $username);
         return $this->findFirst(['conditions'=>'username = ?', 'bind'=>[$username]]);
     }
 
     public static function currentUser() {
-        dump("Checking for current user");
         if (!isset(self::$loggedIn) && Session::exists(SESSION_NAME)) {
             $user = new Users((int)Session::get(SESSION_NAME));
             self::$loggedIn = $user;
@@ -50,7 +47,6 @@ class Users extends Model {
             $agent = Session::uagent_version();
             Cookie::set($this->_cookieName, $hash, REMEMBER_ME_EXPIRY);
             $fields = ['session'=>$hash, 'agent'=>$agent, 'user'=>$this->id];
-            dump("Querying database with parameters:    ", ["DELETE FROM sessions WHERE user = ? AND agent = ?", [$this->id, $agent]]);
             $this->_db->query("DELETE FROM sessions WHERE user = ? AND agent = ?", [$this->id, $agent]);
             $this->_db->insert('sessions', $fields);
         }

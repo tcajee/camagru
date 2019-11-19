@@ -27,11 +27,19 @@ class Register extends Controller {
         if (!$this->errors) {
             $fields = ['username'=>$username, 'email'=>$email, 'password'=>password_hash($password, PASSWORD_BCRYPT)]; 
             $this->_db->insert('users' , $fields);
-            echo "User added";
+            $this->verify(1, "tcajee@student.wethinkcode.co.za", "link");
+            $this->view->render('verify');
         } else {
             var_dump($this->errors);
         }
 
+    }
+
+    public function verify($id, $email, $link) {
+        $subject = "Email verification | Camagru";
+        $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $text = "Hello! \n\nPlease follow the link to verify your account with Camagru: " . $link; 
+        mail($email, $subject, $text, $headers);
     }
 
     public function check($check) {

@@ -16,6 +16,6 @@ define('PROOT', '/camagru_git/');
 define('SITE_TITLE', 'Camagru');
 
 // set sessionname, cookie and expiry
-define('SESSION_NAME', 'KJ4DSHj4kd9sfh3J2DFBrusbFg');        
-define('REMEMBER_ME', 'vPI1PAJD2F0bskjdvO97IK3A5sjf');        
-define('REMEMBER_ME_EXPIRY', 86400);        
+define('SESSION_NAME', 'KJ4DSHj4kd9sfh3J2DFBrusbFg');
+define('REMEMBER_ME', 'vPI1PAJD2F0bskjdvO97IK3A5sjf');
+define('REMEMBER_ME_EXPIRY', 86400);

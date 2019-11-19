@@ -2,9 +2,11 @@
 
 class DB {
 
-    private $DB_DSN = 'mysql:hostname=localhost;dbname=camagru;unix_socket=/opt/lampp/var/mysql/mysql.sock';
+    // private $DB_DSN = 'mysql:hostname=localhost;dbname=camagru;unix_socket=/opt/lampp/var/mysql/mysql.sock';
+    private $DB_DSN = 'mysql:hostname=localhost;dbname=camagru';
     private $DB_USER = 'root';
-    private $DB_PASSWORD = '';
+    // private $DB_PASSWORD = '';
+    private $DB_PASSWORD = '1234567';
 
     private static $_instance = null;
     private $_pdo;

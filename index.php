@@ -1,5 +1,5 @@
 <?php
-//require_once('./config/setup.php');
+require_once('./config/setup.php');
 
 //phpinfo();
 
@@ -21,8 +21,8 @@ function autoload($className) {
     }
 }
 
-session_start();
 spl_autoload_register('autoload');
+session_start();
 
 $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : [];
 

@@ -11,7 +11,7 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 		password VARCHAR(255),
 		fname VARCHAR(255),
 		lname VARCHAR(255),
-		acl TEXT,
+		verified TINYINT DEFAULT 0,
 	 	PRIMARY KEY (id)
 		);";
 
@@ -19,8 +19,6 @@ $create_sessions = "CREATE TABLE IF NOT EXISTS sessions (
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 		user INT REFERENCES users(id),
 		session varchar(255),
-		agent varchar(255),
-		deleted TINYINT DEFAULT 0,
 	 	PRIMARY KEY (id)
 		);";
 
@@ -44,14 +42,10 @@ $create_comments = "CREATE TABLE IF NOT EXISTS comments (
 		time DATETIME DEFAULT NOW()
 		);";
 
-$test_users = "INSERT INTO `users` (`username`, `email`, `password`, `fname`, `lname`, `acl`) VALUES
-				('admin', 'tcajee@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Tameem', 'Cajee', 'text'),
-				('admin2', 'sminnaar@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'LeRoux', 'Minnaar', 'text'),
-				('dee83', 'cprohaska@yahoo.com','$2y$10$1GYzTYf6MGHJlGbsqOcXsOToZhMOjEm0znucR/DrM57q3ZUWNP7ri', 'Dee', 'Prohaska', 'text'),
-				('Toy', 'itrantow@kunde.com','$2y$10$1GYzTYf6MGHJlGbsqOcXsOToZhMOjEm0znucR/DrM57q3ZUWNP7ri', 'Toy', 'Rantow', 'text'),
-				('Buckridge', 'tsporer@kub.com','$2y$10$1GYzTYf6MGHJlGbsqOcXsOToZhMOjEm0znucR/DrM57q3ZUWNP7ri', 'Buck', 'Porer', 'text'),
-				('Collins', 'mraz.christy@reilly.net','$2y$10$1GYzTYf6MGHJlGbsqOcXsOToZhMOjEm0znucR/DrM57q3ZUWNP7ri', 'Collin', 'Mraz', 'text'),
-				('Huels', 'kristina39@hotmail.com','$2y$10$1GYzTYf6MGHJlGbsqOcXsOToZhMOjEm0znucR/DrM57q3ZUWNP7ri', 'Huels', 'Kristina', 'text')
+$test_users = "INSERT INTO `users` (`username`, `email`, `password`, `fname`, `lname`, `verified`) VALUES
+				('admin', 'tcajee@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Tameem', 'Cajee', '1'),
+				('admin2', 'sminnaar@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'LeRoux', 'Minnaar', '1'),
+				('username', 'user@user.com','$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Username', 'UserSurname', '1')
 				";
 
 $test_posts = "INSERT INTO posts (`img`, `user`) VALUES

@@ -30,10 +30,6 @@ class View {
             return $this->_head;
         } else if ($type == 'body') {
             return $this->_body;
-        } else if ($type == 'header') {
-            return $this->_header;
-        } else if ($type == 'footer') {
-            return $this->_footer;
         } else {
             return false;
         }
@@ -49,10 +45,6 @@ class View {
             $this->_head = ob_get_clean();
         } else if ($this->_outputBuffer == 'body') {
             $this->_body = ob_get_clean();
-        } else if ($this->_outputBuffer == 'header') {
-            $this->_header = ob_get_clean();
-        } else if ($this->_outputBuffer == 'footer') {
-            $this->_footer = ob_get_clean();
         } else {
             die('You must first run the start method');
         }

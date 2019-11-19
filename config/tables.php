@@ -1,7 +1,5 @@
 <?php
 
-$cstrong = True;
-
 $drop_database = "DROP DATABASE IF EXISTS camagru;";
 
 $create_database = "CREATE DATABASE IF NOT EXISTS camagru;";
@@ -28,13 +26,6 @@ $create_sessions = "CREATE TABLE IF NOT EXISTS sessions (
 
 $create_vusers = "CREATE TABLE IF NOT EXISTS vusers (
 		user INT REFERENCES users(id)
-		);";
-
-$create_tokens = "CREATE TABLE IF NOT EXISTS tokens (
-		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-		token VARCHAR(255) NOT NULL UNIQUE,
-		user INT REFERENCES users(id),
-	 	PRIMARY KEY (id)
 		);";
 
 $create_posts = "CREATE TABLE IF NOT EXISTS posts (
@@ -68,11 +59,7 @@ $test_posts = "INSERT INTO posts (`img`, `user`) VALUES
 				";
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
-				(1, 1, 'BITCH FUCKING PLZZZZZZZZZ');
+				(1, 1, 'Tedfdfsgsting');
 				";
 
-$test_tokens = "INSERT INTO tokens (`id`, `token`, `user`) VALUES
-				(1, '" . sha1(bin2hex(openssl_random_pseudo_bytes(64, $cstring))) . "', 1)
-				";
-
-$statements = ['create_users', 'create_sessions', 'create_tokens', 'create_posts', 'create_comments', 'test_users', 'test_posts', 'test_comments', 'test_tokens']; 
+$statements = ['create_users', 'create_sessions', 'create_posts', 'create_comments', 'test_users', 'test_posts', 'test_comments'];

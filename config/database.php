@@ -1,13 +1,13 @@
 <?php
 
-$DB_DSN = 'mysql:hostname=127.0.0.1;dbname=camagru';
-$DB_USER = 'root';
-$DB_PASSWORD = '';
+    $DB_DSN = 'mysql:hostname=127.0.0.1;dbname=camagru;unix_socket=/opt/lampp/var/mysql/mysql.sock';
+    $DB_USER = 'root';
+    $DB_PASSWORD = '';
 
 require_once("tables.php");
 
 try {
-    $pdo = new PDO("mysql:hostname=127.0.0.1", $DB_USER, $DB_PASSWORD);
+    $pdo = new PDO('mysql:hostname=127.0.0.1', $DB_USER, $DB_PASSWORD);
 
     $db = $pdo->prepare($drop_database);
     $db->execute();
@@ -18,5 +18,5 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } 
 catch (PDOException $e) {
-    echo "Connection to database failed: " . $e->getMessage() . "<br />"; 
+    echo 'Connection to database failed: ' . $e->getMessage();
 }

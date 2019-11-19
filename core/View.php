@@ -3,11 +3,9 @@
 class View {
 
     protected $_head;
-    protected $_header;
     protected $_body;
-    protected $_footer;
-    protected $_siteTitle = SITE_TITLE;
     protected $_outputBuffer;
+    protected $_siteTitle = SITE_TITLE;
     protected $_layout = DEF_LAYOUT;
 
     public function __construct() {
@@ -16,12 +14,15 @@ class View {
 
     public function render($viewName) {
         $viewArray = explode('/', $viewName);
+        // var_dump($viewArray);
         $viewString = implode(DS, $viewArray);
+        // var_dump($viewString);
+
         if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')) {
             include(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php');
             include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
         } else {
-            die('The view \"' . $viewName . '\" does not exists.');
+            die('The view \" ' . $viewName . ' \" does not exists.');
         }
     }
 

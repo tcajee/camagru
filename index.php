@@ -1,6 +1,4 @@
 <?php
-
-
 //require_once('./config/setup.php');
 
 //phpinfo();
@@ -22,37 +20,6 @@ function autoload($className) {
         require_once(ROOT . DS . 'app' . DS . 'models' . DS . $className . '.php'); 
     }
 }
-// --------------------------------------------------
-
-//$DB_DSN = 'mysql:hostname=127.0.0.1;dbname=camagru';
-//$DB_USER = 'root';
-//$DB_PASSWORD = '';
-//try {
-//    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-//}
-//catch (PDOException $e) {
-//    echo 'Connection to database failed: ' . $e->getMessage();
-//}
-//$sql = "INSERT INTO comments (`post`, `user`, `text`) VALUES (1, 1, 'INDEX');";
-//function execute($sql, $pdo){
-//    try {
-//        $db = $pdo->prepare($sql);
-//        $db->execute();
-//    } catch(PDOException $e) {
-//        die($e->getMessage());
-//    }
-//}
-//execute($sql, $pdo);
-
-
-
-
-
-
-//$db = DB::getInstance();
-//$db->insert('comments', ['post'=>'1', 'user'=>'1', 'text'=>'FUCK']);
-//die();
-// --------------------------------------------------
 
 session_start();
 spl_autoload_register('autoload');
@@ -65,6 +32,6 @@ if (!Session::exists(SESSION_NAME) && Cookie::exists(REMEMBER_ME)) {
 }
 
 // Routing
-$url[0] = "register";
-$url[1] = "login";
+//$url[0] = "register";
+//$url[1] = "login";
 Router::route($url);

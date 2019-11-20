@@ -8,6 +8,10 @@
                 <form action="register" method="post">
                     <input type="submit" name="register" value="Register">
                 </form>
+                <form action="login" method="post">
+                <p>Already a Member?</p>
+                <input type="submit" name="login" value="Login">
+            </form>
 
         </div>
     </div>

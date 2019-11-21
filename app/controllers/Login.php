@@ -16,7 +16,8 @@ class Login extends Controller {
         $hash = password_hash($password, PASSWORD_BCRYPT);
 
         if ($this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])) {
-            if (password_verify($hash, $this->_db->query('SELECT password FROM users WHERE password = ?'), ['password' => $hash])) { 
+            $check = $this->_db->query('SELECT pass FROM users WHERE username = ?', ['username'=>$username])->results()[0]->pass;
+            if (password_verify($password, $check)) { 
                 echo 'Logged in!';
             } else {
                 echo 'Incorrect Password!';

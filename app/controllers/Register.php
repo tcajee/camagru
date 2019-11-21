@@ -12,7 +12,7 @@ class Register extends Controller {
         $this->_validate = new Validate();
     }
 
-    public function register() {
+    public function register($input = []) {
 
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -26,22 +26,12 @@ class Register extends Controller {
         if (!$this->errors) {
             $fields = ['username'=>$username, 'email'=>$email, 'password'=>password_hash($password, PASSWORD_BCRYPT)]; 
             $this->_db->insert('users' , $fields);
-            $this->verify(1, "d1225932@urhen.com", "link");
+            // $link .= "<a href='http://localhost:8080/Camagru/confirm.php?user=$u_name&salt=$salt'>Confirm Account</a>";
+            $this->verify(1, "tcajee@student.wethinkcode.co.za", "link");
         } else {
             var_dump($this->errors);
         }
-
     }
-
-
-    // $email = Input::get('email');
-    // $u_name = Input::get('u_name');
-    // $subject = 'Signup | Verification';
-    // $message = 'Thank you for registering. Please click the link to verify your registration:';
-    // $message .= "<a href='http://localhost:8080/Camagru/confirm.php?user=$u_name&salt=$salt'>Confirm Account</a>";
-    // $headers .= "Content-Type:text/html;charset=UTF-8". "\r\n";
-    // mail($email, $subject, $message, $headers);
-
 
     public function verify($id, $email, $link) {
         $subject = "Email verification | Camagru";
@@ -53,7 +43,9 @@ class Register extends Controller {
             echo "sent";
             $this->view->render('verify');
         }
-            echo "sent";
+        else {
+            echo "not sent";
+        }
     }
 
     public function check($check) {

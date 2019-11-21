@@ -19,6 +19,9 @@ class Login extends Controller {
             $check = $this->_db->query('SELECT pass FROM users WHERE username = ?', ['username'=>$username])->results()[0]->pass;
             if (password_verify($password, $check)) { 
                 echo 'Logged in!';
+                $_SESSION['user'] = $this->_db->query('SELECT token FROM users WHERE username = ?', ['username'=>$username])->results()[0]->token;
+                dnd($_SESSION);
+                Router::redirect('home');
             } else {
                 echo 'Incorrect Password!';
             }

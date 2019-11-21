@@ -8,7 +8,7 @@
 		<form action="profile" method="post">
 			<input type="text" name="username" value="" placeholder="Username"><p />
 			<input type="password" name="password" value="" placeholder="Password"><p />
-			<input type="submit" name="register" value="Login">
+			<input type="submit" name="login" value="Login">
 		</form>	
 
 	</div>

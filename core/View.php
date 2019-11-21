@@ -14,10 +14,7 @@ class View {
 
     public function render($viewName) {
         $viewArray = explode('/', $viewName);
-        // var_dump($viewArray);
         $viewString = implode(DS, $viewArray);
-        // var_dump($viewString);
-
         if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')) {
             include(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php');
             include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');

@@ -1,5 +1,7 @@
 <?php
 
+$cstrong = True;
+
 $drop_database = "DROP DATABASE IF EXISTS camagru;";
 
 $create_database = "CREATE DATABASE IF NOT EXISTS camagru;";
@@ -12,6 +14,7 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 		fname VARCHAR(255),
 		lname VARCHAR(255),
 		verified TINYINT DEFAULT 0,
+		token VARCHAR(255),
 	 	PRIMARY KEY (id)
 		);";
 
@@ -42,10 +45,10 @@ $create_comments = "CREATE TABLE IF NOT EXISTS comments (
 		time DATETIME DEFAULT NOW()
 		);";
 
-$test_users = "INSERT INTO `users` (`username`, `email`, `password`, `fname`, `lname`, `verified`) VALUES
-				('admin', 'tcajee@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Tameem', 'Cajee', '1'),
-				('admin2', 'sminnaar@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'LeRoux', 'Minnaar', '1'),
-				('username', 'user@user.com','$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Username', 'UserSurname', '1')
+$test_users = "INSERT INTO `users` (`username`, `email`, `password`, `fname`, `lname`, `verified`, `token`) VALUES
+				('admin', 'tcajee@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Tameem', 'Cajee', '1'," . "'" . bin2hex(openssl_random_pseudo_bytes(64, $cstrong)) . "'" . "),
+				('admin2', 'sminnaar@student.wethinkcode.co.za', '$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'LeRoux', 'Minnaar', '1'," . "'" . bin2hex(openssl_random_pseudo_bytes(64, $cstrong)) . "'" . "),
+				('username', 'user@user.com','$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Username', 'UserSurname', '1', " . "'" . bin2hex(openssl_random_pseudo_bytes(64, $cstrong)) . "'" . ")
 				";
 
 $test_posts = "INSERT INTO posts (`img`, `user`) VALUES

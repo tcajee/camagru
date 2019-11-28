@@ -29,7 +29,7 @@ class Register extends Controller {
             $fields = ['username'=>$username, 'email'=>$email, 'pass'=>password_hash($password, PASSWORD_BCRYPT), 'token'=>$token]; 
             $this->_db->insert('users' , $fields);
             $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $token . "'> Verify </a>";
-            $this->email(1, "d1388158@urhen.com", $link);
+            $this->email(1, $email, $link);
         } else {
             var_dump($this->errors);
         }
@@ -55,7 +55,7 @@ class Register extends Controller {
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$token])->results()[0]->id;
         $fields = ['verified' => 1];
         $this->_db->update('users', $id, $fields);
-        Router::redirect('home/index');
+        Router::redirect('home');
     }
 
     public function check($check) {

@@ -33,6 +33,7 @@ class DB {
 
     public function query($sql, $params = []) {
         $this->_error = false;
+    try {
         if ($this->_query = $this->_pdo->prepare($sql)) {
             $count = 1;
             if (count($params)) {
@@ -50,6 +51,11 @@ class DB {
             }
         }
         return $this;
+    }
+    catch (Exception $e) {
+        echo $e;
+    }
+
     }
 
     protected function _read($table, $params = []) {
@@ -123,6 +129,13 @@ class DB {
     }
 
     public function update($table, $id, $fields = []) {
+
+        // $sql = 'SELECT FROM users WHERE username = "admmin2"';
+        //     query($sql);
+        //     $fields['fname'] = 'boob';
+        //     update($fields);
+
+
         $fieldString = '';
         $values = [];
         foreach ($fields as $field => $value) {

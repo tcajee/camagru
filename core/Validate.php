@@ -27,12 +27,9 @@ class Validate {
 
     public function username($input) {
         $username = $input[1];
-
-
-        // $db = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username]);
-        // dnd($db);
-
-        if ($this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])) {
+        
+        $check = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results();
+        if (!$check) {
             if (strlen($username) >= 3 && strlen($username) <= 32) {
                 if (preg_match('/[a-zA-Z0-9_]+/', $username)) {
                     return [true];
@@ -58,7 +55,9 @@ class Validate {
 
     public function email($input) {
         $email = $input[1];
-        if ($this->_db->query('SELECT email FROM users WHERE email = ?', ['email' => $email])) {
+        
+        $check = $this->_db->query('SELECT email FROM users WHERE email = ?', ['username' => $email])->results();
+        if (!$check) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return [true];
             } else {

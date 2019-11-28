@@ -88,12 +88,32 @@
     }
 
     function uploadpicture() {
-        var imageData = canvas.toDataURL('image/png');
-        console.log(imageData);
+      
+        var formData = new FormData();
+        var file = canvas.toDataURL('image/png');
+        var xhr = new XMLHttpRequest();
+        
+        // file = document.getElementById('test-input').files[0],
+        
+        formData.append('file', file);
 
-        var testImage = document.getElementById('test');
+        xhr.open('POST', 'myserver/uploads');
+        xhr.send(formData);
+            
+        var file = document.getElementById('test-input').files[0],
+        xhr = new XMLHttpRequest();
 
-        testImage.setAttribute('src', imageData);
+        xhr.open('POST', 'myserver/uploads');
+        xhr.setRequestHeader('Content-Type', file.type);
+        xhr.send(file);
+
+                
+        // TODO: upload file
+        // Ajax request to server with image data
+        // Server saves image data as a file
+        // Server creates entry in database with image path
+        // stickers 
+        // gallery to render
     }
   
     // Set up our event listener to run the startup process

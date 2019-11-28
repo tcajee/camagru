@@ -13,7 +13,7 @@ class Register extends Controller {
     }
 
     public function register($input = []) {
-
+        $this->errors = []; 
         $username = $_POST['username'];
         $password = $_POST['password'];
         $vpassword = $_POST['vpassword'];

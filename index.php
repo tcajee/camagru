@@ -1,6 +1,6 @@
 <?php
 
-require_once('./config/setup.php');
+//require_once('./config/setup.php');
 //phpinfo();
 
 define('DS', DIRECTORY_SEPARATOR);

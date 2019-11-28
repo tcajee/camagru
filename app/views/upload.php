@@ -23,7 +23,7 @@
                 <canvas id="canvas" width=640 height=480></canvas>
                 <br />
                 <button id="uploadbutton">Upload Image</button>
-                <img id="test" width=640 height=480>
+                <!-- <img id="test" width=640 height=480> -->
             </div>
         </div>
 

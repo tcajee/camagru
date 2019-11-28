@@ -18,6 +18,12 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 	 	PRIMARY KEY (id)
 		);";
 
+$create_images = "CREATE TABLE IF NOT EXISTS profile (
+	id INT UNSIGNED NOT NULL,
+	img VARCHAR(255) UNIQUE,
+	PRIMARY KEY (id)
+	);";
+
 $create_sessions = "CREATE TABLE IF NOT EXISTS sessions (
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 		user INT REFERENCES users(id),
@@ -51,6 +57,11 @@ $test_users = "INSERT INTO `users` (`username`, `email`, `pass`, `fname`, `lname
 				('username', 'user@user.com','$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Username', 'UserSurname', '1', " . "'" . bin2hex(openssl_random_pseudo_bytes(64, $cstrong)) . "'" . ")
 				";
 
+$test_profile = "INSERT INTO `profile` (`id`, `img`) VALUES
+				(1, 'ROOT . ../../img/Tameem.jpeg'),
+				(2, 'ROOT . ../../img/SL.jpeg')
+				";
+
 $test_posts = "INSERT INTO posts (`img`, `user`) VALUES
 				('../somewhere/img1.png', 1);
 				";
@@ -59,4 +70,4 @@ $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
 				(1, 1, 'Tedfdfsgsting');
 				";
 
-$statements = ['create_users', 'create_sessions', 'create_posts', 'create_comments', 'test_users', 'test_posts', 'test_comments'];
+$statements = ['create_users', 'create_images', 'create_sessions', 'create_posts', 'create_comments', 'test_users', 'test_posts', 'test_comments', 'test_profile'];

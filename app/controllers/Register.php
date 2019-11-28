@@ -55,7 +55,7 @@ class Register extends Controller {
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$token])->results()[0]->id;
         $fields = ['verified' => 1];
         $this->_db->update('users', $id, $fields);
-        Router::redirect('home');
+        Router::redirect('login');
     }
 
     public function check($check) {

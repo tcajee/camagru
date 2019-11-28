@@ -22,6 +22,9 @@
             <div>
                 <canvas id="canvas" width=640 height=480></canvas>
                 <br />
+                <button id="stickerbutton">Save Sticker</button>
+                <br />
+                <br />
                 <button id="uploadbutton">Upload Image</button>
             </div>
         </div>

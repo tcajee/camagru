@@ -4,7 +4,7 @@
 
     <div class="center">
 
-        <h1>Profile</h1>
+        <h1>My Profile</h1>
         <img src='./img/temp/jpg' alt='Profile photo'>
         
     </div>

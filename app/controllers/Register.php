@@ -26,7 +26,7 @@ class Register extends Controller {
         $this->check($check = $this->_validate->check(['email', $email]));
         $this->check($check = $this->_validate->check(['match', $password, $vpassword]));
         if (!$this->errors) {
-            $fields = ['username'=>$username, 'email'=>$email, 'pass'=>password_hash($password, PASSWORD_BCRYPT), 'token'=>$token]; 
+            $fields = ['username'=>$username, 'email'=>$email, 'pass'=>password_hash($password, PASSWORD_BCRYPT), 'token'=>$token, 'photo'=>'img/profile/def4.jpg']; 
             $this->_db->insert('users' , $fields);
             $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $token . "'> Verify </a>";
             $this->email(1, $email, $link);

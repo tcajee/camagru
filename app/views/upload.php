@@ -9,7 +9,7 @@
     <hr>
     <div class="row-padding">
         <div>
-            <video id="video">Video stream not available.</video>
+            <video style="muted: muted;" id="video">Video stream not available.</video>
         </div>
         <div class="container padding-32" id="photos">
             <button id="startbutton">Take photo</button>

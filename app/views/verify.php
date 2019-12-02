@@ -1,5 +1,5 @@
 
-<?php $this->setSiteTitle('Register') ?>
+<?php $this->setSiteTitle('Verify') ?>
 
 <?php $this->start('body'); ?>
 

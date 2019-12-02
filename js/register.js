@@ -19,8 +19,7 @@
                     resData = res.target.response;
 
                     if (!resData) {
-                        window.location = "http://127.0.0.1:8080/camagru_git/register/verify";
-                        location.reload();
+                        errors.innerHTML = 'Please check your email for a verification link!';
                     } else {
                         resErrors = resData.split(',');
                         resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
@@ -28,6 +27,8 @@
                         errors.style.display = "initial";
                     }
                 }
+                //window.location.assign("register/verify");
+
             }
 
             xhr.open('POST', 'register/register');

@@ -45,7 +45,7 @@ class Register extends Controller {
         if (mail($email, $subject, $text, $headers)) {
             //echo $link;
             //echo "sent";
-            $this->view->render('verify');
+            //$this->view->render('verify');
         }
         else {
             echo "not sent";

@@ -31,7 +31,8 @@ class Register extends Controller {
             $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $token . "'> Verify </a>";
             $this->email(1, $email, $link);
         } else {
-            var_dump($this->errors);
+            echo implode(",", $this->errors);
+            //Router::redirect('register');
         }
     }
 
@@ -42,8 +43,8 @@ class Register extends Controller {
         $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
         $text = "Hello! \n\nPlease follow the link to verify your account with Camagru: " . $link; 
         if (mail($email, $subject, $text, $headers)) {
-            echo $link;
-            echo "sent";
+            //echo $link;
+            //echo "sent";
             $this->view->render('verify');
         }
         else {

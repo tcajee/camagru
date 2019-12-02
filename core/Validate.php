@@ -49,7 +49,7 @@ class Validate {
         if (strlen($password >= 6 && strlen($password) <= 32)) {
             return [true];
         } else {
-            return [false, "Passwords must be between 6 and 32 characters long"];
+            return [false, "Passwords must be between 6 and 32 characters long."];
         }
     }
 

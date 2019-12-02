@@ -6,6 +6,8 @@ define('ROOT', dirname(__FILE__));
 
 // require_once('./config/setup.php');
 
+//change verification link path on submission!
+//change verification link path on submission!
 
 // Load config
 require_once(ROOT . DS. 'config' . DS . 'config.php');
@@ -34,12 +36,7 @@ if (!Session::exists(SESSION_NAME) && Cookie::exists(REMEMBER_ME)) {
 
 
 // Routing
-//$url[0] = "register";
-//$url[1] = "login";
 Router::route($url);
-
-
-
 
 
 //change verification link path on submission!

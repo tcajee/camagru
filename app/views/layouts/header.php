@@ -1,8 +1,14 @@
-  <div class="center">
-    <div class="bar black card">
-    <a href="profile" class="bar-item button padding-large">PROFILE</a>
-    <a href="#" class="bar-item button padding-large">SETTINGS</a>
-    <a href="upload" class="bar-item button padding-large">UPLOAD</a>
-	  <a href="#" class="bar-item button padding-large">LOGIN/LOGOUT</a>
+<?php 
+  if (isset($_SESSION['user'])) {
+    echo  "<div class='center'>
+    <hr>
+    <div class='bar black card'>
+      <a href='profile' class='bar-item button padding-small'>PROFILE</a>
+      <a href='#' class='bar-item button padding-small'>SETTINGS</a>
+      <a href='upload' class='bar-item button padding-small'>UPLOAD</a>
+      <a href='logout' class='bar-item button padding-small'>LOGOUT</a>
     </div>
-  </div>
+    <hr>
+    </div>";
+  } 
+?>

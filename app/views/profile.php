@@ -5,7 +5,11 @@
     <div class="center">
 
         <h1>My Profile</h1>
-        <img src='./img/temp/jpg' alt='Profile photo'>
+        <?php
+            $_db = DB::getInstance();
+            $photo = $_db->query('SELECT photo FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->photo;
+            echo "<img src='$photo' alt='Profile photo'>";
+        ?>
         
     </div>
 <!-- Portfolio Section -->
@@ -15,15 +19,11 @@
     <!-- Grid for photos -->
     <div class="row-padding center" style="margin:0 -16px">
     <div class="half">
-        <img src="/w3images/wedding.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/rocks.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/sailboat.jpg" alt='Uploads' style="width:100%">
+
+        <!-- <img src="/w3images/sailboat.jpg" alt='Uploads' style="width:100%"> -->
     </div>
     <div class="half center">
-        <img src="/w3images/underwater.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/chef.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/wedding.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/p6.jpg" alt='Uploads' style="width:100%">
+        <!-- <img src="/w3images/p6.jpg" alt='Uploads' style="width:100%"> -->
     </div>
     <!-- End photo grid -->
     </div>

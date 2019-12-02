@@ -51,6 +51,12 @@ class Register extends Controller {
         }
     }
 
+ 
+    public function logout() {
+        unset($_SESSION['user']);
+        Router::redirect('home');
+    }
+
     public function verify($token) {
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$token])->results()[0]->id;
         $fields = ['verified' => 1];

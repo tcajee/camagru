@@ -1,11 +1,11 @@
 (function () {
     function startup() {
-        console.log('dom loaded');
+        // console.log('dom loaded');
         const errors = document.getElementById("errors");
         const inputUsername = document.getElementById("username");
         const inputPassword = document.getElementById("password");
         let submitbutton = document.getElementById("loginbutton");
-        console.log(submitbutton);
+        // console.log(submitbutton);
     
         submitbutton.onclick = onLogin;
 
@@ -21,23 +21,16 @@
                         resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
                         errors.innerHTML = resHTML;
                         errors.style.display = "initial";
+                    } else {
+                        window.location.assign('profile');
                     }
                 }
-                //window.location.assign("register/verify");
-
             }
-
             xhr.open('POST', 'login/login');
-
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            let params = 'username=' + inputUsername.value
-            + '&password=' + inputPassword.value;
-
+            let params = 'username=' + inputUsername.value + '&password=' + inputPassword.value;
             xhr.send(params);
         }
     }
-    
-
     window.addEventListener('load', startup, false);
 })();

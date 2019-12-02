@@ -25,23 +25,16 @@
                         errors.style.display = "initial";
                     }
                 }
-                //window.location.assign("register/verify");
-
             }
-
             xhr.open('POST', 'register/register');
-
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
             let params = 'username=' + inputUsername.value
             + '&password=' + inputPassword.value
             + '&vpassword=' + inputVPassword.value
             + '&email=' + inputEmail.value;
-
             xhr.send(params);
         }
     }
-    
 
     window.addEventListener('load', startup, false);
 })();

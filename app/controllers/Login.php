@@ -3,13 +3,10 @@
 class Login extends Controller {
 
     private $_db;
-    private $_validate;
-    public $errors = [];
 
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
         $this->_db = DB::getInstance();
-        $this->_validate = new Validate();
     }
 
     public function login($input = []) {
@@ -17,20 +14,28 @@ class Login extends Controller {
         $username = $_POST['username'];
         $password = $_POST['password'];
         $hash = password_hash($password, PASSWORD_BCRYPT);
-
      
-
-        if ($this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])) {
-            $check = $this->_db->query('SELECT pass FROM users WHERE username = ?', ['username'=>$username])->results()[0]->pass;
-            if (password_verify($password, $check)) { 
-                echo 'Logged in!';
-                $_SESSION['user'] = $this->_db->query('SELECT token FROM users WHERE username = ?', ['username'=>$username])->results()[0]->token;
-                Router::redirect('profile');
+        if ($username)
+        {
+            if ($password) {
+                if ($user = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results()) {
+                    $user = $user[0]->username;
+                    if ($pass = $this->_db->query('SELECT pass FROM users WHERE username = ?', ['username'=>$username])->results()) {
+                        $pass = $pass[0]->pass;
+                    }
+                    if (password_verify($password, $pass)) { 
+                        $_SESSION['user'] = $this->_db->query('SELECT token FROM users WHERE username = ?', ['username'=>$username])->results()[0]->token;
+                    } else {
+                        echo 'Incorrect Password!';
+                    }
+                } else {
+                    echo 'Username not registered!';
+                }
             } else {
-                echo 'Incorrect Password!';
-            }
+                echo 'Please enter a password!';
+            } 
         } else {
-            echo 'Username not registered!';
+            echo 'Please enter a username!';
         }
     }
  

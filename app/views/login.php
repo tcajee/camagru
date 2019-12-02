@@ -13,5 +13,4 @@
 
 			<p id="errors" style="display: none; color: red;"></p>
 	</div>
-
 <?php $this->end(); ?>

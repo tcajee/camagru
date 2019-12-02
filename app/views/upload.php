@@ -1,6 +1,7 @@
 <?php $this->setSiteTitle('Upload') ?>
 
 <?php $this->start('body'); ?>
+<script src="./js/camera.js"></script>
 
 <div class="center black">
     <div id="photos">
@@ -8,7 +9,7 @@
     </div>
     <div class="row-padding">
         <div>
-            <video style="muted: muted;" id="video">Video stream not available.</video>
+            <video id="video" muted>Video stream not available.</video>
         </div>
         <div class="container padding-32" id="photos">
             <button id="startbutton">Take photo</button>
@@ -30,6 +31,5 @@
     </div>
     <br />
 </div>
-<script src="./js/camera.js"></script>
 
 <?php $this->end('body'); ?>

@@ -31,6 +31,16 @@
       .then(function(stream) {
         video.srcObject = stream;
         video.play();
+        
+        var promise = document.querySelector('video').play();
+        if (promise !== undefined) {
+          promise.then(_ => {
+            video.play();
+          }).catch(error => {
+            video.play();
+          });
+        }
+
       })
       .catch(function(err) {
         console.log("An error occurred: " + err);

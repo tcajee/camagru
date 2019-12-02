@@ -1,4 +1,4 @@
-
+<!-- Redundant!!! -->
 <?php $this->setSiteTitle('Verify') ?>
 
 <?php $this->start('body'); ?>

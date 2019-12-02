@@ -19,6 +19,7 @@
                     resData = res.target.response;
 
                     if (!resData) {
+                        //Success!!!
                         errors.innerHTML = 'Please check your email for a verification link!';
                     } else {
                         resErrors = resData.split(',');

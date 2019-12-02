@@ -4,14 +4,12 @@
         const errors = document.getElementById("errors");
         const inputUsername = document.getElementById("username");
         const inputPassword = document.getElementById("password");
-        const inputVPassword = document.getElementById("vpassword");
-        const inputEmail = document.getElementById("email");
-        let submitbutton = document.getElementById("registerbutton");
+        let submitbutton = document.getElementById("loginbutton");
         console.log(submitbutton);
     
-        submitbutton.onclick = onRegister;
+        submitbutton.onclick = onLogin;
 
-        function onRegister() {
+        function onLogin() {
             const xhr = new XMLHttpRequest();
 
             xhr.onreadystatechange = function(res) {
@@ -29,14 +27,12 @@
 
             }
 
-            xhr.open('POST', 'register/register');
+            xhr.open('POST', 'login/login');
 
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
             let params = 'username=' + inputUsername.value
-            + '&password=' + inputPassword.value
-            + '&vpassword=' + inputVPassword.value
-            + '&email=' + inputEmail.value;
+            + '&password=' + inputPassword.value;
 
             xhr.send(params);
         }

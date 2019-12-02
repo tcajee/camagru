@@ -3,6 +3,8 @@
 class Login extends Controller {
 
     private $_db;
+    private $_validate;
+    public $errors = [];
 
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
@@ -10,10 +12,13 @@ class Login extends Controller {
         $this->_validate = new Validate();
     }
 
-    public function login() {
+    public function login($input = []) {
+        $this->errors = []; 
         $username = $_POST['username'];
         $password = $_POST['password'];
         $hash = password_hash($password, PASSWORD_BCRYPT);
+
+     
 
         if ($this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])) {
             $check = $this->_db->query('SELECT pass FROM users WHERE username = ?', ['username'=>$username])->results()[0]->pass;

@@ -2,15 +2,11 @@
 
 <?php $this->start('body'); ?>
 
-<!-- <script src="./js/camera.js"></script> -->
-
 <div class="center black">
     <div id="photos">
         <h1 class="text-light-grey">Upload</h1>
     </div>
-
     <hr>
-
     <div class="row-padding">
         <div>
             <video id="video">Video stream not available.</video>
@@ -27,8 +23,8 @@
         <br />
         <button id="uploadbutton">Upload Image</button>
     </div>
+    <br />
 </div>
-
 <script src="./js/camera.js"></script>
 
 <?php $this->end('body'); ?>

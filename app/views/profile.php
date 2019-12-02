@@ -3,31 +3,39 @@
 <?php $this->start('body'); ?>
 
     <div class="center">
+        <?php
+            $_db = DB::getInstance();
+            $username = $_db->query('SELECT username FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->username;
+            echo "<h2>Welcome, $username!</h2>";
+            $photo = $_db->query('SELECT photo FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->photo;
+            if ($photo) {
+                echo "<img style='width: 20%' src='$photo' alt='Profile photo'>";
+            } else {
+                echo "<img style='width: 20%;' src='img/profile/def4.jpg' alt='Profile photo'>";
+            }
+        ?>
+    </div>
 
-        <h1>My Profile</h1>
-        <img src='./img/temp/jpg' alt='Profile photo'>
-        
+    <div class="padding-64 content center" id="photos">
+        <?php
+    
+            $id = $_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+            
+            
+            $photos = $_db->query('SELECT img FROM posts WHERE user = ?', ['user'=>$id])->results();
+
+            // dnd($photos);
+
+            echo "<h2 class='text-light-grey'>Your Photos</h2>
+            <div class='row-padding center' style='margin:0 -16px'>
+            <div class='half center'>";
+
+                foreach ($photos as $photo) {
+                    echo "<img src=$photo->img alt='Uploads' style='width:20%'>";
+                }
+
+            echo "</div>";
+        ?>
     </div>
-<!-- Portfolio Section -->
-<div class="padding-64 content center" id="photos">
-    <h2 class="text-light-grey">My Photos</h2>
-    <hr style="width:200px" class="opacity">
-    <!-- Grid for photos -->
-    <div class="row-padding center" style="margin:0 -16px">
-    <div class="half">
-        <img src="/w3images/wedding.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/rocks.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/sailboat.jpg" alt='Uploads' style="width:100%">
-    </div>
-    <div class="half center">
-        <img src="/w3images/underwater.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/chef.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/wedding.jpg" alt='Uploads' style="width:100%">
-        <img src="/w3images/p6.jpg" alt='Uploads' style="width:100%">
-    </div>
-    <!-- End photo grid -->
-    </div>
-<!-- End Portfolio Section -->
-</div>
 
 <?php $this->end(); ?>

@@ -87,22 +87,8 @@
       }
     }
 
-    function uploadpicture() {
-        
-        var file = canvas.toDataURL('image/png');
-        
-        console.log(file);
-        
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '127.0.0.1:8080/camagru_git/upload/upload', true);
-        xhr.send(file);
-
-    }
-
     function uploadPicture() {
-          
           var file = canvas.toDataURL('image/png');
-
           var xhr = new XMLHttpRequest;
           xhr.onreadystatechange = function(res) {
             if (this.readyState == 4 && this.status == 200) {
@@ -112,10 +98,7 @@
           xhr.open ('POST', 'upload/upload');
           xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
           xhr.send("img=" + file);
-
       }
-
-
   
     // Set up our event listener to run the startup process
     // once loading is complete.

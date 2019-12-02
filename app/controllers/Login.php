@@ -20,7 +20,6 @@ class Login extends Controller {
             if (password_verify($password, $check)) { 
                 echo 'Logged in!';
                 $_SESSION['user'] = $this->_db->query('SELECT token FROM users WHERE username = ?', ['username'=>$username])->results()[0]->token;
-                //dnd($_SESSION);
                 Router::redirect('profile');
             } else {
                 echo 'Incorrect Password!';
@@ -30,6 +29,10 @@ class Login extends Controller {
         }
     }
  
+    public function logout() {
+        unset($_SESSION['user']);
+        Router::redirect('home');
+    }
 	public function index() {
        $this->view->render('login');
     }

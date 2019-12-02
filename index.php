@@ -1,10 +1,11 @@
 <?php
 
-//require_once('./config/setup.php');
-//phpinfo();
-
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
+
+
+// require_once('./config/setup.php');
+
 
 // Load config
 require_once(ROOT . DS. 'config' . DS . 'config.php');

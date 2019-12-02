@@ -6,7 +6,17 @@ class Home extends Controller {
         parent::__construct($controller, $action);
     }
 
+ 
+    public function logout() {
+        unset($_SESSION['user']);
+        Router::redirect('home');
+    }
+
     public function index() {
-       $this->view->render('index');
+       if (!isset($_SESSION['user'])) {
+           $this->view->render('index');
+       }
+       else 
+           $this->view->render('profile');
     }
 }

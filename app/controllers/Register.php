@@ -30,7 +30,7 @@ class Register extends Controller {
             $this->_db->insert('users' , $fields);
             $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $token . "'> Verify </a>";
             $this->email(1, $email, $link);
-            echo 'PHP Please check your email for a verification link!';
+            echo 'Please check your email for a verification link!';
     } else {
             echo implode(",", $this->errors);
             //Router::redirect('register');

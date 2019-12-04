@@ -15,8 +15,6 @@ try {
     $db->execute();
     $db = $pdo->prepare($create_database);
     $db->execute();
-    $row = $db->rowCount();
-    var_dump($row);
 
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -27,7 +27,14 @@
         <button id="uploadbutton">Upload Image</button>
         <br />
         <br />
-        <button id="uploadfile">Upload File</button>
+
+
+        
+        <form action="upload/file" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" /><p></p>
+            <input type="submit" value="Upload"/>
+        </form>
+
     </div>
     <br />
 </div>

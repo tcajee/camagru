@@ -11,32 +11,40 @@ class Login extends Controller {
 
     public function login($input = []) {
         $this->errors = []; 
-        $username = htmlspecialchars(htmlentities($_POST['username'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
-        $password = htmlspecialchars(htmlentities($_POST['password'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
-        $hash = password_hash($password, PASSWORD_BCRYPT);
      
-        if ($username)
-        {
-            if ($password) {
-                if ($user = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results()) {
-                    $user = $user[0]->username;
-                    if ($pass = $this->_db->query('SELECT pass FROM users WHERE username = ?', ['username'=>$username])->results()) {
-                        $pass = $pass[0]->pass;
-                    }
-                    if (password_verify($password, $pass)) { 
-                        $_SESSION['user'] = $this->_db->query('SELECT token FROM users WHERE username = ?', ['username'=>$username])->results()[0]->token;
+        if ($_POST) {
+
+            $username = htmlspecialchars(htmlentities($_POST['username'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
+            $password = htmlspecialchars(htmlentities($_POST['password'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
+            $hash = password_hash($password, PASSWORD_BCRYPT);
+
+            if ($username)
+            {
+                if ($password) {
+                    if ($user = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results()) {
+                        $user = $user[0]->username;
+                        if ($pass = $this->_db->query('SELECT pass FROM users WHERE username = ?', ['username'=>$username])->results()) {
+                            $pass = $pass[0]->pass;
+                        }
+                        if (password_verify($password, $pass)) { 
+                            $_SESSION['user'] = $this->_db->query('SELECT token FROM users WHERE username = ?', ['username'=>$username])->results()[0]->token;
+                        } else {
+                            echo 'Incorrect Password!';
+                        }
                     } else {
-                        echo 'Incorrect Password!';
+                        echo 'Username not registered!';
                     }
                 } else {
-                    echo 'Username not registered!';
-                }
+                    echo 'Please enter a password!';
+                } 
             } else {
-                echo 'Please enter a password!';
-            } 
+                echo 'Please enter a username!';
+            }
         } else {
-            echo 'Please enter a username!';
+            Router::redirect('login');
+            // $this->view->render('login');
         }
+
     }
 
     public function forgot() {

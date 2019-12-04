@@ -13,27 +13,31 @@ class Register extends Controller {
     }
 
     public function register($input = []) {
-        $this->errors = []; 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $vpassword = $_POST['vpassword'];
-        $email = $_POST['email'];
-        $cstrong = True;
-        $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
+       $this->errors = [];
+       if ($_POST) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $vpassword = $_POST['vpassword'];
+            $email = $_POST['email'];
+            $cstrong = True;
+            $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
 
-        $this->check($check = $this->_validate->check(['username', $username]));
-        $this->check($check = $this->_validate->check(['password', $password]));
-        $this->check($check = $this->_validate->check(['email', $email]));
-        $this->check($check = $this->_validate->check(['match', $password, $vpassword]));
-        if (!$this->errors) {
-            $fields = ['username'=>$username, 'email'=>$email, 'pass'=>password_hash($password, PASSWORD_BCRYPT), 'token'=>$token, 'photo'=>'img/profile/def4.jpg']; 
-            $this->_db->insert('users' , $fields);
-            $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $token . "'> Verify </a>";
-            $this->email(1, $email, $link);
-            echo 'Please check your email for a verification link!';
-    } else {
-            echo implode(",", $this->errors);
-        }
+            $this->check($check = $this->_validate->check(['username', $username]));
+            $this->check($check = $this->_validate->check(['password', $password]));
+            $this->check($check = $this->_validate->check(['email', $email]));
+            $this->check($check = $this->_validate->check(['match', $password, $vpassword]));
+            if (!$this->errors) {
+                $fields = ['username'=>$username, 'email'=>$email, 'pass'=>password_hash($password, PASSWORD_BCRYPT), 'token'=>$token, 'photo'=>'img/profile/def4.jpg']; 
+                $this->_db->insert('users' , $fields);
+                $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $token . "'> Verify </a>";
+                $this->email(1, $email, $link);
+                echo 'Please check your email for a verification link!';
+            } else {
+                echo implode(",", $this->errors);
+            }
+       } else {
+            Router::redirect('');
+       }
     }
 
     public function email($id, $email, $link) {
@@ -47,7 +51,7 @@ class Register extends Controller {
  
     public function logout() {
         unset($_SESSION['user']);
-        Router::redirect('home');
+        Router::redirect('');
     }
 
     public function verify($token) {

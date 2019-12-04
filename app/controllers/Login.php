@@ -11,8 +11,8 @@ class Login extends Controller {
 
     public function login($input = []) {
         $this->errors = []; 
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = htmlspecialchars(htmlentities($_POST['username'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
+        $password = htmlspecialchars(htmlentities($_POST['password'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
         $hash = password_hash($password, PASSWORD_BCRYPT);
      
         if ($username)
@@ -37,6 +37,26 @@ class Login extends Controller {
         } else {
             echo 'Please enter a username!';
         }
+    }
+
+    public function forgot() {
+
+        $email = htmlspecialchars(htmlentities($_POST['reset_pass'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
+        $pass = '1234567';
+
+        $id = $this->_db->query('SELECT id FROM users WHERE email = ?', ['email'=>$email])->results()[0]->id;
+        //dnd($id);
+        $fields = ['pass'=>password_hash($pass, PASSWORD_BCRYPT)];
+        $this->_db->update('users', $id, $fields);
+        
+        $subject = "Password reset | Camagru";
+        $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= "MIME-Version: 1.0" . "\r\n";
+        $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
+        $text = "Hello! \n\n Your password has been reset to: ". $pass; 
+        mail($email, $subject, $text, $headers);
+        Router::redirect('login');
+
     }
  
     public function logout() {

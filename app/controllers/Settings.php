@@ -96,7 +96,8 @@ class Settings extends Controller {
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
         $fields = ['pass'=>password_hash($pass, PASSWORD_BCRYPT)];
         $this->_db->update('users', $id, $fields);
-        Router::redirect('settings');
+        unset($_SESSION['user']);
+        Router::redirect('login');
         }
         else {
             echo 'NOOO!!!';

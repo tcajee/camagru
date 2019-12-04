@@ -20,11 +20,12 @@
     <br />
 
     <p>Change Password</p>
-    <form action="settings/update_pass" method="POST">
+    <!-- <form action="settings/update_pass" method="POST"> -->
     <input id="pass" type="password" name="pass_update" value="" placeholder="Enter New Password"><p></p>
     <input id="vpass" type="password" name="vpass_update" value="" placeholder="Repeat New Password"><p></p>
     <input id="change_p" type="submit" name="change_password" value="Change Password" ><p></p>
-    </form>
+    <p id="errors" style="display: none; color: red;"></p>
+    <!-- </form> -->
 
     <br />
 
@@ -42,6 +43,6 @@
     </form>
 </div>
 
-<!-- <script>./js/settings.js</script> -->
+<script src="./js/settings.js"></script>
 
 <?php $this->end('body'); ?>

@@ -1,13 +1,13 @@
 (function () {
     function startup() {
-        console.log('dom loaded');
+        //console.log('dom loaded');
         const errors = document.getElementById("errors");
         const inputUsername = document.getElementById("username");
         const inputPassword = document.getElementById("password");
         const inputVPassword = document.getElementById("vpassword");
         const inputEmail = document.getElementById("email");
         let submitbutton = document.getElementById("registerbutton");
-        console.log(submitbutton);
+        //console.log(submitbutton);
     
         submitbutton.onclick = onRegister;
 

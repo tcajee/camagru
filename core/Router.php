@@ -22,7 +22,7 @@ class Router {
   
         $queryParams = $url;
 
-        if (class_exists($controller) && method_exists($controller, $action)) {
+        if (method_exists($controller, $action) && class_exists($controller)) {
             $classObject = new $controller($controller_name, $action);
             call_user_func_array([$classObject, $action], $queryParams);
         } else {

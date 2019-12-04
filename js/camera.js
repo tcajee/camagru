@@ -24,8 +24,16 @@
       canvas = document.getElementById('canvas');
       startbutton = document.getElementById('startbutton');
       uploadbutton = document.getElementById('uploadbutton');
+      sbutton1 = document.getElementById('sbutton1');
+      sbutton2 = document.getElementById('sbutton2');
+      sbutton3 = document.getElementById('sbutton3');
+      sbutton4 = document.getElementById('sbutton4');
 
       uploadbutton.onclick = uploadPicture;
+      sbutton1.onclick = addSticker1;
+      sbutton2.onclick = addSticker2;
+      sbutton3.onclick = addSticker3;
+      sbutton4.onclick = addSticker4;
   
       navigator.mediaDevices.getUserMedia({video: true, audio: false})
       .then(function(stream) {
@@ -68,7 +76,7 @@
   
     function clearphoto() {
       var context = canvas.getContext('2d');
-      context.fillStyle = "#AAA";
+      context.fillStyle = "#000";
       context.fillRect(0, 0, canvas.width, canvas.height);
     }
     
@@ -87,12 +95,44 @@
       }
     }
 
+    function addSticker1() {
+        var canvas = document.getElementById("canvas");
+        var layer = canvas.getContext("2d");
+        var img = document.getElementById("s1");
+        layer.drawImage(img, 0, height/3, 80, 80);
+        s1 = true;
+    }
+
+    function addSticker2() {
+        var canvas = document.getElementById("canvas");
+        var layer = canvas.getContext("2d");
+        var img = document.getElementById("s2");
+        layer.drawImage(img, width/3, 0, 80, 80);
+        s1 = true;
+    }
+
+    function addSticker3() {
+        var canvas = document.getElementById("canvas");
+        var layer = canvas.getContext("2d");
+        var img = document.getElementById("s3");
+        layer.drawImage(img, width - 80, height / 3, 80, 80);
+        s1 = true;
+    }
+
+    function addSticker4() {
+        var canvas = document.getElementById("canvas");
+        var layer = canvas.getContext("2d");
+        var img = document.getElementById("s4");
+        layer.drawImage(img, width - 100, height - 80, 80, 80);
+        s1 = true;
+    }
+
     function uploadPicture() {
           var file = canvas.toDataURL('image/png');
           var xhr = new XMLHttpRequest;
           xhr.onreadystatechange = function(res) {
             if (this.readyState == 4 && this.status == 200) {
-              console.log(res);
+              console.log(file);
             }
           };
           xhr.open ('POST', 'upload/upload');
@@ -100,7 +140,5 @@
           xhr.send("img=" + file);
       }
   
-    // Set up our event listener to run the startup process
-    // once loading is complete.
     window.addEventListener('load', startup, false);
   })();

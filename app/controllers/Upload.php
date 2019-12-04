@@ -29,7 +29,7 @@ class Upload extends Controller {
 
             $save = 'img' . DS . 'img_' . date('YmdHis') . '.png';
             $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
-            $fields = ['img'=>$save,'user'=>$id]; 
+            $fields = ['img'=>$save, 'user'=>$id]; 
 
             $this->_db->insert('posts', $fields);
 

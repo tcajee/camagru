@@ -35,7 +35,7 @@
     </form>
     <br />
     
-    <p>Update Preferances</p>
+    <p>Update Preferences</p>
     <input id="preferace" type="checkbox" name="notifications" value="Recieve Notifications" /> Recieve Notifications
 </div>
 

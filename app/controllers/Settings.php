@@ -69,8 +69,8 @@ class Settings extends Controller {
 
     public function update_email() {
 
-        $this->check($check = $this->_validate->check(['email', $email]));
         $email = $_POST['update_email'];
+        $this->check($check = $this->_validate->check(['email', $email]));
 
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
         $fields = ['email'=>$email];

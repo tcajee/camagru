@@ -78,6 +78,9 @@ class Settings extends Controller {
         $this->_db->update('users', $id, $fields);
         Router::redirect('settings');
         }
+        else {
+            echo 'Noooo!! Email'
+        }
 
     }
 

@@ -4,7 +4,7 @@
 
 <div class="center black">
     <p>Update First and Last names</p>
-    <form action="settings/names" method="POST"></form>
+    <form action="settings/names" method="POST">
     <input id="fname" type="text" name="fname" value="" placeholder="First Name"><p></p>
     <input id="lname" type="text" name="lname" value="" placeholder="Last Name"><p></p>
     <input id="update" type="submit" name="update" value="Update" /><p></p>
@@ -27,9 +27,10 @@
     <br />
 
     <p>Update Email</p>
+    <form action="settings/email" method="POST">
     <input id="email" type="text" name="email_update" value="" placeholder="Update Email"><p></p>
     <input id="change_e" type="button" name="change_email" value="Change Email" /><p></p>
-    
+    </form>
     <br />
     
     <p>Update Preferances</p>

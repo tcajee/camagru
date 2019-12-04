@@ -37,4 +37,35 @@ class Upload extends Controller {
             echo "Error: No image data";
         }
     }
+
+    public function file() {
+        if (isset($_FILES['image'])) {
+
+            $errors = [];
+            $file_name = $_FILES['image']['name'];
+            $file_tmp = $_FILES['image']['tmp_name'];
+            $file_type = $_FILES['image']['type'];
+            $file_ext = explode('.', $_FILES['image']['name']);
+            $file_ext = strtolower(end($file_ext));
+
+            $extensions = array("jpeg", "jpg", "png");
+
+            if (in_array($file_ext,$extensions) === false) {
+                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+            }
+
+            if (empty($errors) == true) {
+                move_uploaded_file($file_tmp, ROOT . DS . 'img' . DS . 'profile' . DS . $file_name);
+
+                $save = 'img' . DS . 'profile' . DS . $file_name;
+                $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+                $fields = ['img'=>$save,'user'=>$id]; 
+                $this->_db->insert('posts', $fields);
+                Router::redirect('upload');
+            } else {
+                print_r($errors);
+            }
+        }
+    }
+
 }

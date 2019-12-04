@@ -34,9 +34,7 @@ if (!Session::exists(SESSION_NAME) && Cookie::exists(REMEMBER_ME)) {
     echo "logging in from cookie";
 }
 
-
 // Routing
 Router::route($url);
-
 
 //change verification link path on submission!

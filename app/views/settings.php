@@ -20,10 +20,12 @@
     <br />
 
     <p>Change Password</p>
-    <input id="pass" type="text" name="pass_update" value="" placeholder="Enter New Password"><p></p>
-    <input id="vpass" type="text" name="vpass_update" value="" placeholder="Repeat New Password"><p></p>
-    <input id="change_p" type="button" name="change_password" value="Change Password" /><p></p>
-    
+    <form action="settings/update_pass" method="POST">
+    <input id="pass" type="password" name="pass_update" value="" placeholder="Enter New Password"><p></p>
+    <input id="vpass" type="password" name="vpass_update" value="" placeholder="Repeat New Password"><p></p>
+    <input id="change_p" type="submit" name="change_password" value="Change Password" /><p></p>
+    </form>
+
     <br />
 
     <p>Update Email</p>

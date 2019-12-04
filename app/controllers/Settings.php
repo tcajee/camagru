@@ -4,6 +4,7 @@ class Settings extends Controller {
     
     public $_db;
     private $_validate;
+    public $errors = [];
 
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
@@ -69,12 +70,32 @@ class Settings extends Controller {
 
     public function update_email() {
 
-        $this->check($check = $this->_validate->check(['email', $email]));
         $email = $_POST['update_email'];
-
+        $this->check($check = $this->_validate->check(['email', $email]));
+        if (!$this->errors)
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
         $fields = ['email'=>$email];
         $this->_db->update('users', $id, $fields);
         Router::redirect('settings');
+       
+    }
+
+    public function update_pass() {
+
+        $pass = $_POST['pass_update'];
+        $vpass = $_POST['vpass_update'];
+  
+        $this->check($check = $this->_validate->check(['password', $pass]));
+        $this->check($check = $this->_validate->check(['match', $pass, $vpass]));
+        
+        if (!$this->errors) {
+        $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+        $fields = ['pass'=>password_hash($pass, PASSWORD_BCRYPT)];
+        $this->_db->update('users', $id, $fields);
+        Router::redirect('settings');
+        }
+        else {
+            echo 'NOOO!!!';
+        }
     }
 }

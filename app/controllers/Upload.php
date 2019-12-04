@@ -4,6 +4,10 @@ class Upload extends Controller {
     private $_db;
 
     public function __construct($controller, $action) {
+        if (!isset($_SESSION['user'])) {
+            Router::redirect('');
+            return;
+        }
         parent::__construct($controller, $action);
         $this->_db = DB::getInstance();
     }
@@ -14,7 +18,7 @@ class Upload extends Controller {
 
     public function logout() {
         unset($_SESSION['user']);
-        Router::redirect('home');
+        Router::redirect('');
     }
 
     public function upload() {

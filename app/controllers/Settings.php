@@ -8,6 +8,10 @@ class Settings extends Controller {
     private $checked;
 
     public function __construct($controller, $action) {
+        if (!isset($_SESSION['user'])) {
+            Router::redirect('');
+            return;
+        }
         parent::__construct($controller, $action);
         $this->_db = DB::getInstance();
         $this->_validate = new Validate();

@@ -11,15 +11,23 @@ class Router {
         $action = (isset($url[0]) && $url[0] != '') ? $url[0] : 'index';
         $action_name = $controller;
         array_shift($url);
+       
+        // dnd($_SESSION);
         
+        // if (!isset($_SESSION['user']) && (!$controller_name == 'login' || !$controller_name == 'register' || !$controller_name == 'home' )) {
+        //    $controller = 'home';
+        //    $action = '';
+        // }
+        
+  
         $queryParams = $url;
 
-        $classObject = new $controller($controller_name, $action);
-
-        if (method_exists($controller, $action)) {
+        if (class_exists($controller) && method_exists($controller, $action)) {
+            $classObject = new $controller($controller_name, $action);
             call_user_func_array([$classObject, $action], $queryParams);
         } else {
-            die('Method ' . $action . ' does not exist in controller: ' . $controller);
+            Router::redirect('');
+            // die('Method ' . $action . ' does not exist in controller: ' . $controller);
         }
     }
 

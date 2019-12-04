@@ -37,7 +37,7 @@
     
     <p>Update Preferances</p>
     <form action="settings/notify" method="POST">
-    <input id="preferace" type="checkbox" name="notifications" value="Recieve Notifications" checked> Recieve Notifications<p></p>
+    <input id="preferace" type="checkbox" name="notifications" value="Recieve Notifications"> Recieve Notifications<p></p>
     <input id="not_submit" type="submit" name="notify" value="Submit">
     </form>
 </div>

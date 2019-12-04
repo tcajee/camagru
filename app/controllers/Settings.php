@@ -1,10 +1,11 @@
 <?php
 
 class Settings extends Controller {
-
+    
     public $_db;
     private $_validate;
     public $errors = [];
+    private $checked;
 
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
@@ -106,6 +107,7 @@ class Settings extends Controller {
 
     public function notify() {
 
+        //dnd($_POST['notifications']);
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
 
         if (!empty($_POST['notifications'])) {
@@ -116,7 +118,7 @@ class Settings extends Controller {
         else {
             $fields = ['notify'=>0];
             $this->_db->update('users', $id, $fields);
-            echo 'Updated';
+            //echo 'Updated';
             Router::redirect('settings');
         }
     }

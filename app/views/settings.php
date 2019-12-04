@@ -27,9 +27,9 @@
     <br />
 
     <p>Update Email</p>
-    <form action="settings/email" method="POST">
-    <input id="email" type="text" name="email_update" value="" placeholder="Update Email"><p></p>
-    <input id="change_e" type="button" name="change_email" value="Change Email" /><p></p>
+    <form action="settings/update_email" method="POST">
+    <input id="email" type="email" name="update_email" value="" placeholder="Update Email"><p></p>
+    <input id="change_e" type="submit" name="change_email" value="Change Email" /><p></p>
     </form>
     <br />
     

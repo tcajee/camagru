@@ -3,10 +3,18 @@
 class Settings extends Controller {
     
     public $_db;
+    private $_validate;
 
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
         $this->_db = DB::getInstance();
+        $this->_validate = new Validate();
+    }
+
+    public function check($check) {
+        if (!$check[0]) {
+            $this->errors[] = $check[1];
+        }
     }
 
     public function index() {
@@ -59,9 +67,10 @@ class Settings extends Controller {
         Router::redirect('settings');
     }
 
-    public function email() {
-        
-        $email = $_POST['email'];
+    public function update_email() {
+
+        $this->check($check = $this->_validate->check(['email', $email]));
+        $email = $_POST['update_email'];
 
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
         $fields = ['email'=>$email];

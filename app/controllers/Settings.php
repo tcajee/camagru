@@ -103,4 +103,21 @@ class Settings extends Controller {
             echo 'NOOO!!!';
         }
     }
+
+    public function notify() {
+
+        $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+
+        if (!empty($_POST['notifications'])) {
+            $fields = ['notify'=>1];
+            $this->_db->update('users', $id, $fields);
+            Router::redirect('settings');
+        }
+        else {
+            $fields = ['notify'=>0];
+            $this->_db->update('users', $id, $fields);
+            echo 'Updated';
+            Router::redirect('settings');
+        }
+    }
 }

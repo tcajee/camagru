@@ -23,7 +23,7 @@
     <form action="settings/update_pass" method="POST">
     <input id="pass" type="password" name="pass_update" value="" placeholder="Enter New Password"><p></p>
     <input id="vpass" type="password" name="vpass_update" value="" placeholder="Repeat New Password"><p></p>
-    <input id="change_p" type="submit" name="change_password" value="Change Password" /><p></p>
+    <input id="change_p" type="submit" name="change_password" value="Change Password" ><p></p>
     </form>
 
     <br />
@@ -31,12 +31,15 @@
     <p>Update Email</p>
     <form action="settings/update_email" method="POST">
     <input id="email" type="email" name="update_email" value="" placeholder="Update Email"><p></p>
-    <input id="change_e" type="submit" name="change_email" value="Change Email" /><p></p>
+    <input id="change_e" type="submit" name="change_email" value="Change Email"><p></p>
     </form>
     <br />
     
     <p>Update Preferances</p>
-    <input id="preferace" type="checkbox" name="notifications" value="Recieve Notifications" /> Recieve Notifications
+    <form action="settings/notify" method="POST">
+    <input id="preferace" type="checkbox" name="notifications" value="Recieve Notifications" checked> Recieve Notifications<p></p>
+    <input id="not_submit" type="submit" name="notify" value="Submit">
+    </form>
 </div>
 
 <!-- <script>./js/settings.js</script> -->

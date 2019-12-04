@@ -15,9 +15,9 @@
 			</form>
 			<br />
 			<p>Can't remember your password?</p>
-			<p>Click me!</p>
-			<form action="forgot" method="POST">
-			<input type="button" name="forgot" value="Reset Password">
+		<form action="login/forgot" method="POST">
+			<input type="email" name='reset_pass' placeholder='Enter Email of Account'>
+			<input type="submit" name="forgot" value="Reset Password">
 		</form>
 	</div>
 <?php $this->end(); ?>

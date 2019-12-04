@@ -15,6 +15,7 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 		lname VARCHAR(255),
 		photo VARCHAR(255),
 		verified TINYINT DEFAULT 0,
+		notify TINYINT DEFAULT 1,
 		token VARCHAR(255),
 	 	PRIMARY KEY (id)
 		);";

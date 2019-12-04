@@ -40,7 +40,7 @@ class Validate {
                 return [false, "Username must be between 3 and 32 characters long."];
             }
         } else {
-            return [false, "User $username exists."];
+            return [false, "User $username already exists."];
         }
     }       
 
@@ -64,7 +64,7 @@ class Validate {
                 return [false, "Please enter a valid email address."];
             }
         } else {
-            return [false, "Email $email exists"];
+            return [false, "Email $email alredy exists"];
         }
     }
 

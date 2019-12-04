@@ -1,51 +1,36 @@
-// (function () {
-//     function settings() {
-//         // console.log('dom loaded');
-//         const fname = document.getElementById("fname");
-//         const lname = document.getElementById("lname");
-//         let update = document.getElementById("update");
-//         let profile = document.getElementById("uplaod_ppic");
-//         let password = document.getElementById("change_p");
-//         let email = document.getElementById("change_e");
-//         let notify = document.getElementById("uplaod_ppic");
-
-
-//         // console.log(submitbutton);
+(function () {
+    function startup() {
+        console.log('dom loaded');
+        const errors = document.getElementById("errors");
+        const inputPassword = document.getElementById("pass");
+        const inputVPassword = document.getElementById("vpass");
+        let submitbutton = document.getElementById("change_p");
+        console.log(submitbutton);
     
-//         update.onclick = onUpdate;
+        submitbutton.onclick = onChange;
 
-//         function onUpdate() {
+        function onChange() {
+            const xhr = new XMLHttpRequest();
 
-//             const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(res) {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = res.target.response;
 
-//             let fname = fname.value;
-//             let lname = lname.value;
-//             let sqlf = "INSERT INTO $this->_db (fname), (fname)"
-//             let sqll = "INSERT INTO users (lname), (fname)"
-            
-            
-            
-            
+                    if (resData) {
+                        resErrors = resData.split(',');
+                        resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
+                        errors.innerHTML = resHTML;
+                        errors.style.display = "initial";
+                    }
+                }
+            }
+            xhr.open('POST', 'register/register');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            let params = '&password=' + inputPassword.value
+            + '&vpassword=' + inputVPassword.value;
+            xhr.send(params);
+        }
+    }
 
-//         //     xhr.onreadystatechange = function(res) {
-//         //         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-//         //             resData = res.target.response;
-
-//         //             if (resData) {
-//         //                 resErrors = resData.split(',');
-//         //                 resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
-//         //                 errors.innerHTML = resHTML;
-//         //                 errors.style.display = "initial";
-//         //             } else {
-//         //                 window.location.assign('profile');
-//         //             }
-//         //         }
-//         //     }
-//         //     xhr.open('POST', 'login/login');
-//         //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//         //     let params = 'username=' + inputUsername.value + '&password=' + inputPassword.value;
-//         //     xhr.send(params);
-//         }
-//     }
-//     window.addEventListener('load', startup, false);
-// })();
+    window.addEventListener('load', startup, false);
+})();

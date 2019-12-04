@@ -18,13 +18,15 @@
     <div>
         <canvas id="canvas" width=640 height=480></canvas>
         <br />
-        <button id="stickerbutton">Sticker 1</button>
-        <button id="stickerbutton">Sticker 2</button>
-        <button id="stickerbutton">Sticker 3 </button>
-        <button id="stickerbutton">Sticker 4</button>
+        <div class="container padding-32" id="photos">
+            <button id="stickerbutton">Sticker 1</button>
+            <button id="stickerbutton">Sticker 2</button>
+            <button id="stickerbutton">Sticker 3 </button>
+            <button id="stickerbutton">Sticker 4</button>
         <br />
         <br />
-        <button id="uploadbutton">Upload Image</button>
+            <button id="uploadbutton">Upload Image</button>
+        </div>
         <br />
         <br />
 

@@ -33,7 +33,6 @@ class Register extends Controller {
             echo 'Please check your email for a verification link!';
     } else {
             echo implode(",", $this->errors);
-            //Router::redirect('register');
         }
     }
 
@@ -43,16 +42,8 @@ class Register extends Controller {
         $headers .= "MIME-Version: 1.0" . "\r\n";
         $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
         $text = "Hello! \n\nPlease follow the link to verify your account with Camagru: " . $link; 
-        if (mail($email, $subject, $text, $headers)) {
-            //echo $link;
-            //echo "sent";
-            //$this->view->render('verify');
-        }
-        else {
-            echo "not sent";
-        }
+        mail($email, $subject, $text, $headers);
     }
-
  
     public function logout() {
         unset($_SESSION['user']);

@@ -8,6 +8,7 @@
     <input id="lname" type="text" name="lname" value="" placeholder="Last Name"><p></p>
     <input id="update" type="button" name="update" value="Update" /><p></p>
     <br />
+    
     <!-- In your "php.ini" file, search for the file_uploads directive, and set it to On: -->
     <p>Upload Profile Photo</p>
     <form action="profilepic" method="POST" enctype="multipart/form-data">

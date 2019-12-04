@@ -4,10 +4,11 @@
 
 <div class="center black">
     <p>Update First and Last names</p>
+    <form action="settings/names" method="POST"></form>
     <input id="fname" type="text" name="fname" value="" placeholder="First Name"><p></p>
     <input id="lname" type="text" name="lname" value="" placeholder="Last Name"><p></p>
-    <input id="update" type="button" name="update" value="Update" /><p></p>
-    
+    <input id="update" type="submit" name="update" value="Update" /><p></p>
+    </form>
     <br />
     
     <p>Upload Profile Photo</p>

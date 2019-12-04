@@ -47,5 +47,17 @@ class Settings extends Controller {
             }
         }
     }
+
+    public function names() {
+        
+        dnd($_POST);
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+
+        $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+        $fields = ['fname'=>$fmane, 'lname'=>$lname];
+        $this->_db->update('users', $id, $fields);
+        //Router::redirect('settings');
+    }
     
 }

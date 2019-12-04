@@ -5,6 +5,7 @@
         const inputPassword = document.getElementById("pass");
         const inputVPassword = document.getElementById("vpass");
         let submitbutton = document.getElementById("change_p");
+       
         console.log(submitbutton);
     
         submitbutton.onclick = onChange;
@@ -21,10 +22,12 @@
                         resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
                         errors.innerHTML = resHTML;
                         errors.style.display = "initial";
+                    } else {
+                        window.location.assign('login');
                     }
                 }
             }
-            xhr.open('POST', 'register/register');
+            xhr.open('POST', 'settings/pass');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             let params = '&password=' + inputPassword.value
             + '&vpassword=' + inputVPassword.value;

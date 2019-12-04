@@ -28,6 +28,9 @@ class Validate {
     public function username($input) {
         $username = $input[1];
         
+        if (!$username) {
+             return [false, "Please enter a username."];
+        }
         $check = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results();
         if (!$check) {
             if (strlen($username) >= 3 && strlen($username) <= 32) {
@@ -42,15 +45,18 @@ class Validate {
         } else {
             return [false, "User $username already exists."];
         }
-    }       
+    } 
 
     public function password($input) {
         $password = $input[1];
+        if (!$password) {
+             return [false, "Please enter a password."];
+        }
         if (strlen($password >= 6 && strlen($password) <= 32)) {
             return [true];
         } else {
             return [false, "Passwords must be between 6 and 32 characters long."];
-        }
+        } 
     }
 
     public function email($input) {

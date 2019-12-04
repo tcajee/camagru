@@ -80,34 +80,33 @@ class Settings extends Controller {
         Router::redirect('settings');
         }
         else {
-            echo 'Noooo!! Email'; 
+            echo implode(",", $this->errors);
         }
 
     }
 
-    // public function update_pass() {
+    public function pass() {
 
-    //     $pass = $_POST['pass_update'];
-    //     $vpass = $_POST['vpass_update'];
+        $pass = $_POST['password'];
+        $vpass = $_POST['vpassword'];
+        
+        $this->check($check = $this->_validate->check(['password', $pass]));
+        $this->check($check = $this->_validate->check(['match', $pass, $vpass]));
 
-    //     $this->check($check = $this->_validate->check(['password', $pass]));
-    //     $this->check($check = $this->_validate->check(['match', $pass, $vpass]));
-
-    //     if (!$this->errors) {
-    //     $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
-    //     $fields = ['pass'=>password_hash($pass, PASSWORD_BCRYPT)];
-    //     $this->_db->update('users', $id, $fields);
-    //     unset($_SESSION['user']);
-    //     Router::redirect('login');
-    //     }
-    //     else {
-    //         echo 'NOOO!!!';
-    //     }
-    // }
+        if (!$this->errors) {
+            $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+            $fields = ['pass'=>password_hash($pass, PASSWORD_BCRYPT)];
+            $this->_db->update('users', $id, $fields);
+            unset($_SESSION['user']);
+            // Router::redirect('login');
+        }
+        else {
+            echo implode(",", $this->errors);
+        }
+    }
 
     public function notify() {
 
-        //dnd($_POST['notifications']);
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
 
         if (!empty($_POST['notifications'])) {

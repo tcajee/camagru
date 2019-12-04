@@ -79,7 +79,7 @@ class Settings extends Controller {
         Router::redirect('settings');
         }
         else {
-            echo 'Noooo!! Email'
+            echo 'Noooo!! Email'; 
         }
 
     }

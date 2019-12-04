@@ -72,11 +72,12 @@ class Settings extends Controller {
 
         $email = $_POST['update_email'];
         $this->check($check = $this->_validate->check(['email', $email]));
-        if (!$this->errors)
+        if (!$this->errors) {
 		$id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
         $fields = ['email'=>$email];
         $this->_db->update('users', $id, $fields);
         Router::redirect('settings');
+        }
 
     }
 

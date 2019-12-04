@@ -28,12 +28,13 @@
       sbutton2 = document.getElementById('sbutton2');
       sbutton3 = document.getElementById('sbutton3');
       sbutton4 = document.getElementById('sbutton4');
+      sbutton5 = document.getElementById('sbutton5');
 
       uploadbutton.onclick = uploadPicture;
       sbutton1.onclick = addSticker1;
       sbutton2.onclick = addSticker2;
       sbutton3.onclick = addSticker3;
-      sbutton4.onclick = addSticker4;
+      sbutton4.onclick = addSticker5;
   
       navigator.mediaDevices.getUserMedia({video: true, audio: false})
       .then(function(stream) {
@@ -108,7 +109,7 @@
         var layer = canvas.getContext("2d");
         var img = document.getElementById("s2");
         layer.drawImage(img, width/3, 0, 80, 80);
-        s1 = true;
+        s2 = true;
     }
 
     function addSticker3() {
@@ -116,7 +117,7 @@
         var layer = canvas.getContext("2d");
         var img = document.getElementById("s3");
         layer.drawImage(img, width - 80, height / 3, 80, 80);
-        s1 = true;
+        s3 = true;
     }
 
     function addSticker4() {
@@ -124,7 +125,15 @@
         var layer = canvas.getContext("2d");
         var img = document.getElementById("s4");
         layer.drawImage(img, width - 100, height - 80, 80, 80);
-        s1 = true;
+        s4 = true;
+    }
+
+    function addSticker5() {
+        var canvas = document.getElementById("canvas");
+        var layer = canvas.getContext("2d");
+        var img = document.getElementById("s5");
+        layer.drawImage(img, 0, 0, 800, 800);
+        s5 = true;
     }
 
     function uploadPicture() {

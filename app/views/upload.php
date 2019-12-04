@@ -6,6 +6,7 @@
 
 <div class="center black">
     <div>
+        <img id="s5" src="img/profile/g1.png" style="width: 10%;">
         <div class="container padding-16" >
             <video style="border: solid 3px grey" id="video" muted>Video stream not available.</video>
         <br />
@@ -20,7 +21,9 @@
     
     <div> 
         <button class="button" id="sbutton1"><img id="s1" src="img/sticker/arrow1.png" style="width: 70px; padding: 10px; border: solid 3px grey"></button>
-        <canvas style="border: solid 3px grey" id="canvas" width=640 height=480></canvas>
+        <button class="button" id="sbutton5"><canvas style="border: solid 3px grey" id="canvas" width=640 height=480>
+    </canvas>
+        </button>
         <button class="button" id="sbutton3"><img id="s3" src="img/sticker/arrow3.png" style="width: 70px; padding: 10px; border: solid 3px grey"></button>
     </div>
     

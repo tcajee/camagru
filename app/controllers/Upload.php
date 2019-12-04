@@ -12,7 +12,6 @@ class Upload extends Controller {
        $this->view->render('upload');
     }
 
- 
     public function logout() {
         unset($_SESSION['user']);
         Router::redirect('home');

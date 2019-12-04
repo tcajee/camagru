@@ -10,32 +10,39 @@ class Settings extends Controller {
     }
 
     public function index() {
-    $this->view->render('settings');
+        $this->view->render('settings');
+    }
+
+    public function logout() {
+        unset($_SESSION['user']);
+        Router::redirect('home');
     }
 
     public function upload() {
-        if(isset($_FILES['image'])){
-            $errors= array();
+        if (isset($_FILES['image'])) {
+            
+            $errors = [];
             $file_name = $_FILES['image']['name'];
-            $file_size = $_FILES['image']['size'];
             $file_tmp = $_FILES['image']['tmp_name'];
             $file_type = $_FILES['image']['type'];
-            $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+            $file_ext = explode('.', $_FILES['image']['name']);
+            $file_ext = strtolower(end($file_ext));
+            
+            $extensions = array("jpeg", "jpg", "png");
         
-            $extensions= array("jpeg","jpg","png");
-        
-            if(in_array($file_ext,$extensions)=== false){
-                $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+            if (in_array($file_ext,$extensions) === false) {
+                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
             }
-        
-            if($file_size > 2097152) {
-                $errors[]='File size must be excately 2 MB';
-            }
-        
-            if(empty($errors)==true) {
-                move_uploaded_file($file_tmp,"images/".$file_name);
-                echo "Success";
-            }else{
+            
+            if (empty($errors) == true) {
+                move_uploaded_file($file_tmp, ROOT . DS . 'img' . DS . 'profile' . DS . $file_name);
+                
+                $save = 'img' . DS . 'profile' . DS . $file_name;
+                $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+                $fields = ['photo'=>$save]; 
+                $this->_db->update('users', $id, $fields);
+                Router::redirect('settings');
+            } else {
                 print_r($errors);
             }
         }

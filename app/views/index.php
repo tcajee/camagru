@@ -6,20 +6,12 @@
             <h1 class="jumbo"><span class="hide-small">Welcome to</span> Camagru.</h1>
 
                 <br />
-                <a href="<?=PROOT?>register">
-                <button class="button text-black grey" id="registerbutton">
-                    Register
-                </button>
-                </a>
+
+                <a href="<?=PROOT?>register"><button class="button text-black grey" id="registerbutton">Register</button></a>
                 
-                <br />
-                <p class="text-light">Already a Member?</p>
+                <br /><p class="text-light">Already a Member?</p>
                 
-                <a href= "<?=PROOT?>login">
-                <button class="button text-black grey" id="loginbutton">
-                    Login
-                </button>
-                </a>
+                <a href= "<?=PROOT?>login"><button class="button text-black grey" id="loginbutton"> Login</button></a>
 
                 <br />
         </div>

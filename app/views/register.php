@@ -12,12 +12,10 @@
 		<input class="input center" id="password" type="password" placeholder="Password"><p></p>
 		<input class="input center" id="vpassword" type="password" placeholder="Confirm Password"><p></p>
 		<input class="input center" id="email" type="email" placeholder="example@example.com"><p></p>
-	<br />
-		<input class="button text-black grey"id="registerbutton" type="button" name="register" value="Register" /><p></p>
+		<input class="button text-black grey" id="registerbutton" type="button" name="register" value="Register"><p></p>
 
 		<p id="errors" style="display: none; color: red;"></p>
 
 	</div>
-	<br />
 
 <?php $this->end(); ?>

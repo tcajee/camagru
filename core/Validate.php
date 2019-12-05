@@ -50,7 +50,7 @@ class Validate {
     public function password($input) {
         $password = $input[1];
         if (!$password) {
-             return [false, "Please enter a password."];
+            return [false, "Please enter a password."];
         }
         if (strlen($password >= 6 && strlen($password) <= 32)) {
             return [true];
@@ -61,7 +61,7 @@ class Validate {
 
     public function email($input) {
         $email = $input[1];
-        
+
         if (!$email) {
              return [false, "Please enter an email."];
         }

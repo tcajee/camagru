@@ -76,7 +76,6 @@ class Login extends Controller {
         } else {
             Router::redirect('login');
         }
-
     }
  
     public function check($check) {

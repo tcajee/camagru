@@ -62,7 +62,10 @@ class Validate {
     public function email($input) {
         $email = $input[1];
         
-        $check = $this->_db->query('SELECT email FROM users WHERE email = ?', ['username' => $email])->results();
+        if (!$email) {
+             return [false, "Please enter an email."];
+        }
+        $check = $this->_db->query('SELECT email FROM users WHERE email = ?', ['email' => $email])->results();
         if (!$check) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return [true];

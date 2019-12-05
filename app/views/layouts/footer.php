@@ -1,5 +1,5 @@
 <div class="center">
   <hr>
-  <p><a href="https://github.com/tcajee">@tcajee</a> & <a href="https://github.com/sminnaar">@sminnaar</a></p>
+    <a href="https://github.com/tcajee"><p class="text-grey small">tcajee</a> & <a href="https://github.com/sminnaar">sminnaar</a></p>
   <hr>
 </div>

@@ -1,20 +1,25 @@
 <?php $this->setSiteTitle('Home') ?>
 
 <?php $this->start('body'); ?>
-    <div class="padding-large" id="main">
-        <div class="container padding-32 center black" id="home">
+    <div class="padding-large" id="camagru">
+        <div class="padding-32 center black text-light" id="ind">
             <h1 class="jumbo"><span class="hide-small">Welcome to</span> Camagru.</h1>
 
-                <!-- <form action="register" method="post"> -->
-                    <!-- <input type="submit" name="register" value="Register"> -->
-                <!-- </form> -->
-                <!-- <form action="login" method="post"> -->
-                <!-- <input type="submit" name="login" value="Login"> -->
+                <br />
+                <a href="<?=PROOT?>register">
+                <button class="button text-black grey" id="registerbutton">
+                    Register
+                </button>
+                </a>
                 
-                <a href="<?=PROOT?>register"><button class="button" id="registerbutton">RESGISTER</button></a>
-                <p>Already a Member?</p>
-                <a href= "<?=PROOT?>login"><button class="button" id="loginbutton">LOGIN</button></a>
+                <br />
+                <p class="text-light">Already a Member?</p>
                 
+                <a href= "<?=PROOT?>login">
+                <button class="button text-black grey" id="loginbutton">
+                    Login
+                </button>
+                </a>
 
                 <br />
         </div>

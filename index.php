@@ -7,9 +7,8 @@ define('ROOT', dirname(__FILE__));
 // require_once('./config/setup.php');
 
 //change verification link path on submission!
-//change verification link path on submission!
 
-// Load config
+// Load config and helpers
 require_once(ROOT . DS. 'config' . DS . 'config.php');
 require_once(ROOT . DS. 'app' . DS . 'lib' . DS . 'helpers' . DS . 'functions.php');
 

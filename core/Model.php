@@ -6,7 +6,6 @@ class Model {
     protected $_table;
     protected $_modelName;
     protected $_columnNames = [];
-    protected $_softDelete = false; 
 
     public $id;
 
@@ -28,6 +27,11 @@ class Model {
 
     public function getColumns() {
         return $this->_db->getColumns($this->_table);
+    }
+    protected function fillObj($result) {
+        foreach ($result as $key => $value) {
+            $this->$key = $value;
+        }
     }
     
     public function find($params = []) {
@@ -59,7 +63,6 @@ class Model {
         foreach ($this->_columnNames as $column) {
             $fields[$column] = $this->$column;
         }
-        // Insert or update
         if (property_exists($this, 'id') && $this->id != '') {
             return $this->update($this->id, $fields);
         } else {
@@ -86,9 +89,6 @@ class Model {
             return false;
         }
         $id = ($id == '') ? $this->id : $id;
-        if ($this->_softDelete) {
-            return $this->update($id, ['deleted' => 1]);
-        }
         return $this->_db->delete($this->_table, $id);
     }
 
@@ -114,11 +114,5 @@ class Model {
             return true;
         }
         return false;
-    }
-
-    protected function fillObj($result) {
-        foreach ($result as $key => $value) {
-            $this->$key = $value;
-        }
     }
 }

@@ -12,14 +12,6 @@ class Router {
         $action_name = $controller;
         array_shift($url);
        
-        // dnd($_SESSION);
-        
-        // if (!isset($_SESSION['user']) && (!$controller_name == 'login' || !$controller_name == 'register' || !$controller_name == 'home' )) {
-        //    $controller = 'home';
-        //    $action = '';
-        // }
-        
-  
         $queryParams = $url;
 
         if (method_exists($controller, $action) && class_exists($controller)) {

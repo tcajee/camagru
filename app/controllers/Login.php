@@ -2,10 +2,13 @@
 
 class Login extends Controller {
 
+    private $_session;
+    public  $_loggedIn;
     private $_db;
 
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
+        $this->_sessionName = SESSION_NAME;        
         $this->_db = DB::getInstance();
     }
 
@@ -13,7 +16,6 @@ class Login extends Controller {
         $this->errors = []; 
      
         if ($_POST) {
-
             $username = htmlspecialchars(htmlentities($_POST['username'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
             $password = htmlspecialchars(htmlentities($_POST['password'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
             $hash = password_hash($password, PASSWORD_BCRYPT);
@@ -69,7 +71,8 @@ class Login extends Controller {
  
     public function logout() {
         unset($_SESSION['user']);
-        Router::redirect('home');
+        $this->_sessionName = '';        
+        Router::redirect('');
     }
 	public function index() {
        $this->view->render('login');

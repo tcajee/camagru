@@ -29,7 +29,7 @@ class Settings extends Controller {
 
     public function logout() {
         unset($_SESSION['user']);
-        Router::redirect('home');
+        Router::redirect('');
     }
 
     public function upload() {

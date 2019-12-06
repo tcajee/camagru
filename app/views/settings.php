@@ -5,25 +5,25 @@
 <div class="center black">
     <p>Update First and Last names</p>
     <form action="settings/names" method="POST">
-    <input id="fname" type="text" name="fname" value="" placeholder="First Name"><p></p>
-    <input id="lname" type="text" name="lname" value="" placeholder="Last Name"><p></p>
-    <input id="update" type="submit" name="update" value="Update" /><p></p>
+    <input class="input center" id="fname" type="text" name="fname" value="" placeholder="First Name"><p></p>
+    <input class="input center" id="lname" type="text" name="lname" value="" placeholder="Last Name"><p></p>
+    <input class="button text-black grey" id="update" type="submit" name="update" value="Update" /><p></p>
     </form>
     <br />
 
     <p>Upload Profile Photo</p>
     <form action="settings/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" /><p></p>
-        <input type="submit" value="Upload"/>
+        <input class="input center" type="file" name="image" /><p></p>
+        <input class="button text-black grey" type="submit" value="Upload"/>
     </form>
 
     <br />
 
     <p>Change Password</p>
     <!-- <form action="settings/update_pass" method="POST"> -->
-    <input id="pass" type="password" name="pass_update" value="" placeholder="Enter New Password"><p></p>
-    <input id="vpass" type="password" name="vpass_update" value="" placeholder="Repeat New Password"><p></p>
-    <input id="change_p" type="submit" name="change_password" value="Change Password" ><p></p>
+    <input class="input center" id="pass" type="password" name="pass_update" value="" placeholder="Enter New Password"><p></p>
+    <input class="input center" id="vpass" type="password" name="vpass_update" value="" placeholder="Confirm New Password"><p></p>
+    <input class="button text-black grey" id="change_p" type="submit" name="change_password" value="Change Password" ><p></p>
     <p id="errors" style="display: none; color: red;"></p>
     <!-- </form> -->
 
@@ -31,15 +31,17 @@
 
     <p>Update Email</p>
     <form action="settings/update_email" method="POST">
-    <input id="email" type="email" name="update_email" value="" placeholder="Update Email"><p></p>
-    <input id="change_e" type="submit" name="change_email" value="Change Email"><p></p>
+    <input class="input center" id="email" type="email" name="update_email" value="" placeholder="Email"><p></p>
+    <input class="button text-black grey" id="change_e" type="submit" name="change_email" value="Change Email"><p></p>
     </form>
     <br />
 
     <p>Update Preferences</p>
-    <form action="settings/notify" method="POST">
-    <input id="preferace" type="checkbox" name="notifications" value="Recieve Notifications"> Recieve Notifications<p></p>
-    <input id="not_submit" type="submit" name="notify" value="Submit">
+    <form action="settings/notifyon">
+    <input class="button text-black grey" id="submit_on" type="submit" name="notify0" value="Notifications on"><p></p>
+    </form>
+    <form action="settings/notifyoff">
+    <input class="button text-black grey" id="submit_off" type="submit" name="notify1" value="Notifications off"><p></p>
     </form>
 </div>
 

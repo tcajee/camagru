@@ -66,7 +66,6 @@ class Login extends Controller {
                     $text = "Hello! \n\n Your password has been reset to: ". $pass; 
                     mail($email, $subject, $text, $headers);
                     echo 'Please check your email!';
-                    // Router::redirect('login');
                 } else {
                     echo "Email address does not exist!";
                 }

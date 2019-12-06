@@ -3,7 +3,6 @@
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__FILE__));
 
-
 // require_once('./config/setup.php');
 
 //change verification link path on submission!

@@ -30,7 +30,7 @@ class Register extends Controller {
                 $fields = ['username'=>$username, 'email'=>$email, 'pass'=>password_hash($password, PASSWORD_BCRYPT), 'token'=>$token, 'photo'=>'img/profile/def4.jpg']; 
                 $this->_db->insert('users' , $fields);
                 $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $token . "'> Verify </a>";
-                $this->email(1, $email, $link);
+                $this->email($email, $link);
                 echo 'Please check your email for a verification link!';
             } else {
                 echo implode(",", $this->errors);
@@ -40,7 +40,7 @@ class Register extends Controller {
        }
     }
 
-    public function email($id, $email, $link) {
+    public function email($email, $link) {
         $subject = "Email verification | Camagru";
         $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= "MIME-Version: 1.0" . "\r\n";

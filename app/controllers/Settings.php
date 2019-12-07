@@ -72,13 +72,9 @@ class Settings extends Controller {
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
         $fields = ['fname'=>$fname, 'lname'=>$lname];
         $this->_db->update('users', $id, $fields);
-        Router::redirect('settings');
+        //Router::redirect('settings');
         } else {
-            // $html = file_get_contents('../views/settings.php');
-            // $doc = new DOMDocument();
-            // $doc->loadHTML($html);
-            // $box = $doc->getElemementById('n_errors');
-            echo "Enter the fields";
+            echo "Please enter your details.";
         }
     }
 

@@ -33,32 +33,39 @@ class Settings extends Controller {
     }
 
     public function upload() {
-        if (isset($_FILES['image'])) {
+        if (!empty($_FILES['image']['name'])) {
 
-            $errors = [];
-            $file_name = $_FILES['image']['name'];
-            $file_tmp = $_FILES['image']['tmp_name'];
-            $file_type = $_FILES['image']['type'];
-            $file_ext = explode('.', $_FILES['image']['name']);
-            $file_ext = strtolower(end($file_ext));
+            if (isset($_FILES['image'])) {
 
-            $extensions = array("jpeg", "jpg", "png");
+                $errors = [];
+                $file_name = $_FILES['image']['name'];
+                $file_tmp = $_FILES['image']['tmp_name'];
+                $file_type = $_FILES['image']['type'];
+                $file_ext = explode('.', $_FILES['image']['name']);
+                $file_ext = strtolower(end($file_ext));
 
-            if (in_array($file_ext,$extensions) === false) {
-                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                $extensions = array("jpeg", "jpg", "png");
+
+                if (in_array($file_ext,$extensions) === false) {
+                    $errors[] = "Extension not allowed: Please choose a JPEG or PNG file.";
+                }
+
+                if (empty($errors) == true) {
+                    move_uploaded_file($file_tmp, ROOT . DS . 'img' . DS . 'profile' . DS . $file_name);
+
+                    $save = 'img' . DS . 'profile' . DS . $file_name;
+                    $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+                    $fields = ['photo'=>$save];
+                    $this->_db->update('users', $id, $fields);
+                    Router::redirect('settings');
+                } else {
+                    $html = file_get_contents('../views/settings.php');
+                    echo implode(' ', $errors);
+                    print_r($errors);
+                }
             }
-
-            if (empty($errors) == true) {
-                move_uploaded_file($file_tmp, ROOT . DS . 'img' . DS . 'profile' . DS . $file_name);
-
-                $save = 'img' . DS . 'profile' . DS . $file_name;
-                $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
-                $fields = ['photo'=>$save];
-                $this->_db->update('users', $id, $fields);
-                Router::redirect('settings');
-            } else {
-                print_r($errors);
-            }
+        } else {
+            echo "Please select a file";
         }
     }
 

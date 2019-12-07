@@ -55,8 +55,9 @@ class Upload extends Controller {
 
             if ($file_ext) {
                 if (in_array($file_ext, $extensions) === false) {
-                    $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
-                }
+                    Router::redirect('upload');
+                    // $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                } 
                 if (empty($errors) == true) {
                     move_uploaded_file($file_tmp, ROOT . DS . 'img' . DS . 'profile' . DS . $file_name);
 

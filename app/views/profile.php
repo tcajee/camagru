@@ -128,43 +128,45 @@
     <br>
 
     <div class="slideshow-container">
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <?php
                 $id = $_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
                 $photos = $_db->query('SELECT img FROM posts WHERE user = ?', ['user'=>$id])->results();
-                foreach ($photos as $photo) {
-                    echo "<div class='mySlides fade center'>";
-                    echo "<img src=$photo->img alt='Uploads' style='width:30%'>";
+                if ($photos) {
+                    echo "<a class='prev' onclick='plusSlides(-1)'>&#10094;</a>";
+                    foreach ($photos as $photo) {
+                        echo "<div class='mySlides fade center'>";
+                        echo "<img src=$photo->img alt='Uploads' style='width:30%'>";
+                        echo "</div>";
+                    }
+                    echo "<a class='next' onclick='plusSlides(1)'>&#10095;</a>";
+                    echo "<script>
+                    var slideIndex = 1;
+                    showSlides(slideIndex);
+                    function plusSlides(n) {
+                        showSlides(slideIndex += n);
+                    }
+                    function currentSlide(n) {
+                        showSlides(slideIndex = n);
+                    }
+                    function showSlides(n) {
+                        var i;
+                        var slides = document.getElementsByClassName('mySlides');
+                        if (n > slides.length) {slideIndex = 1}    
+                        if (n < 1) {slideIndex = slides.length}
+                        for (i = 0; i < slides.length; i++) {
+                            slides[i].style.display = 'none';  
+                        }
+                        slides[slideIndex-1].style.display = 'block';  
+                    }
+                    </script>";
+                } else {
+                    echo "<div class='center'>";
+                    echo "<p>No photos</p>";
                     echo "</div>";
                 }
             ?>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
 
     <br>
-
-    <script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        if (n > slides.length) {slideIndex = 1}    
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-        slides[slideIndex-1].style.display = "block";  
-    }
-    </script>
 
 <?php $this->end(); ?>

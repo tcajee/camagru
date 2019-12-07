@@ -34,7 +34,6 @@ class Settings extends Controller {
 
     public function upload() {
         if (!empty($_FILES['image']['name'])) {
-
             if (isset($_FILES['image'])) {
 
                 $errors = [];
@@ -47,7 +46,8 @@ class Settings extends Controller {
                 $extensions = array("jpeg", "jpg", "png");
 
                 if (in_array($file_ext,$extensions) === false) {
-                    $errors[] = "Extension not allowed: Please choose a JPEG or PNG file.";
+                    Router::redirect('settings');
+                    // $errors[] = "Extension not allowed: Please choose a JPEG or PNG file.";
                 }
 
                 if (empty($errors) == true) {
@@ -59,13 +59,15 @@ class Settings extends Controller {
                     $this->_db->update('users', $id, $fields);
                     Router::redirect('settings');
                 } else {
-                    $html = file_get_contents('../views/settings.php');
-                    echo implode(' ', $errors);
-                    print_r($errors);
+                    Router::redirect('settings');
+                    // $html = file_get_contents('../views/settings.php');
+                    // echo implode(' ', $errors);
+                    // print_r($errors);
                 }
             }
         } else {
-            echo "Please select a file";
+            // echo "Please select a file";
+            Router::redirect('settings');
         }
     }
 

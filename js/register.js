@@ -7,6 +7,12 @@
         const inputEmail = document.getElementById("email");
         
         let submitbutton = document.getElementById("registerbutton");
+
+        inputEmail.addEventListener("keyup", function (e) {
+            if (e.keyCode === 13) {
+                onRegister();
+            } 
+        });
     
         submitbutton.onclick = onRegister;
 

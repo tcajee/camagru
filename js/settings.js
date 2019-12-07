@@ -17,6 +17,23 @@
         const inputLname = document.getElementById("lname");
         let namebutton = document.getElementById("update");
 
+        inputVPassword.addEventListener("keyup", function (e) {
+            if (e.keyCode === 13) {
+                onChange();
+            } 
+        });
+
+        inputEmail.addEventListener("keyup", function (e) {
+            if (e.keyCode === 13) {
+                onEmail();
+            } 
+        });
+
+        inputLname.addEventListener("keyup", function (e) {
+            if (e.keyCode === 13) {
+                onName();
+            } 
+        });
     
         passbutton.onclick = onChange;
         emailbutton.onclick = onEmail;
@@ -59,7 +76,7 @@
                         e_errors.innerHTML = resHTML;
                         e_errors.style.display = "initial";
                     } else {
-                        e_errors.innerHTML = 'Updated';
+                        e_errors.innerHTML = 'Updated.';
                         e_errors.style.display = "initial";
                         // window.location.assign('settings');
                     }
@@ -85,7 +102,7 @@
                         n_errors.style.display = "initial";
                     } else {
                         //window.location.assign('settings');
-                        n_errors.innerHTML = 'Updated';
+                        n_errors.innerHTML = 'Updated.';
                         n_errors.style.display = "initial";
                     }
                 }

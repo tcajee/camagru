@@ -10,7 +10,19 @@
         let submitbutton = document.getElementById("loginbutton");
         let forgotbutton = document.getElementById("forgotbutton");
 
-    
+        inputPassword.addEventListener("keyup", function (e) {
+            if (e.keyCode === 13) {
+                onLogin();
+            } 
+        });
+
+        inputEmail.addEventListener("keyup", function (e) {
+            if (e.keyCode === 13) {
+                onForgot();
+            } 
+        });
+
+
         submitbutton.onclick = onLogin;
         forgotbutton.onclick = onForgot;
 

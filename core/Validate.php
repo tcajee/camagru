@@ -48,11 +48,12 @@ class Validate {
     } 
 
     public function password($input) {
+        // dnd($input);
         $password = $input[1];
         if (!$password) {
             return [false, "Please enter a password."];
         }
-        if (strlen($password >= 6 && strlen($password) <= 32)) {
+        if (strlen($password) >= 6 && strlen($password) <= 32) {
             return [true];
         } else {
             return [false, "Passwords must be between 6 and 32 characters long."];

@@ -6,7 +6,7 @@
 
 	<div class="center">
 
-		<h1>Login</h1>
+		<h1 id="header">Login</h1>
 		
 		<input class="input center" id="username" type="text" name="username" value="" placeholder="Username"><p></p>
 		<input class="input center" id="password" type="password" name="password" value="" placeholder="Password"><p></p>

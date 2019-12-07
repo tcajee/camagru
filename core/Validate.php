@@ -73,7 +73,7 @@ class Validate {
                 return [false, "Please enter a valid email address."];
             }
         } else {
-            return [false, "Email $email alredy exists"];
+            return [false, "Email: $email is already in use."];
         }
     }
 

@@ -64,6 +64,8 @@ class Settings extends Controller {
 
     public function names() {
 
+        if ((isset($_POST['fname']) && isset($_POST['lname']) && ($_POST['fname']) && $_POST['lname'])) {
+
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
 
@@ -71,22 +73,31 @@ class Settings extends Controller {
         $fields = ['fname'=>$fname, 'lname'=>$lname];
         $this->_db->update('users', $id, $fields);
         Router::redirect('settings');
+        } else {
+            // $html = file_get_contents('../views/settings.php');
+            // $doc = new DOMDocument();
+            // $doc->loadHTML($html);
+            // $box = $doc->getElemementById('n_errors');
+            echo "Enter the fields";
+        }
     }
 
     public function update_email() {
 
-        $email = $_POST['update_email'];
-        $this->check($check = $this->_validate->check(['email', $email]));
-        if (!$this->errors) {
-		$id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
-        $fields = ['email'=>$email];
-        $this->_db->update('users', $id, $fields);
-        Router::redirect('settings');
+        if ((isset($_POST['email'])) && ($_POST['email'])) {
+            $email = $_POST['email'];
+            $this->check($check = $this->_validate->check(['email', $email]));
+             if (!$this->errors) {
+		        $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+                $fields = ['email'=>$email];
+                $this->_db->update('users', $id, $fields);
+                //Router::redirect('settings');
+            } else {
+                echo implode(",", $this->errors);
+            }
+        } else {
+            echo "Please enter an email.";
         }
-        else {
-            echo implode(",", $this->errors);
-        }
-
     }
 
     public function pass() {

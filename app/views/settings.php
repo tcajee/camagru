@@ -8,6 +8,7 @@
     <input class="input center" id="fname" type="text" name="fname" value="" placeholder="First Name"><p></p>
     <input class="input center" id="lname" type="text" name="lname" value="" placeholder="Last Name"><p></p>
     <input class="button text-black grey" id="update" type="submit" name="update" value="Update" /><p></p>
+    <p id="n_errors" style="color: red;"></p>
     </form>
     <br />
 
@@ -30,10 +31,11 @@
     <br />
 
     <p>Update Email</p>
-    <form action="settings/update_email" method="POST">
-    <input class="input center" id="email" type="email" name="update_email" value="" placeholder="Email"><p></p>
+    <!-- <form action="settings/update_email" method="POST"> -->
+    <input class="input center" id="email" type="email" name="update_email" value="" placeholder="New Email"><p></p>
     <input class="button text-black grey" id="change_e" type="submit" name="change_email" value="Change Email"><p></p>
-    </form>
+    <p id="e_errors" style="display: none; color: red;"></p>
+    <!-- </form> -->
     <br />
 
     <p>Update Preferences</p>

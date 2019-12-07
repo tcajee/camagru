@@ -12,8 +12,9 @@
 
     <p>Upload Profile Photo</p>
     <form action="settings/upload" method="POST" enctype="multipart/form-data">
-        <input class="input center" type="file" name="image" required><p></p>
-        <input class="button text-black grey" type="submit" value="Upload"/>
+        <input id="image" class="input center" type="file" name="image"><p></p>
+        <input id="upload" class="button text-black grey" type="submit" value="Upload"/><p></p>
+        <p id="u_errors" style="display: none; color: red;">TEST</p>
     </form>
 
     <br />

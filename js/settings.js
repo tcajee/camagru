@@ -34,7 +34,7 @@
                 onName();
             } 
         });
-    
+
         passbutton.onclick = onChange;
         emailbutton.onclick = onEmail;
         namebutton.onclick = onName;
@@ -113,7 +113,8 @@
             + '&lname=' + inputLname.value;
             xhr.send(params);
         }
-    }
+
+    } 
 
     window.addEventListener('load', startup, false);
 })();

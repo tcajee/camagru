@@ -56,6 +56,7 @@
     <form action="upload/file" method="POST" enctype="multipart/form-data">
         <input class="input center" type="file" name="image" /><p></p>
         <input class="button text-black grey"  type="submit" value="Upload File"/>
+    </form>
     <br />
 
     </div>

@@ -2,14 +2,18 @@
 
 <?php $this->start('body'); ?>
 
-    <div id="clear" class='center black padding-32'>
+    <script src="./js/gallery.js"></script>
+
+
+   
+    <div class='center black padding-32'>
+        <div id="gallery" class='center black'></div>
+        <br />
+        <div id="buttons" class='center black' style="display: inline;">
+            <input class="button text-black grey" id="prev" name="prev" type="submit" value="Prev"/>
+            <input class="button text-black grey" id="next" name="next" type="submit" value="Next"/>
+        </div>
+        <br />
     </div>
 
-
-    <br />
-    <form action="upload/file" method="POST" enctype="multipart/form-data">
-        <input class="button text-black grey"  type="submit" value="Prev"/>
-        <input class="button text-black grey"  type="submit" value="Next"/>
-    </form>
-    <br />
 <?php $this->end(); ?>

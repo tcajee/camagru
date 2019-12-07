@@ -28,7 +28,6 @@
             xhr.onreadystatechange = function(res) {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     resData = res.target.response;
-
                     if (resData) {
                         resErrors = resData.split(',');
                         resHTML = resErrors.map((error) => {return error + '<br />'}).join('');

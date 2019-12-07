@@ -100,30 +100,37 @@
         var layer = canvas.getContext("2d");
         var img = document.getElementById("s1");
         layer.drawImage(img, 100, 20, 120, 120);
+
         s1 = true;
     }
 
     function addSticker2() {
+
         var canvas = document.getElementById("canvas");
         var layer = canvas.getContext("2d");
         var img = document.getElementById("s2");
         layer.drawImage(img, 100, 20, 120, 120);
+        
         s2 = true;
     }
 
     function addSticker3() {
+
         var canvas = document.getElementById("canvas");
         var layer = canvas.getContext("2d");
         var img = document.getElementById("s3");
         layer.drawImage(img, 120, 30, 90, 90);
+        
         s3 = true;
     }
 
     function addSticker4() {
+
         var canvas = document.getElementById("canvas");
         var layer = canvas.getContext("2d");
         var img = document.getElementById("s4");
         layer.drawImage(img, 120, 30, 90, 90);
+
         s4 = true;
     }
 

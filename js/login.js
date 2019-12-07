@@ -1,6 +1,5 @@
 (function () {
     function startup() {
-        // console.log('dom loaded');
         const errors = document.getElementById("errors");
         const errors2 = document.getElementById("errors2");
         
@@ -11,7 +10,6 @@
         let submitbutton = document.getElementById("loginbutton");
         let forgotbutton = document.getElementById("forgotbutton");
 
-        // console.log(submitbutton);
     
         submitbutton.onclick = onLogin;
         forgotbutton.onclick = onForgot;

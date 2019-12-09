@@ -43,5 +43,6 @@
 </div>
 
 <script src="./js/settings.js"></script>
+<script src="./js/profile.js"></script>
 
 <?php $this->end('body'); ?>

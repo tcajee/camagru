@@ -17,6 +17,25 @@
         const inputLname = document.getElementById("lname");
         let namebutton = document.getElementById("update");
 
+        // Profile picture
+        // const form = document.querySelector('form');
+        // const files = document.querySelector('[type=file]').files;
+        const u_errors = document.getElementById("u_errors");
+        const form = document.querySelector('form');
+        // const inputFile = document.getElementById("image");
+        let uploadbutton = document.getElementById("upload");
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            onUpload();
+        })
+
+        // uploadbutton.addEventListener('submit' , e => {
+        //     console.log('Boom, event listener worked');
+        //     e.preventDefault();
+        //     onUpload();
+        // })
+
         inputVPassword.addEventListener("keyup", function (e) {
             if (e.keyCode === 13) {
                 onChange();
@@ -38,6 +57,11 @@
         passbutton.onclick = onChange;
         emailbutton.onclick = onEmail;
         namebutton.onclick = onName;
+        // uploadbutton.onclick = e => {
+        //     uploadbutton.preventDefault();
+        //     onUpload();
+        // };
+        // uploadbutton.onclick = onUpload;
 
         function onChange() {
             const xhr = new XMLHttpRequest();
@@ -51,7 +75,9 @@
                         errors.innerHTML = resHTML;
                         errors.style.display = "initial";
                     } else {
-                        window.location.assign('login');
+                        errors.innerHTML = "Password Changed: You will be logged out in 10s";
+                        errors.style.display = "initial";
+                        // window.location.assign('login');
                     }
                 }
             }
@@ -111,6 +137,42 @@
             let params = '&fname=' + inputFname.value
             + '&lname=' + inputLname.value;
             xhr.send(params);
+        }
+
+        function onUpload() {
+            const form = document.querySelector('form');
+            const xhr = new XMLHttpRequest();
+            // const uploadbutton = document.getElementById('upload');
+
+        //    form.preventDefault();
+
+            xhr.onreadystatechange = function(res) {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = res.target.response;
+
+                    if (resData) {
+                        resErrors = resData.split(',');
+                        resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
+                        u_errors.innerHTML = resHTML;
+                        u_errors.style.display = "initial";
+                    } else {
+                        // console.log("Updated");
+                        //window.location.assign('settings');
+                        u_errors.innerHTML = 'Updated.';
+                        u_errors.style.display = "initial";
+                    }
+                }
+            }
+
+            const file = document.getElementById('image');
+            const formData = new FormData()
+
+            formData.append('image', file);
+            xhr.open('POST', form.getAttribute('action'), true);
+            // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(formData);
+
+            return false;
         }
 
     } 

@@ -49,15 +49,20 @@ $test_users = "INSERT INTO `users` (`username`, `email`, `pass`, `fname`, `lname
 				";
 
 $test_posts = "INSERT INTO posts (`img`, `user`) VALUES
-				('img/test.jpg', 1),
-				('img/stock/img_20191206061455.png', 3),
-				('img/stock/img_20191206061512.png', 3),
-				('img/stock/img_20191206061601.png', 3),
-				('img/stock/img_20191206061655.png', 3)
+				('img/test.jpg', 1)
 				";
+
+// $test_posts = "INSERT INTO posts (`img`, `user`) VALUES
+				// ('img/test.jpg', 1),
+				// ('img/stock/img_20191206061455.png', 3),
+				// ('img/stock/img_20191206061512.png', 3),
+				// ('img/stock/img_20191206061601.png', 3),
+				// ('img/stock/img_20191206061655.png', 3)
+				// ";
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
 				(1, 1, 'Tedfdfsgsting');
 				";
 
+// $statements = ['create_users', 'create_posts', 'create_comments', 'test_users', 'test_comments'];
 $statements = ['create_users', 'create_posts', 'create_comments', 'test_users', 'test_posts', 'test_comments'];

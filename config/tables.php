@@ -48,17 +48,17 @@ $test_users = "INSERT INTO `users` (`username`, `email`, `pass`, `fname`, `lname
 				('user5', 'user5@user.com','$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Username', 'UserSurname', 'img/profile/def4.jpg', '1', " . "'" . bin2hex(openssl_random_pseudo_bytes(64, $cstrong)) . "'" . ")
 				";
 
-$test_posts = "INSERT INTO posts (`img`, `user`) VALUES
-				('img/test.jpg', 1)
-				";
-
 // $test_posts = "INSERT INTO posts (`img`, `user`) VALUES
-				// ('img/test.jpg', 1),
-				// ('img/stock/img_20191206061455.png', 3),
-				// ('img/stock/img_20191206061512.png', 3),
-				// ('img/stock/img_20191206061601.png', 3),
-				// ('img/stock/img_20191206061655.png', 3)
+				// ('img/test.jpg', 1)
 				// ";
+
+ $test_posts = "INSERT INTO posts (`img`, `user`, `likes`) VALUES
+				('img/test.jpg', 1, 42),
+				('img/stock/img_20191206061455.png', 3, 5),
+				('img/stock/img_20191206061512.png', 3, 4),
+				('img/stock/img_20191206061601.png', 3, 3),
+				('img/stock/img_20191206061655.png', 3, 2)
+				";
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
 				(1, 1, 'Tedfdfsgsting');

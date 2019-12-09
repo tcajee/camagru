@@ -57,7 +57,7 @@ class Settings extends Controller {
                     $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
                     $fields = ['photo'=>$save];
                     $this->_db->update('users', $id, $fields);
-                    Router::redirect('settings');
+                    Router::redirect('profile');
                 } else {
                     Router::redirect('settings');
                     // $html = file_get_contents('../views/settings.php');

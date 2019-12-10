@@ -56,8 +56,11 @@
                         errors.innerHTML = resHTML;
                         errors.style.display = "initial";
                     } else {
-                        errors.innerHTML = "Password Changed.";
+                        errors.innerHTML = "Password Changed. Redirecting";
                         errors.style.display = "initial";
+                        setTimeout(function() {
+                            window.location.assign('login');
+                        }, 1000);
                     }
                 }
             }
@@ -81,9 +84,11 @@
                         e_errors.innerHTML = resHTML;
                         e_errors.style.display = "initial";
                     } else {
-                        e_errors.innerHTML = 'Updated. Please verify your new Email.';
+                        e_errors.innerHTML = 'Updated. Please check your email to verify. Redirecting in 3 seconds';
                         e_errors.style.display = "initial";
-                        // window.location.assign('settings');
+                        setTimeout(function() {
+                            window.location.assign('login');
+                        }, 3000);
                     }
                 }
             }
@@ -106,7 +111,6 @@
                         n_errors.innerHTML = resHTML;
                         n_errors.style.display = "initial";
                     } else {
-                        //window.location.assign('settings');
                         n_errors.innerHTML = 'Updated.';
                         n_errors.style.display = "initial";
                     }

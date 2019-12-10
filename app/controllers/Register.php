@@ -68,6 +68,10 @@ class Register extends Controller {
     }
 
     public function index() {
-       $this->view->render('register');
+        if (isset($_SESSION['user'])) {
+            Router::redirect('profile');
+        } else {
+             $this->view->render('login');
+        }
     }
 }

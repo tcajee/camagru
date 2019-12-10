@@ -109,15 +109,12 @@
     <script src="./js/gallery.js"></script>
 
     <div class='center black padding-32'>
-
         <div id="buttons" class='center black' style="display: inline;">
             <input style='margin-right: 20px' class="button text-black grey" id="prev" name="prev" type="submit" value="Previous Page"/>
             <input style='margin-left: 20px' class="button text-black grey" id="next" name="next" type="submit" value="Next Page"/>
         </div>
         <br />
         <br />
-
-
         <div id="gallery" class='center black'>
             <div id="likes" class='center black'></div>
             <div id="comments" class='center black'>
@@ -126,14 +123,10 @@
             </div>
             <p style='display: none; color: black;' id='counter' name='count'></p>
         </div>
-
     </div>
 
     <script>
         var slideIndex = 1;
-        // showSlides(slideIndex);
-        plusSlides(1);
-        plusSlides(-1);
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
@@ -148,7 +141,6 @@
                 if (slideshow[0].style)
                     slideshow[0].style.display = 'inline-flex';  
             }
-            // console.log(slides);
             if (n > slides.length) {
                 slideIndex = 1
             }    
@@ -186,10 +178,6 @@
                         slides[i].style.display = 'block';  
                 }
             }
-            // if (slides[slideIndex-1]) {
-                // if (slides[slideIndex-1].style)
-                // slides[slideIndex-1].style.display = 'block';  
-            // }
         }
     </script>
 

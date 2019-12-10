@@ -16,7 +16,8 @@ class Home extends Controller {
        if (!isset($_SESSION['user'])) {
            $this->view->render('index');
        }
-       else 
+       else {
            $this->view->render('profile');
+       }
     }
 }

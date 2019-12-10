@@ -71,7 +71,7 @@ class Register extends Controller {
         if (isset($_SESSION['user'])) {
             Router::redirect('profile');
         } else {
-             $this->view->render('login');
+             $this->view->render('register');
         }
     }
 }

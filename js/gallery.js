@@ -7,18 +7,20 @@
        
         const gallery = document.getElementById("gallery");
         const likes = document.getElementById("likes");
-        // const comments = document.getElementById("comments");
         
         let prevbutton = document.getElementById("prev");
         let nextbutton = document.getElementById("next");
         let commentbutton = document.getElementById("commentbutton");
+ 
+        // let unlikebutton = document.getElementById("unlikebutton");
+        // let likebutton = document.getElementById("likebutton");
         
         prevbutton.onclick = prev;
         nextbutton.onclick = next;
         commentbutton.onclick = comment;
+        // unlikebutton.onclick = unlike;
+        // likebutton.onclick = like;
         
-        
-
         if (!loaded) {
             resData = [];
             const xhr = new XMLHttpRequest();
@@ -56,6 +58,42 @@
             let params = 'start=' + 1
             + '&count=' + count;
             xhr.send(params);
+        }
+
+        function like() {
+            resData = [];
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(res) {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = res.target.response;
+                    if (resData) {
+                    } else {
+                        window.location.assign('gallery');
+                    }
+                }
+            }
+            xhr.open('POST', 'gallery/like');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            let params = 'like=' + 1;
+            xhr.send(params); 
+        }
+
+        function like() {
+            resData = [];
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(res) {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = res.target.response;
+                    if (resData) {
+                    } else {
+                        window.location.assign('gallery');
+                    }
+                }
+            }
+            xhr.open('POST', 'gallery/like');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            let params = 'like=' + 1;
+            xhr.send(params); 
         }
 
         function next() {

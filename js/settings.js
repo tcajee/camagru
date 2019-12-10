@@ -56,8 +56,11 @@
                         errors.innerHTML = resHTML;
                         errors.style.display = "initial";
                     } else {
-                        errors.innerHTML = "Password Changed.";
+                        errors.innerHTML = "Password Changed. Redirecting";
                         errors.style.display = "initial";
+                        setTimeout(function() {
+                            window.location.assign('login');
+                        }, 1000);
                     }
                 }
             }
@@ -108,7 +111,6 @@
                         n_errors.innerHTML = resHTML;
                         n_errors.style.display = "initial";
                     } else {
-                        //window.location.assign('settings');
                         n_errors.innerHTML = 'Updated.';
                         n_errors.style.display = "initial";
                     }

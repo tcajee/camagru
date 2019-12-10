@@ -127,14 +127,6 @@
             <p style='display: none; color: black;' id='counter' name='count'></p>
         </div>
 
-
-        <!-- <br /> -->
-        <div id="buttons" class='center black' style="display: inline;">
-            <input style='margin-right: 20px' class="button text-black grey" id="prev" name="prev" type="submit" value="Previous Page"/>
-            <input style='margin-left: 20px' class="button text-black grey" id="next" name="next" type="submit" value="Next Page"/>
-        </div>
-        <!-- <br /> -->
-
     </div>
 
     <script>

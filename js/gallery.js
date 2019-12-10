@@ -8,10 +8,19 @@
         const gallery = document.getElementById("gallery");
         const likes = document.getElementById("likes");
         const comments = document.getElementById("comments");
+
+        
         let prevbutton = document.getElementById("prev");
         let nextbutton = document.getElementById("next");
+        
+        const inputComment = document.getElementById("commentin");
+        let commentbutton = document.getElementById("commentbutton");
+        commentbutton.onclick = comment;
+        
         prevbutton.onclick = prev;
         nextbutton.onclick = next;
+        
+        
 
         if (!loaded) {
             resData = [];
@@ -31,14 +40,14 @@
                         comments.innerHTML = '';
                         comments.innerHTML = comment;
 
-                        // resData.removeChild('likes'); 
-                        // resData.removeChild('comments'); 
                         gallery.innerHTML = '';
                         gallery.innerHTML = resData;
 
                         var counter = document.getElementById("counter");
                         count = Number(counter.innerHTML);
-                        console.log('count' + count);
+                        
+                        // console.log('count' + count);
+                        
                         loaded = 1;
                     } else {
                         window.location.assign('gallery');
@@ -59,12 +68,23 @@
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     resData = res.target.response;
                     if (resData) {
+                        gallery.innerHTML = resData;
+
+                        var like = document.getElementById("likes");
+                        likes.innerHTML = '';
+                        likes.innerHTML = like;
+                        
+                        var comment = document.getElementById("comments");
+                        comments.innerHTML = '';
+                        comments.innerHTML = comment;
+
                         gallery.innerHTML = '';
                         gallery.innerHTML = resData;
+
                         var counter = document.getElementById("counter");
                         count = Number(counter.innerHTML);
 
-                        console.log('count' + count);
+                        // console.log('count' + count);
 
                     } else {
                         window.location.assign('gallery');
@@ -85,13 +105,22 @@
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     resData = res.target.response;
                     if (resData) {
+                        gallery.innerHTML = resData;
+
+                        var like = document.getElementById("likes");
+                        likes.innerHTML = '';
+                        likes.innerHTML = like;
+                        
+                        var comment = document.getElementById("comments");
+                        comments.innerHTML = '';
+                        comments.innerHTML = comment;
+
                         gallery.innerHTML = '';
                         gallery.innerHTML = resData;
+
                         var counter = document.getElementById("counter");
                         count = Number(counter.innerHTML);
-
-                        console.log('count' + count);
-
+                        // console.log('count' + count);
                     } else {
                         window.location.assign('gallery');
                     }
@@ -101,6 +130,27 @@
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             let params = 'prev=' + 1
             + '&count=' + count;
+            xhr.send(params);
+        }
+
+        
+        function comment() {
+            resData = [];
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function(res) {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = res.target.response;
+                    if (resData) {
+
+                    } else {
+                        window.location.assign('gallery');
+                    }
+                }
+            }
+            xhr.open('POST', 'gallery/comment');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            let params = 'comment=' + 1
+            + '&comment=' + inputComment.value;
             xhr.send(params);
         }
 

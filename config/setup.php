@@ -1,5 +1,7 @@
 <?php
     include("database.php");
+    include("config.php");
+    include("../core/Router.php");
 
     function execute($sql, $pdo){
         try {
@@ -13,3 +15,5 @@
     foreach ($statements as $statement) {
         execute($$statement, $pdo);
     }
+
+    Router::redirect('');

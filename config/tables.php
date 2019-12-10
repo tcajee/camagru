@@ -71,11 +71,11 @@ $test_likes = "INSERT INTO likes (`post`, `user`) VALUES
 				";
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
-				(1, 3, 'COMMENT ONE biTCHES'),
-				(1, 3, 'COMMENTS 2 bITCHES'),
-				(1, 3, 'COMMENtS 3 BITCHES'),
-				(1, 3, 'COMMENt 4 BITCHES'),
-				(1, 3, 'COMMENT 5 BITCHES')
+				(1, 3, 'Test Comment 1'),
+				(1, 3, 'Test Comment 2'),
+				(1, 3, 'Test Comment 3'),
+				(1, 3, 'Test Comment 4'),
+				(1, 3, 'Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment ')
 				";
 
 $statements = ['create_users', 'create_posts', 'create_likes', 'create_comments', 'test_users', 'test_posts', 'test_likes', 'test_comments'];

@@ -19,7 +19,6 @@ class Router {
             call_user_func_array([$classObject, $action], $queryParams);
         } else {
             Router::redirect('');
-            // die('Method ' . $action . ' does not exist in controller: ' . $controller);
         }
     }
 

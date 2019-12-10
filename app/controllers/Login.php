@@ -96,6 +96,10 @@ class Login extends Controller {
         Router::redirect('');
     }
 	public function index() {
-       $this->view->render('login');
+       if (isset($_SESSION['user'])) {
+           Router::redirect('profile');
+       } else {
+            $this->view->render('login');
+       }
     }
 }

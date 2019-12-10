@@ -16,8 +16,8 @@ class Login extends Controller {
         $this->errors = []; 
      
         if ($_POST) {
-            $username = htmlspecialchars(htmlentities($_POST['username'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
-            $password = htmlspecialchars(htmlentities($_POST['password'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
+            $username = htmlspecialchars($_POST['username']);
+            $password = htmlspecialchars($_POST['password']);
             $hash = password_hash($password, PASSWORD_BCRYPT);
 
             if ($username)

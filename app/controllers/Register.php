@@ -15,10 +15,10 @@ class Register extends Controller {
     public function register($input = []) {
        $this->errors = [];
        if ($_POST) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $vpassword = $_POST['vpassword'];
-            $email = $_POST['email'];
+            $username = htmlspecialchars($_POST['username']);
+            $password = htmlspecialchars($_POST['password']);
+            $vpassword = htmlspecialchars($_POST['vpassword']);
+            $email = htmlspecialchars($_POST['email']); 
             $cstrong = True;
             $token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
 

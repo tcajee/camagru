@@ -40,7 +40,9 @@ class Gallery extends Controller {
         if (isset($_POST['start']) && $_POST['start']) {
             
             while ($i < $this->n - 1 && $count) {
-            echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center padding-16' id='maing'>";
+                echo "<div class='center' id='maing'>";
                 echo "<div id='imagess'>";
                     echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
                 echo "</div>";
@@ -56,6 +58,7 @@ class Gallery extends Controller {
                     foreach ($images[$i]['comments'] as $text) {
                         if ($start) {
                             echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
                                 echo "<p>" . $text . " </p>";
                             echo "</div>";
                         } else {
@@ -84,12 +87,16 @@ class Gallery extends Controller {
                 }
                 $i++;
                 $count--;
+                echo "<hr>";
             }
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
         }
     } 
 
     public function comment() {
+        if (isset($_POST['comment']) && $_POST['comment']) {
+            echo "<p>". $_POST['comment'] . "</p>";
+        }
     }
 
     public function display() {
@@ -117,7 +124,9 @@ class Gallery extends Controller {
         if (isset($_POST['next']) && $_POST['next']) {
             while ($i < $this->n && $count) {
 
-                echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center padding-16' id='maing'>";
+                echo "<div class='center' id='maing'>";
                 echo "<div id='imagess'>";
                     echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
                 echo "</div>";
@@ -132,6 +141,7 @@ class Gallery extends Controller {
                     echo "<div id='comments' class='slideshow-container' style='display: inline-flex'>";
                     foreach ($images[$i]['comments'] as $text) {
                         if ($start) {
+                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
                             echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
                                 echo "<p>" . $text . " </p>";
                             echo "</div>";
@@ -165,6 +175,7 @@ class Gallery extends Controller {
                     $i = 0;
                 }
                 $count--;
+                echo "<hr>";
             }
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
 
@@ -172,8 +183,9 @@ class Gallery extends Controller {
           
             while ($i >= 0 && $count) {
 
-
-            echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center padding-16' id='maing'>";
+                echo "<div class='center' id='maing'>";
                 echo "<div id='imagess'>";
                     echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
                 echo "</div>";
@@ -189,6 +201,7 @@ class Gallery extends Controller {
                     foreach ($images[$i]['comments'] as $text) {
                         if ($start) {
                             echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
                                 echo "<p>" . $text . " </p>";
                             echo "</div>";
                         } else {
@@ -205,23 +218,23 @@ class Gallery extends Controller {
                     echo "<div class='padding-16'>";
                         echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
                     echo "</div>";
-                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
-                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
                     echo "</div>";
                 } else {
                     echo "<div class='center'>";
-                    echo "<p> No comments</p>";
-                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
-                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        echo "<p> No comments</p>";
+                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
                     echo "</div>";
                 }
-
 
                 if ($i == 0) {
                     $i = $this->n;
                 }
                 $i--;
                 $count--;
+                echo "<hr>";
             }
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
         } else {

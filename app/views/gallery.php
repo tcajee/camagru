@@ -110,6 +110,14 @@
 
     <div class='center black padding-32'>
 
+        <div id="buttons" class='center black' style="display: inline;">
+            <input style='margin-right: 20px' class="button text-black grey" id="prev" name="prev" type="submit" value="Previous Page"/>
+            <input style='margin-left: 20px' class="button text-black grey" id="next" name="next" type="submit" value="Next Page"/>
+        </div>
+        <br />
+        <br />
+
+
         <div id="gallery" class='center black'>
             <div id="likes" class='center black'></div>
             <div id="comments" class='center black'>
@@ -120,12 +128,12 @@
         </div>
 
 
-        <br />
+        <!-- <br /> -->
         <div id="buttons" class='center black' style="display: inline;">
-            <input class="button text-black grey" id="prev" name="prev" type="submit" value="Prev"/>
-            <input class="button text-black grey" id="next" name="next" type="submit" value="Next"/>
+            <input style='margin-right: 20px' class="button text-black grey" id="prev" name="prev" type="submit" value="Previous Page"/>
+            <input style='margin-left: 20px' class="button text-black grey" id="next" name="next" type="submit" value="Next Page"/>
         </div>
-        <br />
+        <!-- <br /> -->
 
     </div>
 

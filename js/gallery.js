@@ -7,18 +7,15 @@
        
         const gallery = document.getElementById("gallery");
         const likes = document.getElementById("likes");
-        const comments = document.getElementById("comments");
-
+        // const comments = document.getElementById("comments");
         
         let prevbutton = document.getElementById("prev");
         let nextbutton = document.getElementById("next");
-        
-        const inputComment = document.getElementById("commentin");
         let commentbutton = document.getElementById("commentbutton");
-        commentbutton.onclick = comment;
         
         prevbutton.onclick = prev;
         nextbutton.onclick = next;
+        commentbutton.onclick = comment;
         
         
 
@@ -135,12 +132,18 @@
 
         
         function comment() {
+            var inputComment = document.getElementById("commentin");
             resData = [];
             const xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function(res) {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     resData = res.target.response;
                     if (resData) {
+        
+                        console.log("here");
+                        var comment = document.getElementById("comments");
+                        comments.innerHTML = '';
+                        comments.innerHTML = resData;
 
                     } else {
                         window.location.assign('gallery');

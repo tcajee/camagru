@@ -33,8 +33,6 @@ class Settings extends Controller {
     }
 
     public function upload() {
-        // print('This is the PHP upload function');
-        dnd($_FILES);
         if (!empty($_FILES['image']['name'])) {
             if (isset($_FILES['image'])) {
 
@@ -48,7 +46,6 @@ class Settings extends Controller {
                 $extensions = array("jpeg", "jpg", "png");
 
                 if (in_array($file_ext,$extensions) === false) {
-                    // Router::redirect('settings');
                     $errors[] = "Extension not allowed: Please choose a JPEG or PNG file.";
                 }
 
@@ -59,18 +56,12 @@ class Settings extends Controller {
                     $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
                     $fields = ['photo'=>$save];
                     $this->_db->update('users', $id, $fields);
-                    // echo 'Updated';
-                    Router::redirect('profile');
                 } else {
-                    Router::redirect('settings');
-                    // $html = file_get_contents('../views/settings.php');
                     echo implode(' ', $errors);
-                    // print_r($errors);
                 }
             }
         } else {
             echo "Please select a file";
-            // Router::redirect('settings');
         }
     }
 
@@ -121,7 +112,8 @@ class Settings extends Controller {
             $fields = ['pass'=>password_hash($pass, PASSWORD_BCRYPT)];
             $this->_db->update('users', $id, $fields);
             // sleep(10000);
-            unset($_SESSION['user']);
+            // unset($_SESSION['user']);
+            // Router::redirect('');
             // Router::redirect('login');
         }
         else {

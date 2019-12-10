@@ -54,13 +54,20 @@
         <br />
 
     <form action="upload/file" method="POST" enctype="multipart/form-data">
-        <input class="input center" type="file" name="image" /><p></p>
-        <input class="button text-black grey"  type="submit" value="Upload File"/>
+        <input id="image" class="input center" type="file" name="image" /><p></p>
+        <input id="upload_file" class="button text-black grey"  type="submit" value="Upload File"/><p></p>
+        <p id="u_errors" style="display: none; color: red;"></p>
+
     </form>
     <br />
 
     </div>
 
 </div>
+<script>
+    document.getElementById("upload_file").addEventListener("click", function(event){
+    event.preventDefault()
+    });
+</script>
 
 <?php $this->end(); ?>

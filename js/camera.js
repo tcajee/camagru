@@ -29,11 +29,16 @@
       sbutton3 = document.getElementById('sbutton3');
       sbutton4 = document.getElementById('sbutton4');
 
+      // Upload picture from file
+      const u_errors = document.getElementById("u_errors");
+      let upload_filebutton = document.getElementById("upload_file");
+
       uploadbutton.onclick = uploadPicture;
       sbutton1.onclick = addSticker1;
       sbutton2.onclick = addSticker2;
       sbutton3.onclick = addSticker3;
       sbutton4.onclick = addSticker4;
+      upload_filebutton.onclick = onUpload;
   
       navigator.mediaDevices.getUserMedia({video: true, audio: false})
       .then(function(stream) {
@@ -146,6 +151,36 @@
           xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
           xhr.send("img=" + file);
       }
+
+    function onUpload() {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(res) {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          resData = res.target.response;
+
+          if (resData) {
+          resErrors = resData.split(',');
+          resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
+          u_errors.innerHTML = resHTML;
+          u_errors.style.display = "initial";
+          } else {
+          //window.location.assign('settings');
+          u_errors.innerHTML = 'Uploaded.';
+          u_errors.style.display = "initial";
+          }
+        }
+      }
+
+      const file = document.getElementById('image');
+      const formData = new FormData();
+
+      formData.append('image', file.files[0]);
+      // console.log(formData);
+            
+      xhr.open('POST', 'upload/upload_file');
+      xhr.send(formData);
+    }
+
   
     window.addEventListener('load', startup, false);
   })();

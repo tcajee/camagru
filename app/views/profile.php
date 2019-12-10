@@ -110,13 +110,21 @@
     <div class="center">
         <?php
             $_db = DB::getInstance();
-            $username = $_db->query('SELECT username FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->username;
-            echo "<h2 class='text-light-grey'>Welcome, $username!</h2>";
-            $photo = $_db->query('SELECT photo FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->photo;
-            if ($photo) {
-                echo "<img style='width: 10%;border-radius: 50%' src='$photo' alt='Profile photo'>";
-            } else {
-                echo "<img style='width: 10%;' src='img/profile/def4.jpg' alt='Profile photo'>";
+            if (isset($_SESSION['user'])) {
+                $user = $_db->query('SELECT username FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results();
+                $photo = $_db->query('SELECT photo FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->photo;
+                if ($user) {
+                    $username = $user[0]->username;
+                    echo "<h2 class='text-light-grey'>Welcome, $username!</h2>";
+                } else {
+                    unset($_SESSION['user']);
+                    Router::redirect('');
+                }
+                if ($photo) {
+                    echo "<img style='width: 10%;border-radius: 50%' src='$photo' alt='Profile photo'>";
+                } else {
+                    echo "<img style='width: 10%;' src='img/profile/def4.jpg' alt='Profile photo'>";
+                }
             }
         ?>
     </div>
@@ -134,7 +142,7 @@
                 if ($photos) {
                     echo "<a class='prev' onclick='plusSlides(-1)'>&#10094;</a>";
                     foreach ($photos as $photo) {
-                        echo "<div class='mySlides fade center'>";
+                        echo "<div class='roll fade center'>";
                         echo "<img src=$photo->img alt='Uploads' style='width:30%'>";
                         echo "</div>";
                     }
@@ -150,7 +158,7 @@
                     }
                     function showSlides(n) {
                         var i;
-                        var slides = document.getElementsByClassName('mySlides');
+                        var slides = document.getElementsByClassName('roll');
                         if (n > slides.length) {slideIndex = 1}    
                         if (n < 1) {slideIndex = slides.length}
                         for (i = 0; i < slides.length; i++) {

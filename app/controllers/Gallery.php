@@ -3,117 +3,246 @@
 class Gallery extends Controller {
     
     public $_db;
-   
     public $images;
-    public $count;
-    
+    public $comments;
+    public $n = 0;
+    public $start = [];
     public $next = [];
-    public $current = [];
-    public $all = [];
     public $prev = [];
-    public $n;
 
     public function __construct($controller, $action) {
-        // if (!isset($_SESSION['user'])) {
-            // Router::redirect('');
-            // return;
-        // }
         parent::__construct($controller, $action);
         $this->_db = DB::getInstance();
     }
 
     public function setup() {
+        $images = [];
+        $comments = [];
         $this->images = $this->_db->query('SELECT * FROM posts')->results();
-        $this->n = count($this->images);
-        $this->i = 0;
-        $this->all = $this->images;
-        
-        if ($this->n >= 5) {
-            $this->current = array_slice($this->images, $this->i, 5);
-            $this->i += 5;
-            // if ($this->n >= 10) {
-                // $this->next = array_slice($this->images, $this->i, 5);
-            // } else {
-                // $this->next = array_slice($this->images, $this->i, $this->n - 5);
-            // }
-            // $this->prev = $this->current;
-        } else {
-            $this->current = $this->all;
-            $this->next = [];
-            $this->prev = [];
-            $this->i += count($this->all);
+        $this->comments = $this->_db->query('SELECT * FROM comments')->results();
+        foreach ($this->images as $img) {
+            foreach ($this->comments as $comment) {
+                if ($comment->post == $img->id) {
+                    $comments[] = $comment->text;
+                }
+            }
+            $images[] = [
+                'image' => $img->img,
+                'likes' => $img->likes,
+                'comments' => $comments
+            ];
+            $comments = [];
+        }
+        $this->n = count($images);
+        $i = $_POST['count'];
+        $count = 5;
+        $start = 1;
+        if (isset($_POST['start']) && $_POST['start']) {
+            
+            while ($i < $this->n - 1 && $count) {
+                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center padding-16' id='maing'>";
+                echo "<div class='center' id='maing'>";
+                echo "<div id='imagess'>";
+                    echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
+                echo "</div>";
+                echo "<div id='likes'>";
+                    echo "<input class='button text-black grey' id='like' name='next' type='submit' value='Like'/>";
+                    echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
+                echo "</div>";
+                if ($images[$i]['comments']) {
+                    echo "<div style='display: inline-flex'>";
+                        echo "<a class='prev' onclick='plusSlides(-1)'>&#10094; Prev</a>";
+                    echo "</div>";
+                    echo "<div id='comments' class='slideshow-container' style='display: inline-flex'>";
+                    foreach ($images[$i]['comments'] as $text) {
+                        if ($start) {
+                            echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                                echo "<p>" . $text . " </p>";
+                            echo "</div>";
+                        } else {
+                            echo "<div class='comments fade center' style='display: none; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                                echo "<p>" . $text . " </p>";
+                            echo "</div>";
+                        } 
+                        $start = 0;
+                    }
+                    echo "</div>";
+                    echo "<div style='display: inline-flex'>";
+                        echo "<a class='next' onclick='plusSlides(1)'>Next &#10095;</a>";
+                    echo "</div>";
+                    echo "<div class='padding-16'>";
+                        echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
+                    echo "</div>";
+                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    echo "</div>";
+                } else {
+                    echo "<div class='center'>";
+                    echo "<p> No comments</p>";
+                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    echo "</div>";
+                }
+                $i++;
+                $count--;
+                echo "<hr>";
+            }
+            echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
+        }
+    } 
+
+    public function comment() {
+        if (isset($_POST['comment']) && $_POST['comment']) {
+            echo "<p>". $_POST['comment'] . "</p>";
         }
     }
 
-    public function load() {
+    public function display() {
+        $images = [];
+        $comments = [];
         $this->images = $this->_db->query('SELECT * FROM posts')->results();
-        $this->n = count($this->images);
-        $this->all = $this->images;
+        $this->comments = $this->_db->query('SELECT * FROM comments')->results();
+        foreach ($this->images as $img) {
+            foreach ($this->comments as $comment) {
+                if ($comment->post == $img->id) {
+                    $comments[] = $comment->text;
+                }
+            }
+            $images[] = [
+                'image' => $img->img,
+                'likes' => $img->likes,
+                'comments' => $comments
+            ];
+            $comments = [];
+        }
+        $this->n = count($images);
+        $i = $_POST['count'];
+        $count = 5;
+        $start = 1;
         if (isset($_POST['next']) && $_POST['next']) {
-            if ($this->n - $_POST['count'] < 5) {
-                $_POST['count'] = 0;
+            while ($i < $this->n && $count) {
+
+                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center padding-16' id='maing'>";
+                echo "<div class='center' id='maing'>";
+                echo "<div id='imagess'>";
+                    echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
+                echo "</div>";
+                echo "<div id='likes'>";
+                    echo "<input class='button text-black grey' id='like' name='next' type='submit' value='Like'/>";
+                    echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
+                echo "</div>";
+                if ($images[$i]['comments']) {
+                    echo "<div style='display: inline-flex'>";
+                        echo "<a class='prev' onclick='plusSlides(-1)'>&#10094; Prev</a>";
+                    echo "</div>";
+                    echo "<div id='comments' class='slideshow-container' style='display: inline-flex'>";
+                    foreach ($images[$i]['comments'] as $text) {
+                        if ($start) {
+                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                            echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                                echo "<p>" . $text . " </p>";
+                            echo "</div>";
+                        } else {
+                            echo "<div class='comments fade center' style='display: none; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                                echo "<p>" . $text . " </p>";
+                            echo "</div>";
+                        } 
+                        $start = 0;
+                    }
+                    echo "</div>";
+                    echo "<div style='display: inline-flex'>";
+                        echo "<a class='next' onclick='plusSlides(1)'>Next &#10095;</a>";
+                    echo "</div>";
+                    echo "<div class='padding-16'>";
+                        echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
+                    echo "</div>";
+                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    echo "</div>";
+                } else {
+                    echo "<div class='center'>";
+                    echo "<p> No comments</p>";
+                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    echo "</div>";
+                }
+        
+                $i++;
+                if ($i == $this->n) {
+                    $i = 0;
+                }
+                $count--;
+                echo "<hr>";
             }
-            $this->next($_POST['count']);
-            // var_dump($_POST['count']);
+            echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
+
         } else if (isset($_POST['prev']) && $_POST['prev']) {
-            if ($_POST['count'] + $this->n * -1 > 0) {
-                $_POST['count'] = $this->n;
-            } 
-            $this->prev($_POST['count']);
-            // var_dump($_POST['count']);
-        }
-    }
+          
+            while ($i >= 0 && $count) {
 
-    public function display($imgs = []) {
-        if ($imgs) {
-            if ($imgs[0]->img) {
-                $a = $imgs[0]->img;
-                echo "<img src=$a style='width: 30%'><p></p>";
-            }
-            if ($imgs[1]->img) {
-                $b = $imgs[1]->img; 
-                echo "<img src=$b style='width: 30%'><p></p>";
-            }
-            if ($imgs[2]->img) {
-                $c = $imgs[2]->img; 
-                echo "<img src=$c style='width: 30%'><p></p>";
-            }
-            if ($imgs[3]->img) {
-                $d = $imgs[3]->img; 
-                echo "<img src=$d style='width: 30%'><p></p>";
-            }
-            if ($imgs[4]->img) {
-                $e = $imgs[4]->img; 
-                echo "<img src=$e style='width: 30%'><p></p>";
-            }
-        } else if ($this->all){
-            foreach ($this->all as $img) {
-                echo "<img src=$img->img style='width: 30%'><p></p>";
-            }
-        }
-    }
+                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
+                // echo "<div class='center padding-16' id='maing'>";
+                echo "<div class='center' id='maing'>";
+                echo "<div id='imagess'>";
+                    echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
+                echo "</div>";
+                echo "<div id='likes'>";
+                    echo "<input class='button text-black grey' id='like' name='next' type='submit' value='Like'/>";
+                    echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
+                echo "</div>";
+                if ($images[$i]['comments']) {
+                    echo "<div style='display: inline-flex'>";
+                        echo "<a class='prev' onclick='plusSlides(-1)'>&#10094; Prev</a>";
+                    echo "</div>";
+                    echo "<div id='comments' class='slideshow-container' style='display: inline-flex'>";
+                    foreach ($images[$i]['comments'] as $text) {
+                        if ($start) {
+                            echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                                echo "<p>" . $text . " </p>";
+                            echo "</div>";
+                        } else {
+                            echo "<div class='comments fade center' style='display: none; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
+                                echo "<p>" . $text . " </p>";
+                            echo "</div>";
+                        } 
+                        $start = 0;
+                    }
+                    echo "</div>";
+                    echo "<div style='display: inline-flex'>";
+                        echo "<a class='next' onclick='plusSlides(1)'>Next &#10095;</a>";
+                    echo "</div>";
+                    echo "<div class='padding-16'>";
+                        echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
+                    echo "</div>";
+                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    echo "</div>";
+                } else {
+                    echo "<div class='center'>";
+                        echo "<p> No comments</p>";
+                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    echo "</div>";
+                }
 
-    public function next($count) {
-        $this->next = array_slice($this->images, $count, 5);
-
-        if ($this->next) {
-            $this->display($this->next);
-            unset($_POST['next']);
+                if ($i == 0) {
+                    $i = $this->n;
+                }
+                $i--;
+                $count--;
+                echo "<hr>";
+            }
+            echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
         } else {
-            $this->prev = array_slice($this->images, $count - 5, 5);
-            $this->display($this->next);
+            echo "<p>No photos</p>";
+            echo "<p style='display: none; color: black;' id='counter' name='count'>" . 0 . "</p>";
         }
-    }
-
-    public function prev($count) {
-        $this->prev = array_slice($this->images, $count - 5, 5);
-        if ($this->prev) {
-            $this->display($this->prev);
-            unset($_POST['prev']);
-        } else {
-            $this->prev = array_slice($this->images, $count + 5, 5);
-            $this->display($this->prev);
-        }
+        unset($_POST['prev']);
+        unset($_POST['next']);
     }
 
     public function index() {

@@ -23,7 +23,7 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 $create_posts = "CREATE TABLE IF NOT EXISTS posts (
 		id INT NOT NULL AUTO_INCREMENT,
 		img VARCHAR(255),
-		likes INT UNSIGNED,
+		likes INT UNSIGNED DEFAULT 0,
 		user INT REFERENCES users(id),
 		time DATETIME DEFAULT NOW(),
 		PRIMARY KEY (id)
@@ -55,19 +55,21 @@ $test_users = "INSERT INTO `users` (`username`, `email`, `pass`, `fname`, `lname
 				";
 
 $test_posts = "INSERT INTO posts (`img`, `user`, `likes`) VALUES
-				('img/test.jpg', 3, 5),
-				('img/stock/img_20191206061455.png', 3, 0),
-				('img/stock/img_20191206061512.png', 3, 0),
-				('img/stock/img_20191206061601.png', 3, 0),
-				('img/stock/img_20191206061655.png', 3, 0)
+				('img/test.jpg', 3, 1),
+				('img/stock/img_20191206061455.png', 3, 1),
+				('img/stock/img_20191206061512.png', 3, 1),
+				('img/stock/img_20191206061601.png', 1, 1),
+				('img/stock/img_20191206061655.png', 1, 1),
+				('img/stock/img_20191206061655.png', 1, 1)
 				";
 
 $test_likes = "INSERT INTO likes (`post`, `user`) VALUES
 				(1, 3),
-				(1, 3),
-				(1, 3),
-				(1, 3),
-				(1, 3)
+				(2, 3),
+				(3, 3),
+				(4, 1),
+				(5, 1),
+				(6, 1)
 				";
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES

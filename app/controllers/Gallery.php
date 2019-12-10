@@ -27,6 +27,7 @@ class Gallery extends Controller {
                 }
             }
             $images[] = [
+                'id' => $img->user,
                 'image' => $img->img,
                 'likes' => $img->likes,
                 'comments' => $comments
@@ -40,15 +41,23 @@ class Gallery extends Controller {
         if (isset($_POST['start']) && $_POST['start']) {
             
             while ($i < $this->n - 1 && $count) {
-                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
-                // echo "<div class='center padding-16' id='maing'>";
                 echo "<div class='center' id='maing'>";
                 echo "<div id='imagess'>";
                     echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
                 echo "</div>";
                 echo "<div id='likes'>";
-                    echo "<input class='button text-black grey' id='like' name='next' type='submit' value='Like'/>";
-                    echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
+                if (isset($_SESSION['user'])) {
+                    $check = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results();
+                    if ($check) {
+                        $id = $check[0]->id;
+                        if ($images[$i]['id'] == $id) {
+                            echo "<input class='button text-black grey' id='unlikebutton' name='next' type='submit' value='Unlike'/>";
+                        } else {
+                            echo "<input class='button text-black grey' id='likebutton' name='next' type='submit' value='like'/>";
+                        }
+                    }
+                }
+                echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
                 echo "</div>";
                 if ($images[$i]['comments']) {
                     echo "<div style='display: inline-flex'>";
@@ -58,7 +67,6 @@ class Gallery extends Controller {
                     foreach ($images[$i]['comments'] as $text) {
                         if ($start) {
                             echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
-                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
                                 echo "<p>" . $text . " </p>";
                             echo "</div>";
                         } else {
@@ -75,14 +83,22 @@ class Gallery extends Controller {
                     echo "<div class='padding-16'>";
                         echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
                     echo "</div>";
-                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
-                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    
+                    if (isset($_SESSION['user'])) {
+                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    }
+
                     echo "</div>";
                 } else {
                     echo "<div class='center'>";
                     echo "<p> No comments</p>";
-                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
-                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+
+                    if (isset($_SESSION['user'])) {
+                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    }
+                    
                     echo "</div>";
                 }
                 $i++;
@@ -111,6 +127,7 @@ class Gallery extends Controller {
                 }
             }
             $images[] = [
+                'id' => $img->user,
                 'image' => $img->img,
                 'likes' => $img->likes,
                 'comments' => $comments
@@ -124,15 +141,23 @@ class Gallery extends Controller {
         if (isset($_POST['next']) && $_POST['next']) {
             while ($i < $this->n && $count) {
 
-                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
-                // echo "<div class='center padding-16' id='maing'>";
                 echo "<div class='center' id='maing'>";
                 echo "<div id='imagess'>";
                     echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
                 echo "</div>";
                 echo "<div id='likes'>";
-                    echo "<input class='button text-black grey' id='like' name='next' type='submit' value='Like'/>";
-                    echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
+                if (isset($_SESSION['user'])) {
+                    $check = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results();
+                    if ($check) {
+                        $id = $check[0]->id;
+                        if ($images[$i]['id'] == $id) {
+                            echo "<input class='button text-black grey' id='unlikebutton' name='next' type='submit' value='Unlike'/>";
+                        } else {
+                            echo "<input class='button text-black grey' id='likebutton' name='next' type='submit' value='like'/>";
+                        }
+                    }
+                }
+                echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
                 echo "</div>";
                 if ($images[$i]['comments']) {
                     echo "<div style='display: inline-flex'>";
@@ -141,7 +166,6 @@ class Gallery extends Controller {
                     echo "<div id='comments' class='slideshow-container' style='display: inline-flex'>";
                     foreach ($images[$i]['comments'] as $text) {
                         if ($start) {
-                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
                             echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
                                 echo "<p>" . $text . " </p>";
                             echo "</div>";
@@ -159,14 +183,22 @@ class Gallery extends Controller {
                     echo "<div class='padding-16'>";
                         echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
                     echo "</div>";
-                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
-                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+
+                    if (isset($_SESSION['user'])) {
+                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    }
+                    
                     echo "</div>";
                 } else {
                     echo "<div class='center'>";
                     echo "<p> No comments</p>";
-                    echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
-                    echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+
+                    if (isset($_SESSION['user'])) {
+                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    }
+                    
                     echo "</div>";
                 }
         
@@ -183,15 +215,23 @@ class Gallery extends Controller {
           
             while ($i >= 0 && $count) {
 
-                // echo "<div class='center' id='maing' style='border: 1px solid grey;'>";
-                // echo "<div class='center padding-16' id='maing'>";
                 echo "<div class='center' id='maing'>";
                 echo "<div id='imagess'>";
                     echo "<img src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
                 echo "</div>";
                 echo "<div id='likes'>";
-                    echo "<input class='button text-black grey' id='like' name='next' type='submit' value='Like'/>";
-                    echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
+                if (isset($_SESSION['user'])) {
+                    $check = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results();
+                    if ($check) {
+                        $id = $check[0]->id;
+                        if ($images[$i]['id'] == $id) {
+                            echo "<input class='button text-black grey' id='unlikebutton' name='next' type='submit' value='Unlike'/>";
+                        } else {
+                            echo "<input class='button text-black grey' id='likebutton' name='next' type='submit' value='like'/>";
+                        }
+                    }
+                }
+                echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
                 echo "</div>";
                 if ($images[$i]['comments']) {
                     echo "<div style='display: inline-flex'>";
@@ -201,7 +241,6 @@ class Gallery extends Controller {
                     foreach ($images[$i]['comments'] as $text) {
                         if ($start) {
                             echo "<div class='comments fade center' style='display: block; border: 1px solid grey; margin: 20px; padding-left: 10px; padding-right: 10px'>";
-                            // echo "<div class='comments fade center' style='display: block; margin: 20px; padding-left: 10px; padding-right: 10px'>";
                                 echo "<p>" . $text . " </p>";
                             echo "</div>";
                         } else {
@@ -218,14 +257,18 @@ class Gallery extends Controller {
                     echo "<div class='padding-16'>";
                         echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
                     echo "</div>";
+                    if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                    }
                     echo "</div>";
                 } else {
                     echo "<div class='center'>";
                         echo "<p> No comments</p>";
-                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
-                        echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        if (isset($_SESSION['user'])) {
+                            echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                            echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        }
                     echo "</div>";
                 }
 

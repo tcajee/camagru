@@ -69,8 +69,8 @@ class Settings extends Controller {
 
         if ((isset($_POST['fname']) && isset($_POST['lname']) && ($_POST['fname']) && $_POST['lname'])) {
 
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
+        $fname = htmlspecialchars($_POST['fname']);
+        $lname = htmlspecialchars($_POST['lname']);
 
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
         $fields = ['fname'=>$fname, 'lname'=>$lname];
@@ -84,7 +84,7 @@ class Settings extends Controller {
     public function update_email() {
 
         if ((isset($_POST['email'])) && ($_POST['email'])) {
-            $email = $_POST['email'];
+            $email = htmlspecialchars($_POST['email']);
             $this->check($check = $this->_validate->check(['email', $email]));
              if (!$this->errors) {
 		        $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
@@ -111,8 +111,8 @@ class Settings extends Controller {
 
     public function pass() {
 
-        $pass = $_POST['password'];
-        $vpass = $_POST['vpassword'];
+        $pass = htmlspecialchars($_POST['password']);
+        $vpass = htmlspecialchars($_POST['vpassword']);
         
         $this->check($check = $this->_validate->check(['password', $pass]));
         $this->check($check = $this->_validate->check(['match', $pass, $vpass]));
@@ -145,4 +145,3 @@ class Settings extends Controller {
         Router::redirect('settings');
     }
 }
-

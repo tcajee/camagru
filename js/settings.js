@@ -56,7 +56,7 @@
                         errors.innerHTML = resHTML;
                         errors.style.display = "initial";
                     } else {
-                        errors.innerHTML = "Password Changed. Redirecting";
+                        errors.innerHTML = "Password Changed. Redirecting...";
                         errors.style.display = "initial";
                         setTimeout(function() {
                             window.location.assign('login');
@@ -84,7 +84,7 @@
                         e_errors.innerHTML = resHTML;
                         e_errors.style.display = "initial";
                     } else {
-                        e_errors.innerHTML = 'Updated. Please check your email to verify. Redirecting in 3 seconds';
+                        e_errors.innerHTML = 'Updated. Please check your email to verify. Redirecting in 3 seconds.';
                         e_errors.style.display = "initial";
                         setTimeout(function() {
                             window.location.assign('login');

@@ -43,38 +43,6 @@
     background-color: rgba(0,0,0,0.8);
     }
 
-    /* Caption text */
-    .text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 8px 12px;
-    position: absolute;
-    bottom: 8px;
-    width: 100%;
-    text-align: center;
-    }
-
-    /* Number text (1/3 etc) */
-    .numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-    }
-
-    /* The dots/bullets/indicators */
-    .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
-    }
-
     .active, .dot:hover {
     background-color: #717171;
     }
@@ -107,6 +75,7 @@
 
 <?php $this->start('body'); ?>
 
+	<script src="./js/profile.js"></script>
     <div class="center">
         <?php
             $_db = DB::getInstance();
@@ -143,7 +112,9 @@
                     echo "<a class='prev' onclick='plusSlides(-1)'>&#10094;</a>";
                     foreach ($photos as $photo) {
                         echo "<div class='roll fade center'>";
-                        echo "<img src=$photo->img alt='Uploads' style='width:30%'>";
+                        echo "<img src=$photo->img alt='Uploads' style='width:30%'><p></p>";
+                        echo "<input class='button text-black grey' id='deletebutton' type='button' name='comment' value='Delete'><p></p>";
+                        echo "<p style='display: none; color: black;' id='delete' name='count'>" . $photo->img . "</p>";
                         echo "</div>";
                     }
                     echo "<a class='next' onclick='plusSlides(1)'>&#10095;</a>";
@@ -170,9 +141,13 @@
                 } else {
                     echo "<div class='center'>";
                     echo "<p>No photos</p>";
+                    echo "<input class='button text-black grey' id='deletebutton' type='button' name='comment' style='display: none; value='Delete'><p></p>";
                     echo "</div>";
                 }
             ?>
+    </div>
+    <div class="center">
+        <p class='center' id='errors' style='display: none; color: red;'></p>
     </div>
 
     <br>

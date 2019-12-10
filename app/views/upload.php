@@ -30,7 +30,7 @@
 
 <div class="center black">
 
-    <div class="container black center" style="width: 330px; height: 250px; margin: 0 auto; position: relative; border: solid 3px grey">
+    <div class="container black center" style="width: 320px; height: 240px; margin: 0 auto; position: relative">
         <div class="containerv">
             <div id="vid1"><video  id="video"></video></div>
             <div id="prev"><canvas id="canvas" width=320 height=240></canvas></div>

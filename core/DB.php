@@ -121,7 +121,6 @@ class DB {
         $fieldString = rtrim($fieldString, ',');
         $valueString = rtrim($valueString, ',');
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
-        // echo "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
         if (!$this->query($sql, $values)->error()) {
             return true;
         }
@@ -129,12 +128,6 @@ class DB {
     }
 
     public function update($table, $id, $fields = []) {
-
-        // $sql = 'SELECT FROM users WHERE username = "admmin2"';
-        //     query($sql);
-        //     $fields['fname'] = 'boob';
-        //     update($fields);
-
 
         $fieldString = '';
         $values = [];

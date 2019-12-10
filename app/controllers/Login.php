@@ -26,14 +26,15 @@ class Login extends Controller {
                     if ($user = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results()) {
                         $user = $user[0]->username;
                         if ($pass = $this->_db->query('SELECT pass FROM users WHERE username = ?', ['username'=>$username])->results()) {
-                            $verify = $this->_db->query('SELECT verified FROM users WHERE username = ?', ['username'=>$username])->results();
-                            // $verify = $verify->$verify;
                             $pass = $pass[0]->pass;
                         }
+                        if ($verify = $this->_db->query('SELECT verified FROM users WHERE username = ?', ['username'=>$username])->results()) {
+                            $verify = $verify[0]->verified;
+                        }
                         if (password_verify($password, $pass)) {
-                            if ($verify === 1)
+                            if ($verify)
                             {
-                            $_SESSION['user'] = $this->_db->query('SELECT token FROM users WHERE username = ?', ['username'=>$username])->results()[0]->token;
+                                $_SESSION['user'] = $this->_db->query('SELECT token FROM users WHERE username = ?', ['username'=>$username])->results()[0]->token;
                             } else {
                                 echo 'Please verify your email before logging in.';
                             }

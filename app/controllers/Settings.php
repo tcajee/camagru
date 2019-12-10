@@ -100,7 +100,7 @@ class Settings extends Controller {
                 $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
                 $text = "Hello! \n\nPlease follow the link to verify your account with Camagru: " . $link; 
                 mail($email, $subject, $text, $headers);
-                //Router::redirect('settings');
+                unset($_SESSION['user']);
             } else {
                 echo implode(",", $this->errors);
             }

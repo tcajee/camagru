@@ -81,9 +81,11 @@
                         e_errors.innerHTML = resHTML;
                         e_errors.style.display = "initial";
                     } else {
-                        e_errors.innerHTML = 'Updated. Please verify your new Email.';
+                        e_errors.innerHTML = 'Updated. Please check your email to verify. Redirecting in 3 seconds';
                         e_errors.style.display = "initial";
-                        // window.location.assign('settings');
+                        setTimeout(function() {
+                            window.location.assign('login');
+                        }, 3000);
                     }
                 }
             }

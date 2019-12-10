@@ -112,7 +112,8 @@ class Settings extends Controller {
             $fields = ['pass'=>password_hash($pass, PASSWORD_BCRYPT)];
             $this->_db->update('users', $id, $fields);
             // sleep(10000);
-            unset($_SESSION['user']);
+            // unset($_SESSION['user']);
+            // Router::redirect('');
             // Router::redirect('login');
         }
         else {

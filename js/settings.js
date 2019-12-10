@@ -56,7 +56,7 @@
                         errors.innerHTML = resHTML;
                         errors.style.display = "initial";
                     } else {
-                        errors.innerHTML = "Password Changed: You will be logged out in 10s";
+                        errors.innerHTML = "Password Changed.";
                         errors.style.display = "initial";
                     }
                 }

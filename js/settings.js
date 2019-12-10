@@ -143,7 +143,7 @@
             const formData = new FormData();
 
             formData.append('image', file.files[0]);
-            console.log(formData);
+            // console.log(formData);
             
             xhr.open('POST', 'settings/upload');
             xhr.send(formData);

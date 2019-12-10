@@ -60,7 +60,7 @@ class Login extends Controller {
 
         if ($_POST) {
             $email = htmlspecialchars(htmlentities($_POST['email'], ENT_QUOTES | ENT_IGNORE, "UTF-8"));
-            $pass = '1234567';
+            $pass = mt_rand(100000, 9999999);
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 $check = $this->_db->query('SELECT email FROM users WHERE email = ?', ['email'=>$email])->results();
                 if ($check) {

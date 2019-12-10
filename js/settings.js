@@ -81,7 +81,7 @@
                         e_errors.innerHTML = resHTML;
                         e_errors.style.display = "initial";
                     } else {
-                        e_errors.innerHTML = 'Updated.';
+                        e_errors.innerHTML = 'Updated. Please verify your new Email.';
                         e_errors.style.display = "initial";
                         // window.location.assign('settings');
                     }

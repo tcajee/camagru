@@ -88,8 +88,18 @@ class Settings extends Controller {
             $this->check($check = $this->_validate->check(['email', $email]));
              if (!$this->errors) {
 		        $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
-                $fields = ['email'=>$email];
+                $fields = ['email'=>$email, 'verified'=>0];
                 $this->_db->update('users', $id, $fields);
+
+                // Email verification
+                $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $_SESSION['user'] . "'> Verify </a>";
+
+                $subject = "Email change verification | Camagru";
+                $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
+                $headers .= "MIME-Version: 1.0" . "\r\n";
+                $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
+                $text = "Hello! \n\nPlease follow the link to verify your account with Camagru: " . $link; 
+                mail($email, $subject, $text, $headers);
                 //Router::redirect('settings');
             } else {
                 echo implode(",", $this->errors);

@@ -14,7 +14,7 @@
     <form action="settings/upload" method="POST" enctype="multipart/form-data">
         <input id="image" class="input center" type="file" name="image"><p></p>
         <input id="upload" class="button text-black grey" type="submit" value="Upload"/><p></p>
-        <p id="u_errors" style="display: none; color: red;">TEST</p>
+        <p id="u_errors" style="display: none; color: red;"></p>
     </form>
 
     <br />
@@ -43,6 +43,10 @@
 </div>
 
 <script src="./js/settings.js"></script>
-<script src="./js/profile.js"></script>
+<script>
+    document.getElementById("upload").addEventListener("click", function(event){
+    event.preventDefault()
+    });
+</script>
 
 <?php $this->end('body'); ?>

@@ -26,7 +26,7 @@ class Validate {
     }
 
     public function username($input) {
-        $username = $input[1];
+        $username = htmlspecialchars($input[1]);
         
         if (!$username) {
              return [false, "Please enter a username."];
@@ -45,11 +45,11 @@ class Validate {
         } else {
             return [false, "User $username already exists."];
         }
-    } 
+    }
 
     public function password($input) {
         // dnd($input);
-        $password = $input[1];
+        $password = htmlspecialchars($input[1]);
         if (!$password) {
             return [false, "Please enter a password."];
         }
@@ -61,7 +61,7 @@ class Validate {
     }
 
     public function email($input) {
-        $email = $input[1];
+        $email = htmlspecialchars($input[1]);
 
         if (!$email) {
              return [false, "Please enter an email."];
@@ -79,8 +79,8 @@ class Validate {
     }
 
     public function match($input) {
-        $check = $input[1];
-        $match = $input[2];
+        $check = htmlspecialchars($input[1]);
+        $match = htmlspecialchars($input[2]);
         if ($check == $match) {
             return [true];
         } else {

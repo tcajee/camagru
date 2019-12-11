@@ -66,7 +66,6 @@ class Settings extends Controller {
     }
 
     public function names() {
-
         if ((isset($_POST['fname']) && isset($_POST['lname']) && ($_POST['fname']) && $_POST['lname'])) {
 
         $fname = htmlspecialchars($_POST['fname']);
@@ -78,6 +77,33 @@ class Settings extends Controller {
         //Router::redirect('settings');
         } else {
             echo "Please enter your details.";
+        }
+    }
+
+    public function username() {
+        // echo 'This is the username function';
+        // dnd($_POST);
+        $username = htmlspecialchars($_POST['username']);
+        
+        if (!$username) {
+            echo "Please enter a username.";
+        }
+        $check = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results();
+        if (!$check) {
+            if (strlen($username) >= 3 && strlen($username) <= 32) {
+                if (preg_match('/[a-zA-Z0-9_]+/', $username)) {
+                    $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
+                    $fields = ['username'=>$username];
+                    $this->_db->update('users', $id, $fields);
+                    echo 'Updated.';
+                } else {
+                    echo "Usernames can only contain uppercase, lowercase and digits.";
+                }
+            } else {
+                echo "Username must be between 3 and 32 characters long.";
+            }
+        } else {
+            echo "User $username already exists.";
         }
     }
 

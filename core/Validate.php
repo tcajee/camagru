@@ -26,7 +26,7 @@ class Validate {
     }
 
     public function username($input) {
-        $username = $input[1];
+        $username = htmlspecialchars($input[1]);
         
         if (!$username) {
              return [false, "Please enter a username."];
@@ -34,7 +34,7 @@ class Validate {
         $check = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results();
         if (!$check) {
             if (strlen($username) >= 3 && strlen($username) <= 32) {
-                if (preg_match('/[a-zA-Z0-9_]+/', $username)) {
+                if (preg_match('/^[\w]{3,32}$/i', $username)) {
                     return [true];
                 } else {
                     return [false, "Usernames can only contain uppercase, lowercase and digits."];
@@ -45,23 +45,27 @@ class Validate {
         } else {
             return [false, "User $username already exists."];
         }
-    } 
+    }
 
     public function password($input) {
         // dnd($input);
-        $password = $input[1];
+        $password = htmlspecialchars($input[1]);
         if (!$password) {
             return [false, "Please enter a password."];
         }
         if (strlen($password) >= 6 && strlen($password) <= 32) {
-            return [true];
+            if (preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $password)) {
+                return [true];
+            } else {
+                return [false, "Passwords should at least contain:<br> 1 lowercase, 1 uppercase, 1 number and 1 special character."];
+            }
         } else {
             return [false, "Passwords must be between 6 and 32 characters long."];
         } 
     }
 
     public function email($input) {
-        $email = $input[1];
+        $email = htmlspecialchars($input[1]);
 
         if (!$email) {
              return [false, "Please enter an email."];
@@ -79,8 +83,8 @@ class Validate {
     }
 
     public function match($input) {
-        $check = $input[1];
-        $match = $input[2];
+        $check = htmlspecialchars($input[1]);
+        $match = htmlspecialchars($input[2]);
         if ($check == $match) {
             return [true];
         } else {

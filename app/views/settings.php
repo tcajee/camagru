@@ -3,11 +3,19 @@
 <?php $this->start('body'); ?>
 
 <div class="center black">
+<p>Change Username</p>
+<!-- <form action='settings/username' method='POST'> -->
+    <input class="input center" id="username" type="text" name="username" value="" placeholder="New Username"><p></p>
+    <input class="button text-black grey" id="change_username" type="submit" name="change_username" value="Update"><p></p>
+    <p id="name_errors" style="display: none; color: red;"></p>
+    <!-- </form> -->
+    <br />
+
     <p>Update First and Last names</p>
     <input class="input center" id="fname" type="text" name="fname" value="" placeholder="First Name"><p></p>
     <input class="input center" id="lname" type="text" name="lname" value="" placeholder="Last Name"><p></p>
     <input class="button text-black grey" id="update" type="submit" name="update" value="Update" /><p></p>
-    <p id="n_errors" style="color: red;"></p>
+    <p id="n_errors" style="display: none; color: red;"></p>
     <br />
 
     <p>Upload Profile Photo</p>

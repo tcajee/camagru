@@ -1,5 +1,10 @@
 (function () {
     function startup() {
+        // Username
+        const name_errors = document.getElementById("name_errors");
+        const inputUsername = document.getElementById("username");
+        let userbutton = document.getElementById("change_username");
+
         // Password Errors
         const errors = document.getElementById("errors");
         const inputPassword = document.getElementById("pass");
@@ -20,6 +25,12 @@
         // Profile picture
         const u_errors = document.getElementById("u_errors");
         let uploadbutton = document.getElementById("upload");
+
+        inputUsername.addEventListener("keyup", function (e) {
+            if (e.keyCode === 13) {
+                onUser();
+            } 
+        });
 
         inputVPassword.addEventListener("keyup", function (e) {
             if (e.keyCode === 13) {
@@ -43,6 +54,30 @@
         emailbutton.onclick = onEmail;
         namebutton.onclick = onName;
         uploadbutton.onclick = onUpload;
+        userbutton.onclick = onUser;
+
+        function onUser() {
+            const xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function(res) {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = res.target.response;
+
+                    if (resData) {
+                        resErrors = resData.split(',');
+                        resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
+                        name_errors.innerHTML = resHTML;
+                        name_errors.style.display = "initial";
+                    } else {
+                        name_errors.style.display = "initial";
+                    }
+                }
+            }
+            xhr.open('POST', 'settings/username');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            let params = '&username=' + inputUsername.value;
+            xhr.send(params);
+        }
 
         function onChange() {
             const xhr = new XMLHttpRequest();

@@ -54,7 +54,11 @@ class Validate {
             return [false, "Please enter a password."];
         }
         if (strlen($password) >= 6 && strlen($password) <= 32) {
-            return [true];
+            if (preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $password)) {
+                return [true];
+            } else {
+                return [false, "Passwords should at least contain:<br> 1 lowercase, 1 uppercase, 1 number and 1 special character."];
+            }
         } else {
             return [false, "Passwords must be between 6 and 32 characters long."];
         } 

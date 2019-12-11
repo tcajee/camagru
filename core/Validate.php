@@ -34,7 +34,7 @@ class Validate {
         $check = $this->_db->query('SELECT username FROM users WHERE username = ?', ['username' => $username])->results();
         if (!$check) {
             if (strlen($username) >= 3 && strlen($username) <= 32) {
-                if (preg_match('/[a-zA-Z0-9_]+/', $username)) {
+                if (preg_match('/^[\w]{3,32}$/i', $username)) {
                     return [true];
                 } else {
                     return [false, "Usernames can only contain uppercase, lowercase and digits."];

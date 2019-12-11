@@ -118,8 +118,10 @@
         <div id="gallery" class='center black'>
             <div id="likes" class='center black'></div>
             <div id="comments" class='center black'>
-            <input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
-            <input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+            <input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>
+            <input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>
+            <input style='display: none' class='button text-black grey' id='unlikebutton' name='next' type='submit' value='Unlike'/>
+            <input style='display: none' class='button text-black grey' id='likebutton' name='next' type='submit' value='like'/>
             </div>
             <p style='display: none; color: black;' id='counter' name='count'></p>
         </div>

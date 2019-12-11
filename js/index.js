@@ -133,35 +133,6 @@
                         
                         loaded = 1;
     
-                        let posts = Array.from(document.getElementsByClassName('post'));
-                        console.log(posts);
-                        for (let post of posts) {
-                            // console.log(post.constructor.name);
-                            let postId = post.id;
-                            let likeButton = post.querySelector('input');
-                            likeButton.onclick = function() {
-                                resData = [];
-                                const xhr = new XMLHttpRequest();
-                                xhr.onreadystatechange = function(res) {
-                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                                        resData = res.target.response;
-                                        if (resData) {
-                                            // likes.innerHTML = '';
-                                            // likes.innerHTML = resData;
-                                            console.log(resData);
-                                        } else {
-                                            console.log("here2");
-                                            // window.location.assign('gallery');
-                                        }
-                                    }
-                                }
-                                xhr.open('POST', 'gallery/like');
-                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                                let params = 'postId=' + postId;
-                                // console.log(postId);
-                                xhr.send(params);
-                            };
-                        }
                     } else {
                         window.location.assign('gallery');
                     }

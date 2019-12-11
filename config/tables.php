@@ -30,9 +30,10 @@ $create_posts = "CREATE TABLE IF NOT EXISTS posts (
 		);";
 
 $create_likes = "CREATE TABLE IF NOT EXISTS likes (
+		id INT NOT NULL AUTO_INCREMENT,
 		user INT REFERENCES users(id),
 		post INT REFERENCES posts(id),
-		liked TINYINT DEFAULT 0
+		PRIMARY KEY (id)
 		);";
 
 $create_comments = "CREATE TABLE IF NOT EXISTS comments (

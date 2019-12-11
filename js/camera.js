@@ -16,12 +16,27 @@
   
     var video = null;
     var canvas = null;
+
+    var canvas2 = null;
+    var canvas3 = null;
+    var canvas4 = null;
+    var canvas5 = null;
+    var canvas6 = null;
+
     var photo = null;
     var startbutton = null;
 
     function startup() {
+
       video = document.getElementById('video');
-      canvas = document.getElementById('canvas');
+      canvas = document.getElementById('canvas'); 
+
+      canvas2 = document.getElementById('canvas2'); 
+      canvas3 = document.getElementById('canvas3'); 
+      canvas4 = document.getElementById('canvas4'); 
+      canvas5 = document.getElementById('canvas5'); 
+      canvas6 = document.getElementById('canvas6');
+      
       startbutton = document.getElementById('startbutton');
       uploadbutton = document.getElementById('uploadbutton');
       sbutton1 = document.getElementById('sbutton1');
@@ -64,12 +79,31 @@
           video.setAttribute('height', height);
           canvas.setAttribute('width', width);
           canvas.setAttribute('height', height);
+          
+          canvas2.setAttribute('height', 60);
+          canvas2.setAttribute('width', 80);
+          canvas3.setAttribute('height', 60);
+          canvas3.setAttribute('width', 80);
+          canvas4.setAttribute('height', 60);
+          canvas4.setAttribute('width', 80);
+          canvas5.setAttribute('height', 60);
+          canvas5.setAttribute('width', 80);
+          canvas6.setAttribute('height', 60);
+          canvas6.setAttribute('width', 80);
+
           streaming = true;
         }
       }, false);
   
       startbutton.addEventListener('click', function(ev){
         takepicture();
+        addpicture();
+
+        // s1 = false;
+        // s2 = false;
+        // s3 = false;
+        // s4 = false;
+
         ev.preventDefault();
       }, false);
       
@@ -97,6 +131,97 @@
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
+      }
+
+    }
+ 
+    let con2 = 0;
+    let con3 = 0;
+    let con4 = 0;
+    let con5 = 0;
+    let con6 = 0;
+    let count = 0;
+    
+    function addpicture() {
+      if (count < 5){
+        if (!con2) {
+          var context2 = canvas2.getContext('2d');
+          canvas2.width = 80;
+          canvas2.height = 60;
+          context2.drawImage(video, 0, 0, 80, 60);
+          addStickers(context2);
+          con2 = 1;
+          count++;
+        } else if (!con3) {
+          var context3 = canvas3.getContext('2d');
+          canvas3.width = 80;
+          canvas3.height = 60;
+          context3.drawImage(video, 0, 0, 80, 60);
+          addStickers(context3);
+          con3 = 1;
+          count++;
+        } else if (!con4) {
+          var context4 = canvas4.getContext('2d');
+          canvas4.width = 80;
+          canvas4.height = 60;
+          context4.drawImage(video, 0, 0, 80, 60);
+          addStickers(context4);
+          con4 = 1;
+          count++;
+        } else if (!con5) {
+          var context5 = canvas5.getContext('2d');
+          canvas5.width = 80;
+          canvas5.height = 60;
+          context5.drawImage(video, 0, 0, 80, 60);
+          addStickers(context5);
+          con5 = 1;
+          count++;
+        } else if (!con6) {
+          var context6 = canvas6.getContext('2d');
+          canvas6.width = 80;
+          canvas6.height = 60;
+          context6.drawImage(video, 0, 0, 80, 60);
+          addStickers(context6);
+          con6 = 1;
+          count++;
+        }
+      } else {
+        count = 0;
+        con2 = 0;
+        con3 = 0;
+        con4 = 0;
+        con5 = 0;
+        con6 = 0;
+      }
+
+      s1 = false;
+      s2 = false;
+      s3 = false;
+      s4 = false;
+
+    }
+
+      let s1 = false;
+      let s2 = false;
+      let s3 = false;
+      let s4 = false;
+
+    function addStickers(context) {
+      if (s1) {
+        var img = document.getElementById("s1");
+        context.drawImage(img, 20, 0, 50, 30);
+      }
+      if (s2) {
+        var img = document.getElementById("s2");
+        context.drawImage(img, 20, 0, 50, 30);
+      }
+      if (s3) {
+        var img = document.getElementById("s3");
+        context.drawImage(img, 20, 0, 50, 30);
+      }
+      if (s4) {
+        var img = document.getElementById("s4");
+        context.drawImage(img, 20, 0, 50, 30);
       }
     }
 

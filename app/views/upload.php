@@ -52,6 +52,16 @@
     </div>
         
         <br />
+        <br />
+    <div id='thumbs'>
+        <canvas id="canvas2" width=80 height=60></canvas>
+        <canvas id="canvas3" width=80 height=60></canvas>
+        <canvas id="canvas4" width=80 height=60></canvas>
+        <canvas id="canvas5" width=80 height=60></canvas>
+        <canvas id="canvas6" width=80 height=60></canvas>
+    </div>
+
+        <br />
 
     <form action="upload/file" method="POST" enctype="multipart/form-data">
         <input id="image" class="input center" type="file" name="image" /><p></p>

@@ -15,12 +15,12 @@
                         gallery.innerHTML = resData;
     
                         var like = document.getElementById("likes");
-                        likes.innerHTML = '';
-                        likes.innerHTML = like;
+                        // likes.innerHTML = '';
+                        // likes.innerHTML = like;
                         
                         var comment = document.getElementById("comments");
-                        comments.innerHTML = '';
-                        comments.innerHTML = comment;
+                        // comments.innerHTML = '';
+                        // comments.innerHTML = comment;
     
                         gallery.innerHTML = '';
                         gallery.innerHTML = resData;
@@ -51,19 +51,18 @@
                         gallery.innerHTML = resData;
     
                         var like = document.getElementById("likes");
-                        likes.innerHTML = '';
-                        likes.innerHTML = like;
+                        // likes.innerHTML = '';
+                        // likes.innerHTML = like;
                         
                         var comment = document.getElementById("comments");
-                        comments.innerHTML = '';
-                        comments.innerHTML = comment;
+                        // comments.innerHTML = '';
+                        // comments.innerHTML = comment;
     
                         gallery.innerHTML = '';
                         gallery.innerHTML = resData;
     
                         var counter = document.getElementById("counter");
                         count = Number(counter.innerHTML);
-                        // console.log('count' + count);
                     } else {
                         window.location.assign('gallery');
                     }
@@ -76,43 +75,15 @@
             xhr.send(params);
         }
         
-        function comment() {
-            var inputComment = document.getElementById("commentin");
-            resData = [];
-            const xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function(res) {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    resData = res.target.response;
-                    if (resData) {
-        
-                        console.log("here");
-                        var comment = document.getElementById("comments");
-                        comments.innerHTML = '';
-                        comments.innerHTML = resData;
-    
-                    } else {
-                        window.location.assign('gallery');
-                    }
-                }
-            }
-            xhr.open('POST', 'gallery/comment');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            let params = 'comment=' + 1
-            + '&comment=' + inputComment.value;
-            xhr.send(params);
-        }
-
         const gallery = document.getElementById("gallery");
         const likes = document.getElementById("likes");
         const comments = document.getElementById("comments");
         
         let prevbutton = document.getElementById("prev");
         let nextbutton = document.getElementById("next");
-        let commentbutton = document.getElementById("commentbutton");
 
         prevbutton.onclick = prev;
         nextbutton.onclick = next;
-        commentbutton.onclick = comment;
         
         if (!loaded) {
             resData = [];
@@ -122,12 +93,19 @@
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     resData = res.target.response;
                     if (resData) {
+                        // console.log(resData);
                         gallery.innerHTML = resData;
+                        
                         var like = document.getElementById("likes");
-                        likes.innerHTML = like;
+                        // likes.innerHTML = '';
+                        // likes.innerHTML = like;
+
                         var comment = document.getElementById("comments");
-                        comments.innerHTML = comment;
+                        // comments.innerHTML = '';
+                        // comments.innerHTML = comment;
+                        
                         gallery.innerHTML = resData;
+
                         var counter = document.getElementById("counter");
                         count = Number(counter.innerHTML);
                         

@@ -39,7 +39,7 @@ $create_likes = "CREATE TABLE IF NOT EXISTS likes (
 $create_comments = "CREATE TABLE IF NOT EXISTS comments (
 		post INT REFERENCES posts(id),
 		user INT REFERENCES users(id),
-		text TEXT NOT NULL,
+		text LONGBLOB NOT NULL,
 		time DATETIME DEFAULT NOW()
 		);";
 

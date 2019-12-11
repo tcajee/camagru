@@ -40,7 +40,6 @@ class Gallery extends Controller {
                     $liked[$img->id] = $like->post;
                 }
             }
-            // dnd($liked);
             $images[] = [
                 'id' => $img->id,
                 'uid' => $img->user,
@@ -115,7 +114,11 @@ class Gallery extends Controller {
                 echo "<hr>";
             }
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
+        } else {
+            echo "<p>No photos</p>";
+            echo "<p style='display: none; color: black;' id='counter' name='count'>" . 0 . "</p>";
         }
+        unset($_POST['start']);
     } 
 
     public function like() {
@@ -129,14 +132,24 @@ class Gallery extends Controller {
             $id = $this->_db->query('SELECT * FROM likes WHERE user = ? AND post = ?', ['user'=>$uid, 'post'=>$_POST['postId']])->results();
             if ($id) {
                 $id = $id[0]->id;
+                $likes = $this->_db->query('SELECT likes FROM posts WHERE id = ?', ['id'=>$_POST['postId']])->results();
+                if ($likes) {
+                    $likes = $likes[0]->likes;
+                    $likes -= 1;
+                }
                 $this->_db->delete('likes', $id);
-                echo "<p>". $_POST['postId'] . "</p>";
-                echo "<p>if</p>";
+                $this->_db->update('posts', $_POST['postId'], ['likes'=>$likes]);
+                echo "Like";
             } else {
+                $likes = $this->_db->query('SELECT likes FROM posts WHERE id = ?', ['id'=>$_POST['postId']])->results();
+                if ($likes) {
+                    $likes = $likes[0]->likes;
+                    $likes += 1;
+                }
                 $fields = ['post'=>$_POST['postId'], 'user'=>$uid]; 
                 $this->_db->insert('likes', $fields);
-                echo "<p>". $_POST['postId'] . "</p>";
-                echo "<p>else</p>";
+                $this->_db->update('posts', $_POST['postId'], ['likes'=>$likes]);
+                echo "Unlike";
             }
         }
     }
@@ -150,12 +163,25 @@ class Gallery extends Controller {
     public function display() {
         $images = [];
         $comments = [];
+        $liked = [];
         $this->images = $this->_db->query('SELECT * FROM posts')->results();
         $this->comments = $this->_db->query('SELECT * FROM comments')->results();
+        $this->likes = $this->_db->query('SELECT * FROM likes')->results();
+        if (isset($_SESSION['user'])) {
+            $uid = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results();
+            if ($uid) {
+                $uid = $uid[0]->id;
+            }
+        }
         foreach ($this->images as $img) {
             foreach ($this->comments as $comment) {
                 if ($comment->post == $img->id) {
                     $comments[] = $comment->text;
+                }
+            }
+            foreach ($this->likes as $like) {
+                if (isset($uid) && $like->post == $img->id && $like->user == $uid) {
+                    $liked[$img->id] = $like->post;
                 }
             }
             $images[] = [
@@ -163,9 +189,11 @@ class Gallery extends Controller {
                 'uid' => $img->user,
                 'image' => $img->img,
                 'likes' => $img->likes,
+                'liked' => $liked,
                 'comments' => $comments
             ];
             $comments = [];
+            $liked = [];
         }
         $this->n = count($images);
         $i = $_POST['count'];
@@ -173,21 +201,16 @@ class Gallery extends Controller {
         $start = 1;
         if (isset($_POST['next']) && $_POST['next']) {
             while ($i < $this->n && $count) {
-
-                echo "<div class='center' id='maing'>";
+                echo "<div class='center post' id='" . $images[$i]['id'] . "'>";
                 echo "<div id='imagess'>";
                     echo "<img id='" . $images[$i]['id'] . "' src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
                 echo "</div>";
                 echo "<div id='likes'>";
                 if (isset($_SESSION['user'])) {
-                    $uid = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results();
-                    if ($uid) {
-                        $uid = $uid[0]->id;
-                        if ($images[$i]['uid'] == $uid) {
-                            echo "<input class='button text-black grey' id='unlikebutton' name='next' type='submit' value='Unlike'/>";
-                        } else {
-                            echo "<input class='button text-black grey' id='likebutton' name='next' type='submit' value='Like'/>";
-                        }
+                     if (array_key_exists($images[$i]['id'], $images[$i]['liked'])) {
+                        echo "<input class='button text-black grey' id='unlikebutton' type='submit' value='Unlike'/>";
+                    } else {
+                        echo "<input class='button text-black grey' id='likebutton' type='submit' value='Like'/>";
                     }
                 }
                 echo "<p> Likes: " . $images[$i]['likes'] . "</p>";
@@ -216,12 +239,10 @@ class Gallery extends Controller {
                     echo "<div class='padding-16'>";
                         echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
                     echo "</div>";
-
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
                     }
-                    
                     echo "</div>";
                 } else {
                     echo "<div class='center'>";
@@ -243,20 +264,16 @@ class Gallery extends Controller {
 
         } else if (isset($_POST['prev']) && $_POST['prev']) {
             while ($i >= 0 && $count) {
-                echo "<div class='center' id='maing'>";
+                echo "<div class='center post' id='" . $images[$i]['id'] . "'>";
                 echo "<div id='imagess'>";
                     echo "<img id='" . $images[$i]['id'] . "' src='" . $images[$i]['image'] . "' style='width: 25%'><p></p>";
                 echo "</div>";
                 echo "<div id='likes'>";
                 if (isset($_SESSION['user'])) {
-                    $uid = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results();
-                    if ($uid) {
-                        $uid = $uid[0]->id;
-                        if ($images[$i]['uid'] == $uid) {
-                            echo "<input class='button text-black grey' id='unlikebutton' name='next' type='submit' value='Unlike'/>";
-                        } else {
-                            echo "<input class='button text-black grey' id='likebutton' name='next' type='submit' value='like'/>";
-                        }
+                    if (array_key_exists($images[$i]['id'], $images[$i]['liked'])) {
+                        echo "<input class='button text-black grey' id='unlikebutton' type='submit' value='Unlike'/>";
+                    } else {
+                        echo "<input class='button text-black grey' id='likebutton' type='submit' value='Like'/>";
                     }
                 }
                 echo "<p> Likes: " . $images[$i]['likes'] . "</p>";

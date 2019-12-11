@@ -13,21 +13,42 @@
                     resData = res.target.response;
                     if (resData) {
                         gallery.innerHTML = resData;
-    
                         var like = document.getElementById("likes");
                         likes.innerHTML = '';
                         likes.innerHTML = like;
-                        
                         var comment = document.getElementById("comments");
                         comments.innerHTML = '';
                         comments.innerHTML = comment;
-    
                         gallery.innerHTML = '';
                         gallery.innerHTML = resData;
-    
                         var counter = document.getElementById("counter");
                         count = Number(counter.innerHTML);
     
+                        let posts = Array.from(document.getElementsByClassName('post'));
+                        console.log(posts);
+                        for (let post of posts) {
+                            let postId = post.id;
+                            let likeButton = post.querySelector('input');
+                            likeButton.onclick = function() {
+                                resData = [];
+                                const xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange = function(res) {
+                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = res.target.response;
+                                        if (resData) {
+                                            likeButton.value = resData;
+                                        } else {
+                                            likeButton.value = 'FAILED';
+                                            window.location.assign('gallery');
+                                        }
+                                    }
+                                }
+                                xhr.open('POST', 'gallery/like');
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                let params = 'postId=' + postId;
+                                xhr.send(params);
+                            };
+                        }
     
                     } else {
                         window.location.assign('gallery');
@@ -49,21 +70,43 @@
                     resData = res.target.response;
                     if (resData) {
                         gallery.innerHTML = resData;
-    
                         var like = document.getElementById("likes");
                         likes.innerHTML = '';
                         likes.innerHTML = like;
-                        
                         var comment = document.getElementById("comments");
                         comments.innerHTML = '';
                         comments.innerHTML = comment;
-    
                         gallery.innerHTML = '';
                         gallery.innerHTML = resData;
-    
                         var counter = document.getElementById("counter");
                         count = Number(counter.innerHTML);
-                        // console.log('count' + count);
+    
+                        let posts = Array.from(document.getElementsByClassName('post'));
+                        console.log(posts);
+                        for (let post of posts) {
+                            let postId = post.id;
+                            let likeButton = post.querySelector('input');
+                            likeButton.onclick = function() {
+                                resData = [];
+                                const xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange = function(res) {
+                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = res.target.response;
+                                        if (resData) {
+                                            likeButton.value = resData;
+                                        } else {
+                                            likeButton.value = 'FAILED';
+                                            window.location.assign('gallery');
+                                        }
+                                    }
+                                }
+                                xhr.open('POST', 'gallery/like');
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                let params = 'postId=' + postId;
+                                xhr.send(params);
+                            };
+                        }
+
                     } else {
                         window.location.assign('gallery');
                     }
@@ -136,7 +179,6 @@
                         let posts = Array.from(document.getElementsByClassName('post'));
                         console.log(posts);
                         for (let post of posts) {
-                            // console.log(post.constructor.name);
                             let postId = post.id;
                             let likeButton = post.querySelector('input');
                             likeButton.onclick = function() {
@@ -146,22 +188,19 @@
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                                         resData = res.target.response;
                                         if (resData) {
-                                            // likes.innerHTML = '';
-                                            // likes.innerHTML = resData;
-                                            console.log(resData);
+                                            likeButton.value = resData;
                                         } else {
-                                            console.log("here2");
-                                            // window.location.assign('gallery');
+                                            window.location.assign('gallery');
                                         }
                                     }
                                 }
                                 xhr.open('POST', 'gallery/like');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId;
-                                // console.log(postId);
                                 xhr.send(params);
                             };
                         }
+
                     } else {
                         window.location.assign('gallery');
                     }

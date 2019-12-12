@@ -42,6 +42,33 @@ class Upload extends Controller {
         }
     }
 
+    public function upload_prev() {
+        if (!empty($_FILES['image']['name'])) {
+            if (isset($_FILES['image'])) {
+                $errors = [];
+                $file_name = $_FILES['image']['name'];
+                $file_tmp = $_FILES['image']['tmp_name'];
+                $file_type = $_FILES['image']['type'];
+                $file_ext = explode('.', $_FILES['image']['name']);
+                $file_ext = strtolower(end($file_ext));
+                $extensions = array("jpeg", "jpg", "png");
+
+                if (in_array($file_ext,$extensions) === false) {
+                    $errors[] = "Extension not allowed: Please choose a JPEG or PNG file.";
+                }
+
+                if (empty($errors) == true) {
+                    move_uploaded_file($file_tmp, ROOT . DS . 'img' . DS . 'temp' . DS . $file_name);
+                    echo 'img' . DS . 'temp' . DS . $file_name;
+                } else {
+                    echo implode(' ', $errors);
+                }
+            }
+        } else {
+            echo "Please select a file";
+        }
+    }
+    
     public function upload_file() {
         if (!empty($_FILES['image']['name'])) {
             if (isset($_FILES['image'])) {

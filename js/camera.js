@@ -16,7 +16,9 @@
   
     var video = null;
     var canvas = null;
-
+    
+    var preview = null;
+    
     var canvas2 = null;
     var canvas3 = null;
     var canvas4 = null;
@@ -30,6 +32,7 @@
 
       video = document.getElementById('video');
       canvas = document.getElementById('canvas'); 
+      
 
       canvas2 = document.getElementById('canvas2'); 
       canvas3 = document.getElementById('canvas3'); 
@@ -43,6 +46,7 @@
       sbutton2 = document.getElementById('sbutton2');
       sbutton3 = document.getElementById('sbutton3');
       sbutton4 = document.getElementById('sbutton4');
+      
 
       // Upload picture from file
       const u_errors = document.getElementById("u_errors");
@@ -53,7 +57,11 @@
       sbutton2.onclick = addSticker2;
       sbutton3.onclick = addSticker3;
       sbutton4.onclick = addSticker4;
+     
       upload_filebutton.onclick = onUpload;
+      
+      previewbutton = document.getElementById('preview');
+      previewbutton.onclick = onPreview;
   
       navigator.mediaDevices.getUserMedia({video: true, audio: false})
       .then(function(stream) {
@@ -132,7 +140,6 @@
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
       }
-
     }
  
     let con2 = 0;
@@ -200,6 +207,8 @@
       s4 = false;
 
     }
+
+      let prev = false;
 
       let s1 = false;
       let s2 = false;
@@ -277,6 +286,33 @@
           xhr.send("img=" + file);
       }
 
+    function onPreview() {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(res) {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          resData = res.target.response;
+          if (resData) {
+              var img = new Image();
+              img.setAttribute('crossOrigin', 'anonymous');
+              var ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0, 320, 240);
+              var dataURL = canvas.toDataURL("image/png");
+              display = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+              img.src = resData;
+              ctx.drawImage(img, 0, 0, 320, 240);
+          } else {
+            u_errors.innerHTML = 'Priview failed.';
+            u_errors.style.display = "initial";
+          }
+        }
+      }
+      const file = document.getElementById('image');
+      const formData = new FormData();
+      formData.append('image', file.files[0]);
+      xhr.open('POST', 'upload/upload_prev');
+      xhr.send(formData);
+    }
+
     function onUpload() {
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function(res) {
@@ -284,24 +320,19 @@
           resData = res.target.response;
 
           if (resData) {
-          resErrors = resData.split(',');
-          resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
-          u_errors.innerHTML = resHTML;
-          u_errors.style.display = "initial";
+            resErrors = resData.split(',');
+            resHTML = resErrors.map((error) => {return error + '<br />'}).join('');
+            u_errors.innerHTML = resHTML;
+            u_errors.style.display = "initial";
           } else {
-          //window.location.assign('settings');
-          u_errors.innerHTML = 'Uploaded.';
-          u_errors.style.display = "initial";
+            u_errors.innerHTML = 'Uploaded.';
+            u_errors.style.display = "initial";
           }
         }
       }
-
       const file = document.getElementById('image');
       const formData = new FormData();
-
       formData.append('image', file.files[0]);
-      // console.log(formData);
-            
       xhr.open('POST', 'upload/upload_file');
       xhr.send(formData);
     }

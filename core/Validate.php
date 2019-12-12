@@ -57,7 +57,8 @@ class Validate {
             if (preg_match('/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/', $password)) {
                 return [true];
             } else {
-                return [false, "Passwords should at least contain:<br> 1 lowercase, 1 uppercase, 1 number and 1 special character."];
+                
+                return [false, 'Passwords should at least contain:<br>1 Lowercase<br>1 Uppercase<br>1 Number and<br>1 Special character.'];
             }
         } else {
             return [false, "Passwords must be between 6 and 32 characters long."];

@@ -173,6 +173,11 @@ class Gallery extends Controller {
                 if ($owner) {
                     $onwer = $owner[0]->id;
                 }
+
+                // Need to verify the $owner, $email and $notify variables...
+
+
+                echo $owner;
                 $notify = $this->_db->query('SELECT notify FROM users WHERE id = ?', ['id'=>$owner])->results();
                 $email = $this->_db->query('SELECT email FROM users WHERE id = ?', ['id'=>$owner])->results();
                 if ($notify) {
@@ -188,8 +193,8 @@ class Gallery extends Controller {
                     $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
                     $headers .= "MIME-Version: 1.0" . "\r\n";
                     $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
-                    $text = "Hello! <br><br>Someone has commented on your post <br><br>Comment: " . $comment; 
-                    mail($email, $subject, $text, $headers);
+                    $text = "Hello! <br><br>Someone has commented on your post.<br><br>Comment: " . $comment; 
+                    mail('mail2@mailcatch.com', $subject, $text, $headers);
                 // }
                 echo "Comment added successfully!";
             }

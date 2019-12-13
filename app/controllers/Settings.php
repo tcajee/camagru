@@ -121,10 +121,10 @@ class Settings extends Controller {
                 $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $_SESSION['user'] . "'> Verify </a>";
 
                 $subject = "Email change verification | Camagru";
-                $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers .= "MIME-Version: 1.0" . "\r\n";
-                $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
-                $text = "Hello! \n\nPlease follow the link to verify your account with Camagru: " . $link; 
+                $headers = "Content-type:text/html;charset=UTF-8" . "<br>";
+                $headers .= "MIME-Version: 1.0" . "<br>";
+                $headers .= 'From:noreply@camagru.wtc.hi' . "<br>";
+                $text = "Hello!<br><br>Please follow the link to verify your account with Camagru: " . $link; 
                 mail($email, $subject, $text, $headers);
                 unset($_SESSION['user']);
             } else {

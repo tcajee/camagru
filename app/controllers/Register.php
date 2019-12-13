@@ -42,10 +42,10 @@ class Register extends Controller {
 
     public function email($email, $link) {
         $subject = "Email verification | Camagru";
-        $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= "MIME-Version: 1.0" . "\r\n";
-        $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
-        $text = "Hello! \n\nPlease follow the link to verify your account with Camagru: " . $link; 
+        $headers = "Content-type:text/html;charset=UTF-8" . "<br>";
+        $headers .= "MIME-Version: 1.0" . "<br>";
+        $headers .= 'From:noreply@camagru.wtc.hi' . "<br>";
+        $text = "Hello!<br><br>Please follow the link to verify your account with Camagru: " . $link; 
         mail($email, $subject, $text, $headers);
     }
  

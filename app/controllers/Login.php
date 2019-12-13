@@ -68,10 +68,10 @@ class Login extends Controller {
                     $fields = ['pass'=>password_hash($pass, PASSWORD_BCRYPT)];
                     $this->_db->update('users', $id, $fields);
                     $subject = "Password reset | Camagru";
-                    $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
-                    $headers .= "MIME-Version: 1.0" . "\r\n";
-                    $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
-                    $text = "Hello! \n\n Your password has been reset to: ". $pass; 
+                    $headers = "Content-type:text/html;charset=UTF-8" . "<br>";
+                    $headers .= "MIME-Version: 1.0" . "<br>";
+                    $headers .= 'From:noreply@camagru.wtc.hi' . "<br>";
+                    $text = "Hello! <br><br>Your password has been reset to: ". $pass; 
                     mail($email, $subject, $text, $headers);
                     echo 'Please check your email!';
                 } else {

@@ -20,7 +20,7 @@ class Gallery extends Controller {
         $images = [];
         $comments = [];
         $liked = [];
-        $this->images = $this->_db->query('SELECT * FROM posts ORDER BY time')->results();
+        $this->images = $this->_db->query('SELECT * FROM posts ORDER BY time desc')->results();
         $this->comments = $this->_db->query('SELECT * FROM comments')->results();
         $this->likes = $this->_db->query('SELECT * FROM likes')->results();
         if (isset($_SESSION['user'])) {
@@ -169,6 +169,28 @@ class Gallery extends Controller {
                 $comment = htmlspecialchars($_POST['text']);
                 $fields = ['post'=>$_POST['postId'], 'user'=>$uid, 'text'=>$comment]; 
                 $this->_db->insert('comments', $fields);
+                $owner = $this->_db->query('SELECT user FROM posts WHERE id = ?', ['id'=>$_POST['postId']])->results();
+                if ($owner) {
+                    $onwer = $owner[0]->id;
+                }
+                $notify = $this->_db->query('SELECT notify FROM users WHERE id = ?', ['id'=>$owner])->results();
+                $email = $this->_db->query('SELECT email FROM users WHERE id = ?', ['id'=>$owner])->results();
+                if ($notify) {
+                    $notify = $notify[0]->notify;
+                }
+                if ($email) {
+                    $email = $email[0]->email;
+                }
+                echo $email;
+                echo $notify;
+                // if ($notify) {
+                    $subject = "Comment Notification | Camagru";
+                    $headers = "Content-type:text/html;charset=UTF-8" . "<br>";
+                    $headers .= "MIME-Version: 1.0" . "<br>";
+                    $headers .= 'From:noreply@camagru.wtc.hi' . "<br>";
+                    $text = "Hello! <br><br>Someone has commented on your post <br><br>Comment: " . $comment; 
+                    mail($email, $subject, $text, $headers);
+                // }
                 echo "Comment added successfully!";
             }
         }

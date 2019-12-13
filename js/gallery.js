@@ -25,11 +25,12 @@
                         count = Number(counter.innerHTML);
     
                         let posts = Array.from(document.getElementsByClassName('post'));
-                        console.log(posts);
+                        // console.log(posts);
                         for (let post of posts) {
                             let postId = post.id;
                             let likeButton = post.querySelector('input');
                             likeButton.onclick = function() {
+                            // console.log(likeButton);
                                 resData = [];
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
@@ -46,6 +47,32 @@
                                 xhr.open('POST', 'gallery/like');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId;
+                                xhr.send(params);
+                            };
+                        }
+
+                        let comm = Array.from(document.getElementsByClassName('post'));
+                        for (let com of comm) {
+                            let postId = com.id;
+                            let commentButton = com.querySelector('#commentbutton');
+                            console.log(commentButton);
+                            commentButton.onclick = function() {
+                                let text = document.getElementById('commentin').value;
+                                resData = [];
+                                const xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange = function(res) {
+                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = res.target.response;
+                                        if (resData) {
+                                            console.log(text);
+                                        } else {
+                                            window.location.assign('gallery');
+                                        }
+                                    }
+                                }
+                                xhr.open('POST', 'gallery/comment');
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                let params = 'postId=' + postId + '&text=' + text;
                                 xhr.send(params);
                             };
                         }
@@ -82,7 +109,7 @@
                         count = Number(counter.innerHTML);
     
                         let posts = Array.from(document.getElementsByClassName('post'));
-                        console.log(posts);
+                        // console.log(posts);
                         for (let post of posts) {
                             let postId = post.id;
                             let likeButton = post.querySelector('input');
@@ -107,6 +134,32 @@
                             };
                         }
 
+                        let comm = Array.from(document.getElementsByClassName('post'));
+                        for (let com of comm) {
+                            let postId = com.id;
+                            let commentButton = com.querySelector('#commentbutton');
+                            console.log(commentButton);
+                            commentButton.onclick = function() {
+                                let text = document.getElementById('commentin').value;
+                                resData = [];
+                                const xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange = function(res) {
+                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = res.target.response;
+                                        if (resData) {
+                                            console.log(text);
+                                        } else {
+                                            window.location.assign('gallery');
+                                        }
+                                    }
+                                }
+                                xhr.open('POST', 'gallery/comment');
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                let params = 'postId=' + postId + '&text=' + text;
+                                xhr.send(params);
+                            };
+                        }
+
                     } else {
                         window.location.assign('gallery');
                     }
@@ -119,31 +172,31 @@
             xhr.send(params);
         }
         
-        function comment() {
-            var inputComment = document.getElementById("commentin");
-            resData = [];
-            const xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function(res) {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    resData = res.target.response;
-                    if (resData) {
+        // function comment() {
+        //     var inputComment = document.getElementById("commentin");
+        //     resData = [];
+        //     const xhr = new XMLHttpRequest();
+        //     xhr.onreadystatechange = function(res) {
+        //         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        //             resData = res.target.response;
+        //             if (resData) {
         
-                        console.log("here");
-                        var comment = document.getElementById("comments");
-                        comments.innerHTML = '';
-                        comments.innerHTML = resData;
+        //                 // console.log("here");
+        //                 var comment = document.getElementById("comments");
+        //                 comments.innerHTML = '';
+        //                 comments.innerHTML = resData;
     
-                    } else {
-                        window.location.assign('gallery');
-                    }
-                }
-            }
-            xhr.open('POST', 'gallery/comment');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            let params = 'comment=' + 1
-            + '&comment=' + inputComment.value;
-            xhr.send(params);
-        }
+        //             } else {
+        //                 window.location.assign('gallery');
+        //             }
+        //         }
+        //     }
+        //     xhr.open('POST', 'gallery/comment');
+        //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        //     let params = 'comment=' + 1
+        //     + '&comment=' + inputComment.value;
+        //     xhr.send(params);
+        // }
 
         const gallery = document.getElementById("gallery");
         const likes = document.getElementById("likes");
@@ -151,11 +204,9 @@
         
         let prevbutton = document.getElementById("prev");
         let nextbutton = document.getElementById("next");
-        let commentbutton = document.getElementById("commentbutton");
-
+     
         prevbutton.onclick = prev;
         nextbutton.onclick = next;
-        commentbutton.onclick = comment;
         
         if (!loaded) {
             resData = [];
@@ -177,7 +228,6 @@
                         loaded = 1;
     
                         let posts = Array.from(document.getElementsByClassName('post'));
-                        console.log(posts);
                         for (let post of posts) {
                             let postId = post.id;
                             let likeButton = post.querySelector('input');
@@ -197,6 +247,33 @@
                                 xhr.open('POST', 'gallery/like');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId;
+                                xhr.send(params);
+                            };
+
+                        }
+
+                        let comm = Array.from(document.getElementsByClassName('post'));
+                        for (let com of comm) {
+                            let postId = com.id;
+                            let commentButton = com.querySelector('#commentbutton');
+                            console.log(commentButton);
+                            commentButton.onclick = function() {
+                                let text = document.getElementById('commentin').value;
+                                resData = [];
+                                const xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange = function(res) {
+                                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = res.target.response;
+                                        if (resData) {
+                                            console.log(text);
+                                        } else {
+                                            window.location.assign('gallery');
+                                        }
+                                    }
+                                }
+                                xhr.open('POST', 'gallery/comment');
+                                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                let params = 'postId=' + postId + '&text=' + text;
                                 xhr.send(params);
                             };
                         }

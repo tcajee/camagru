@@ -95,13 +95,16 @@ class Gallery extends Controller {
                     echo "<div class='padding-16'>";
                         echo "<a class='prev' onclick='allSlides()'> All Comments </a>";
                     echo "</div>";
+
+                    echo "<div class='comms'>";
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
                     }
                     echo "</div>";
+
                 } else {
-                    echo "<div class='center'>";
+                    echo "<div class='center comms'>";
                     echo "<p> No comments</p>";
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
@@ -155,8 +158,19 @@ class Gallery extends Controller {
     }
 
     public function comment() {
-        if (isset($_POST['comment']) && $_POST['comment']) {
-            echo "<p>". $_POST['comment'] . "</p>";
+        if (isset($_POST['postId']) && $_POST['postId']) {
+            if (isset($_SESSION['user'])) {
+                $uid = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results();
+                if ($uid) {
+                    $uid = $uid[0]->id;
+                }
+            }
+            if (isset($_POST['text']) && $_POST['text']) {
+                $comment = htmlspecialchars($_POST['text']);
+                $fields = ['post'=>$_POST['postId'], 'user'=>$uid, 'text'=>$comment]; 
+                $this->_db->insert('comments', $fields);
+                echo "Comment added successfully!";
+            }
         }
     }
 

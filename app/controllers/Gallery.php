@@ -185,9 +185,9 @@ class Gallery extends Controller {
                 echo $notify;
                 // if ($notify) {
                     $subject = "Comment Notification | Camagru";
-                    $headers = "Content-type:text/html;charset=UTF-8" . "<br>";
-                    $headers .= "MIME-Version: 1.0" . "<br>";
-                    $headers .= 'From:noreply@camagru.wtc.hi' . "<br>";
+                    $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    $headers .= "MIME-Version: 1.0" . "\r\n";
+                    $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
                     $text = "Hello! <br><br>Someone has commented on your post <br><br>Comment: " . $comment; 
                     mail($email, $subject, $text, $headers);
                 // }

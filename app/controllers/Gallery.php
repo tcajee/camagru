@@ -169,33 +169,28 @@ class Gallery extends Controller {
                 $comment = htmlspecialchars($_POST['text']);
                 $fields = ['post'=>$_POST['postId'], 'user'=>$uid, 'text'=>$comment]; 
                 $this->_db->insert('comments', $fields);
-                $owner = $this->_db->query('SELECT user FROM posts WHERE id = ?', ['id'=>$_POST['postId']])->results();
+               
+                $owner = $this->_db->query('SELECT * FROM posts WHERE id = ?', ['id'=>$_POST['postId']])->results();
                 if ($owner) {
-                    $onwer = $owner[0]->id;
+                    $owner = $owner[0]->user;
+                    var_dump($owner);
+
                 }
-
-                // Need to verify the $owner, $email and $notify variables...
-
-
-                echo $owner;
-                $notify = $this->_db->query('SELECT notify FROM users WHERE id = ?', ['id'=>$owner])->results();
-                $email = $this->_db->query('SELECT email FROM users WHERE id = ?', ['id'=>$owner])->results();
+                $info = $this->_db->query('SELECT * FROM users WHERE id = ?', ['id'=>$owner])->results();
+                if ($info) {
+                    $email = $info[0]->email;
+                    $notify = $info[0]->notify;
+                    var_dump($email);
+                    var_dump($notify);
+                }
                 if ($notify) {
-                    $notify = $notify[0]->notify;
-                }
-                if ($email) {
-                    $email = $email[0]->email;
-                }
-                echo $email;
-                echo $notify;
-                // if ($notify) {
                     $subject = "Comment Notification | Camagru";
                     $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
                     $headers .= "MIME-Version: 1.0" . "\r\n";
                     $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
                     $text = "Hello! <br><br>Someone has commented on your post.<br><br>Comment: " . $comment; 
                     mail('mail2@mailcatch.com', $subject, $text, $headers);
-                // }
+                }
                 echo "Comment added successfully!";
             }
         }

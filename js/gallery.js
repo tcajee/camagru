@@ -265,6 +265,7 @@
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                                         resData = res.target.response;
                                         if (resData) {
+                                            // console.log(resData);
                                             console.log(text);
                                         } else {
                                             window.location.assign('gallery');

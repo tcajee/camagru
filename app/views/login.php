@@ -8,7 +8,7 @@
 
 		<h1 id="header">Login</h1>
 		
-		<input class="input center" id="username" type="text" name="username" value="" placeholder="Username"><p></p>
+		<input class="input center" id="username" type="text" name="username" value="" placeholder="Username" autofocus><p></p>
 		<input class="input center" id="password" type="password" name="password" value="" placeholder="Password"><p></p>
 		<input class="button text-black grey" id="loginbutton" type="button" name="login" value="Login" /><p></p>
 		<p id="errors" style="display: none; color: red;"></p>

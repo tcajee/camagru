@@ -12,7 +12,7 @@
     <br />
 
     <p>Update First and Last names</p>
-    <input class="input center" id="fname" type="text" name="fname" value="" placeholder="First Name"><p></p>
+    <input class="input center" id="fname" type="text" name="fname" value="" placeholder="First Name" autofocus><p></p>
     <input class="input center" id="lname" type="text" name="lname" value="" placeholder="Last Name"><p></p>
     <input class="button text-black grey" id="update" type="submit" name="update" value="Update" /><p></p>
     <p id="n_errors" style="display: none; color: red;"></p>

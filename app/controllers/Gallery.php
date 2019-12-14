@@ -199,7 +199,7 @@ class Gallery extends Controller {
         $images = [];
         $comments = [];
         $liked = [];
-        $this->images = $this->_db->query('SELECT * FROM posts ORDER BY time')->results();
+        $this->images = $this->_db->query('SELECT * FROM posts ORDER BY time desc')->results();
         $this->comments = $this->_db->query('SELECT * FROM comments')->results();
         $this->likes = $this->_db->query('SELECT * FROM likes')->results();
         if (isset($_SESSION['user'])) {

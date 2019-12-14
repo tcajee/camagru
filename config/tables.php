@@ -55,33 +55,27 @@ $test_users = "INSERT INTO `users` (`username`, `email`, `pass`, `fname`, `lname
 				('user5', 'user5@user.com','$2y$10\$nI6rNSnT1uNr540TCTgQmOWJoEkE7KZYDb3y2Nr2NK0kbRFG/CWQq', 'Username', 'UserSurname', 'img/profile/def4.jpg', '1', " . "'" . bin2hex(openssl_random_pseudo_bytes(64, $cstrong)) . "'" . ")
 				";
 
-$test_posts = "INSERT INTO posts (`img`, `user`, `likes`) VALUES
-				('img/test.jpg', 3, 1),
-				('img/stock/img_20191206061455.png', 3, 1),
-				('img/stock/img_20191206061512.png', 3, 1),
-				('img/stock/img_20191206061601.png', 1, 1),
-				('img/stock/img_20191206061655.png', 1, 1),
-				('img/stock/img_20191206061655.png', 1, 1),
-				('img/stock/img_20191214005444.png', 4, 0),
-				('img/stock/img_20191213032014.png', 4, 0),
-				('img/stock/img_20191213035754.png', 4, 0)
+$test_posts = "INSERT INTO posts (`img`, `user`) VALUES
+				('img/stock/img_20191206061455.png', 3),
+				('img/stock/img_20191206061512.png', 3),
+				('img/stock/img_20191206061601.png', 3),
+				('img/stock/img_20191206061655.png', 3),
+				('img/stock/img_20191206061655.png', 4),
+				('img/stock/img_20191214005444.png', 4),
+				('img/stock/img_20191213032014.png', 4),
+				('img/stock/img_20191213035754.png', 4)
 				";
 
-$test_likes = "INSERT INTO likes (`post`, `user`) VALUES
-				(1, 3),
-				(2, 3),
-				(3, 3),
-				(4, 1),
-				(5, 1),
-				(6, 1)
-				";
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
-				(1, 3, 'Test Comment 1'),
-				(1, 3, 'Test Comment 2'),
-				(1, 3, 'Test Comment 3'),
-				(1, 3, 'Test Comment 4'),
-				(1, 3, 'Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment ')
+				(1, 3, 'You look like crap...'),
+				(2, 3, 'Beans?'),
+				(3, 3, 'Broom stick'),
+				(4, 3, 'Great pic!!'),
+				(5, 4, 'Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment '),
+				(6, 4, 'Booooooom...'),
+				(7, 4, 'Where are the turtles?'),
+				(8, 4, 'Nice hat')
 				";
 
-$statements = ['create_users', 'create_posts', 'create_likes', 'create_comments', 'test_users', 'test_posts', 'test_likes', 'test_comments'];
+$statements = ['create_users', 'create_posts', 'create_likes', 'create_comments', 'test_users', 'test_posts', 'test_comments'];

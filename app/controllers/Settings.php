@@ -71,18 +71,19 @@ class Settings extends Controller {
         $fname = htmlspecialchars($_POST['fname']);
         $lname = htmlspecialchars($_POST['lname']);
 
+        if (preg_match("/^[- '\p{L}]+$/u", $fname) && preg_match("/^[- '\p{L}]+$/u", $lname)) {
         $id = $this->_db->query('SELECT id FROM users WHERE token = ?', ['token'=>$_SESSION['user']])->results()[0]->id;
         $fields = ['fname'=>$fname, 'lname'=>$lname];
         $this->_db->update('users', $id, $fields);
-        //Router::redirect('settings');
+        } else {
+            echo "Names can only contain Lowercase and Uppercase characters";
+        }
         } else {
             echo "Please enter your details.";
         }
     }
 
     public function username() {
-        // echo 'This is the username function';
-        // dnd($_POST);
         $username = htmlspecialchars($_POST['username']);
         
         if (!$username) {

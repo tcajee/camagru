@@ -21,6 +21,7 @@
 		<input class="button text-black grey" type="button" id="forgotbutton" name="forgot" value="Reset"><p></p>
 		<p id="errors2" style="display: none; color: red;"></p>
 
-		<br />
+		<p>Or</p>
+		<a href="home"><input class="button text-black grey" id="home" type="button" name="home" value="Back to Home"></a><p></p>
 	</div>
 <?php $this->end(); ?>

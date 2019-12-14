@@ -48,7 +48,6 @@ class Validate {
     }
 
     public function password($input) {
-        // dnd($input);
         $password = htmlspecialchars($input[1]);
         if (!$password) {
             return [false, "Please enter a password."];

@@ -16,6 +16,8 @@
 
 		<p id="errors" style="display: none; color: red;"></p>
 
+		<p>Or</p>
+		<a href="home"><input class="button text-black grey" id="home" type="button" name="home" value="Back to Home"></a><p></p>
 	</div>
 
 <?php $this->end(); ?>

@@ -173,15 +173,14 @@ class Gallery extends Controller {
                 $owner = $this->_db->query('SELECT * FROM posts WHERE id = ?', ['id'=>$_POST['postId']])->results();
                 if ($owner) {
                     $owner = $owner[0]->user;
-                    var_dump($owner);
-
+                    // var_dump($owner);
                 }
                 $info = $this->_db->query('SELECT * FROM users WHERE id = ?', ['id'=>$owner])->results();
                 if ($info) {
                     $email = $info[0]->email;
                     $notify = $info[0]->notify;
-                    var_dump($email);
-                    var_dump($notify);
+                    // var_dump($email);
+                    // var_dump($notify);
                 }
                 if ($notify) {
                     $subject = "Comment Notification | Camagru";
@@ -189,7 +188,7 @@ class Gallery extends Controller {
                     $headers .= "MIME-Version: 1.0" . "\r\n";
                     $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
                     $text = "Hello! <br><br>Someone has commented on your post.<br><br>Comment: " . $comment; 
-                    mail('mail2@mailcatch.com', $subject, $text, $headers);
+                    mail($email, $subject, $text, $headers);
                 }
                 echo "Comment added successfully!";
             }

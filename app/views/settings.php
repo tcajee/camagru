@@ -4,11 +4,9 @@
 
 <div class="center black">
 <p>Change Username</p>
-<!-- <form action='settings/username' method='POST'> -->
     <input class="input center" id="username" type="text" name="username" value="" placeholder="New Username"><p></p>
     <input class="button text-black grey" id="change_username" type="submit" name="change_username" value="Update"><p></p>
     <p id="name_errors" style="display: none; color: red;"></p>
-    <!-- </form> -->
     <br />
 
     <p>Update First and Last names</p>

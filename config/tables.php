@@ -61,7 +61,10 @@ $test_posts = "INSERT INTO posts (`img`, `user`, `likes`) VALUES
 				('img/stock/img_20191206061512.png', 3, 1),
 				('img/stock/img_20191206061601.png', 1, 1),
 				('img/stock/img_20191206061655.png', 1, 1),
-				('img/stock/img_20191206061655.png', 1, 1)
+				('img/stock/img_20191206061655.png', 1, 1),
+				('img/stock/img_20191214005444.png', 4, 0),
+				('img/stock/img_20191213032014.png', 4, 0),
+				('img/stock/img_20191213035754.png', 4, 0)
 				";
 
 $test_likes = "INSERT INTO likes (`post`, `user`) VALUES

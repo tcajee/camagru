@@ -56,7 +56,7 @@
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
                             let log = document.getElementById('log');
-                            console.log(commentButton);
+                            // console.log(commentButton);
                             commentButton.onclick = function() {
                                 let text = document.getElementById('commentin').value;
                                 resData = [];
@@ -68,7 +68,7 @@
                                             log.innerHTML = "";
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
-                                            console.log(text);
+                                            // console.log(text);
                                         } else {
                                             window.location.assign('gallery');
                                         }
@@ -144,7 +144,7 @@
                             let commentButton = com.querySelector('#commentbutton');
                             let log = document.getElementById('log');
 
-                            console.log(commentButton);
+                            // console.log(commentButton);
                             commentButton.onclick = function() {
                                 let text = document.getElementById('commentin').value;
                                 resData = [];
@@ -156,7 +156,7 @@
                                             log.innerHTML = "";
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
-                                            console.log(text);
+                                            // console.log(text);
                                         } else {
                                             window.location.assign('gallery');
                                         }
@@ -181,32 +181,6 @@
             xhr.send(params);
         }
         
-        // function comment() {
-        //     var inputComment = document.getElementById("commentin");
-        //     resData = [];
-        //     const xhr = new XMLHttpRequest();
-        //     xhr.onreadystatechange = function(res) {
-        //         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        //             resData = res.target.response;
-        //             if (resData) {
-        
-        //                 // console.log("here");
-        //                 var comment = document.getElementById("comments");
-        //                 comments.innerHTML = '';
-        //                 comments.innerHTML = resData;
-    
-        //             } else {
-        //                 window.location.assign('gallery');
-        //             }
-        //         }
-        //     }
-        //     xhr.open('POST', 'gallery/comment');
-        //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        //     let params = 'comment=' + 1
-        //     + '&comment=' + inputComment.value;
-        //     xhr.send(params);
-        // }
-
         const gallery = document.getElementById("gallery");
         const likes = document.getElementById("likes");
         const comments = document.getElementById("comments");
@@ -266,7 +240,7 @@
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
                             let log = document.getElementById('log');
-                            console.log(commentButton);
+                            // console.log(commentButton);
                             commentButton.onclick = function() {
                                 let text = document.getElementById('commentin').value;
                                 resData = [];
@@ -275,12 +249,12 @@
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                                         resData = res.target.response;
                                         if (resData) {
-                                            console.log(log.value);
+                                            // console.log(log.value);
                                             log.innerHTML = "";
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
-                                            console.log(resData);
-                                            console.log(text);
+                                            // console.log(resData);
+                                            // console.log(text);
                                         } else {
                                             window.location.assign('gallery');
                                         }

@@ -76,8 +76,6 @@
         }
         
         const gallery = document.getElementById("gallery");
-        const likes = document.getElementById("likes");
-        const comments = document.getElementById("comments");
         
         let prevbutton = document.getElementById("prev");
         let nextbutton = document.getElementById("next");
@@ -93,16 +91,11 @@
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     resData = res.target.response;
                     if (resData) {
-                        // console.log(resData);
                         gallery.innerHTML = resData;
                         
                         var like = document.getElementById("likes");
-                        // likes.innerHTML = '';
-                        // likes.innerHTML = like;
 
                         var comment = document.getElementById("comments");
-                        // comments.innerHTML = '';
-                        // comments.innerHTML = comment;
                         
                         gallery.innerHTML = resData;
 

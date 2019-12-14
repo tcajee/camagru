@@ -129,58 +129,91 @@
     </div>
 
     <script>
-        var slideIndex = 1;
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName('comments');
+
+        let next = 1;
+        let prev = 0;
+
+        function nextSlide(id) {
             var slideshow = document.getElementsByClassName('slideshow-container');
-            if (slideshow[0]) {
-                if (slideshow[0].style)
-                    slideshow[0].style.display = 'inline-flex';  
-            }
-            if (n > slides.length) {
-                slideIndex = 1
-            }    
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                if (slides[i]) {
-                    if (slides[i].style)
-                        slides[i].style.display = 'none';  
+            var comments = Array.from(document.getElementsByClassName('comment'));
+            var len = 0;
+            var all = new Array();
+            for (let comment of comments) {
+                let postId = comment.id;
+                if (postId == id) {
+                    len++;
+                    all.push(comment);
                 }
             }
-            if (slides[slideIndex-1]) {
-                if (slides[slideIndex-1].style)
-                slides[slideIndex-1].style.display = 'block';  
-            }
-        }
-        function allSlides(n) {
-            var i;
-            var slideshow = document.getElementsByClassName('slideshow-container');
-            if (slideshow[0]) {
-                if (slideshow[0].style)
-                    slideshow[0].style.display = 'block';  
-            }
-            var slides = document.getElementsByClassName('comments');
-            if (n > slides.length) {
-                slideIndex = 1
-            }    
-            if (n < 1) {
-                slideIndex = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                if (slides[i]) {
-                    if (slides[i].style)
-                        slides[i].style.display = 'block';  
+            for (let i = 0; i < comments.length; i++) {
+                if (comments[i]) {
+                    if (comments[i].id == id && comments[i].style) {
+                        comments[i].style.display = 'none';  
+                    }
                 }
             }
+            if (next >= len) { next = 0; }    
+            if (all[next]) {
+                if (all[next].style) {
+                    all[next].style.display = 'block'; 
+                    prev = next - 1;
+                    next++;
+                } 
+            }
+        }
+
+        function prevSlide(id) {
+            var slideshow = document.getElementsByClassName('slideshow-container');
+            var comments = Array.from(document.getElementsByClassName('comment'));
+            var len = 0;
+            var all = new Array();
+            for (let comment of comments) {
+                let postId = comment.id;
+                if (postId == id) {
+                    len++;
+                    all.push(comment);
+                }
+            }
+            for (let i = 0; i < comments.length; i++) {
+                if (comments[i]) {
+                    if (comments[i].id == id && comments[i].style) {
+                        comments[i].style.display = 'none';  
+                    }
+                }
+            }
+            if (prev <= 0) { prev = len - 1; }
+            if (all[prev]) {
+                if (all[prev].style) {
+                    all[prev].style.display = 'block'; 
+                    next = prev + 1;
+                    prev--;
+                } 
+            }
+        }
+
+        function allSlides(id) {
+
+            var slideshow = document.getElementsByClassName('slideshow-container');
+            var posts = Array.from(document.getElementsByClassName('post'));
+            var comments = Array.from(document.getElementsByClassName('comment'));
+            var len = 0;
+
+            for (let comment of comments) {
+                let postId = comment.id;
+                if (postId == id) {
+                    len++;
+                }
+            }
+
+            for (let i = 0; i < comments.length; i++) {
+                if (comments[i]) {
+                    if (comments[i].id == id && comments[i].style) {
+                        comments[i].style.display = 'block';  
+                    }
+                }
+            }
+            next = 0;
+            prev = -1;
         }
     </script>
 

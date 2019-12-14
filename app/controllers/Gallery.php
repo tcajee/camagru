@@ -173,6 +173,7 @@ class Gallery extends Controller {
                 $comment = htmlspecialchars($_POST['text']);
                 $fields = ['post'=>$_POST['postId'], 'user'=>$uid, 'text'=>$comment]; 
                 $this->_db->insert('comments', $fields);
+                    echo "Comment added successfully!";
                
                 $owner = $this->_db->query('SELECT * FROM posts WHERE id = ?', ['id'=>$_POST['postId']])->results();
                 if ($owner) {
@@ -190,8 +191,8 @@ class Gallery extends Controller {
                     $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
                     $text = "Hello! <br><br>Someone has commented on your post.<br><br>Comment: " . $comment; 
                     mail($email, $subject, $text, $headers);
+                    echo "Notified!";
                 }
-                echo "Comment added successfully!";
             }
         }
     }

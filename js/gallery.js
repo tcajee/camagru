@@ -5,13 +5,16 @@
     
     function load() {
         
+        let resData = [];
+
         function next() {
-            resData = [];
             const xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function(res) {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = [];
                     resData = res.target.response;
                     if (resData) {
+                        
                         gallery.innerHTML = resData;
                         var like = document.getElementById("likes");
                         likes.innerHTML = '';
@@ -25,21 +28,19 @@
                         count = Number(counter.innerHTML);
     
                         let posts = Array.from(document.getElementsByClassName('post'));
-                        // console.log(posts);
                         for (let post of posts) {
                             let postId = post.id;
                             let likeButton = post.querySelector('input');
                             likeButton.onclick = function() {
-                            // console.log(likeButton);
-                                resData = [];
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = [];
                                         resData = res.target.response;
                                         if (resData) {
                                             likeButton.value = resData;
                                         } else {
-                                            likeButton.value = 'FAILED';
+                                            likeButton.value = 'FAILED NEXT';
                                             window.location.assign('gallery');
                                         }
                                     }
@@ -56,24 +57,35 @@
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
                             let log = document.getElementById('log');
-                            // console.log(commentButton);
                             commentButton.onclick = function() {
-                                let text = document.getElementById('commentin').value;
-                                resData = [];
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = [];
                                         resData = res.target.response;
                                         if (resData) {
                                             log.innerHTML = "";
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
-                                            // console.log(text);
+                                            
+
+                                            console.log(postId);
+                                            console.log(text);
+                                            console.log(resData);
+
+
                                         } else {
-                                            window.location.assign('gallery');
+                                            
+                                            console.log(postId);
+                                            console.log(text);
+                                            console.log(resData);
+                                            console.log("NO RES DATA NEXT COMM");
+
+                                          //  window.location.assign('gallery');
                                         }
                                     }
                                 }
+                                var text = document.getElementById('commentin').value;
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;
@@ -82,7 +94,8 @@
                         }
     
                     } else {
-                        window.location.assign('gallery');
+                        console.log("NO RES DATA MAIN NEXT");
+//                        window.location.assign('gallery');
                     }
                 }
             }
@@ -94,10 +107,10 @@
         }
         
         function prev() {
-            resData = [];
             const xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function(res) {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = [];
                     resData = res.target.response;
                     if (resData) {
                         gallery.innerHTML = resData;
@@ -113,21 +126,20 @@
                         count = Number(counter.innerHTML);
     
                         let posts = Array.from(document.getElementsByClassName('post'));
-                        // console.log(posts);
                         for (let post of posts) {
                             let postId = post.id;
                             let likeButton = post.querySelector('input');
                             likeButton.onclick = function() {
-                                resData = [];
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = [];
                                         resData = res.target.response;
                                         if (resData) {
                                             likeButton.value = resData;
                                         } else {
-                                            likeButton.value = 'FAILED';
-                                            window.location.assign('gallery');
+                                            likeButton.value = 'FAILED PREV';
+                                            //window.location.assign('gallery');
                                         }
                                     }
                                 }
@@ -144,24 +156,34 @@
                             let commentButton = com.querySelector('#commentbutton');
                             let log = document.getElementById('log');
 
-                            // console.log(commentButton);
                             commentButton.onclick = function() {
-                                let text = document.getElementById('commentin').value;
-                                resData = [];
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = [];
                                         resData = res.target.response;
                                         if (resData) {
                                             log.innerHTML = "";
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
-                                            // console.log(text);
+
+                                            console.log(postId);
+                                            console.log(text);
+                                            console.log(resData);
+
+
                                         } else {
-                                            window.location.assign('gallery');
+                                            
+                                            console.log(postId);
+                                            console.log(text);
+                                            console.log(resData);
+
+                                            console.log("NO RES DATA COMM PREV");
+                                            // window.location.assign('gallery');
                                         }
                                     }
                                 }
+                                var text = document.getElementById('commentin').value;
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;
@@ -170,7 +192,8 @@
                         }
 
                     } else {
-                        window.location.assign('gallery');
+                        console.log("NO RES DATA MAIN PREV");
+                        // window.location.assign('gallery');
                     }
                 }
             }
@@ -192,11 +215,11 @@
         nextbutton.onclick = next;
         
         if (!loaded) {
-            resData = [];
             const xhr = new XMLHttpRequest();
 
             xhr.onreadystatechange = function (res) {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    resData = [];
                     resData = res.target.response;
                     if (resData) {
                         gallery.innerHTML = resData;
@@ -215,15 +238,16 @@
                             let postId = post.id;
                             let likeButton = post.querySelector('input');
                             likeButton.onclick = function() {
-                                resData = [];
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = [];
                                         resData = res.target.response;
                                         if (resData) {
                                             likeButton.value = resData;
                                         } else {
-                                            window.location.assign('gallery');
+                                            console.log("FAILED LOAD");
+                                            // window.location.assign('gallery');
                                         }
                                     }
                                 }
@@ -240,26 +264,36 @@
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
                             let log = document.getElementById('log');
-                            // console.log(commentButton);
                             commentButton.onclick = function() {
-                                let text = document.getElementById('commentin').value;
-                                resData = [];
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                        resData = [];
                                         resData = res.target.response;
                                         if (resData) {
-                                            // console.log(log.value);
                                             log.innerHTML = "";
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
-                                            // console.log(resData);
-                                            // console.log(text);
+
+
+                                            console.log(postId);
+                                            console.log(text);
+                                            console.log(resData);
+
+
                                         } else {
-                                            window.location.assign('gallery');
+                                            
+                                            console.log(postId);
+                                            console.log(text);
+                                            console.log(resData);
+                                            
+                                            console.log("NO RES DATA COMM LOAD");
+                                            // window.location.assign('gallery');
                                         }
                                     }
                                 }
+                                var text = document.getElementById('commentin').value;
+                                console.log(text);
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;
@@ -268,7 +302,8 @@
                         }
 
                     } else {
-                        window.location.assign('gallery');
+                        console.log("NO RES DATA MAIN LOAD");
+                        // window.location.assign('gallery');
                     }
                 }
             }

@@ -55,6 +55,7 @@
                         for (let com of comm) {
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
+                            let log = document.getElementById('log');
                             console.log(commentButton);
                             commentButton.onclick = function() {
                                 let text = document.getElementById('commentin').value;
@@ -64,6 +65,9 @@
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                                         resData = res.target.response;
                                         if (resData) {
+                                            log.innerHTML = "";
+                                            log.innerHTML = resData;
+                                            log.style.display = "initial";
                                             console.log(text);
                                         } else {
                                             window.location.assign('gallery');
@@ -138,6 +142,8 @@
                         for (let com of comm) {
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
+                            let log = document.getElementById('log');
+
                             console.log(commentButton);
                             commentButton.onclick = function() {
                                 let text = document.getElementById('commentin').value;
@@ -147,6 +153,9 @@
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                                         resData = res.target.response;
                                         if (resData) {
+                                            log.innerHTML = "";
+                                            log.innerHTML = resData;
+                                            log.style.display = "initial";
                                             console.log(text);
                                         } else {
                                             window.location.assign('gallery');
@@ -256,6 +265,7 @@
                         for (let com of comm) {
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
+                            let log = document.getElementById('log');
                             console.log(commentButton);
                             commentButton.onclick = function() {
                                 let text = document.getElementById('commentin').value;
@@ -265,7 +275,11 @@
                                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                                         resData = res.target.response;
                                         if (resData) {
-                                            // console.log(resData);
+                                            console.log(log.value);
+                                            log.innerHTML = "";
+                                            log.innerHTML = resData;
+                                            log.style.display = "initial";
+                                            console.log(resData);
                                             console.log(text);
                                         } else {
                                             window.location.assign('gallery');

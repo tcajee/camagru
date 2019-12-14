@@ -100,6 +100,7 @@ class Gallery extends Controller {
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        echo "<p style='color: red;' id='log' name='count'></p>";
                     }
                     echo "</div>";
 
@@ -109,6 +110,7 @@ class Gallery extends Controller {
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        echo "<p style='color: red;' id='log' name='count'></p>";
                     }
                     echo "</div>";
                 }
@@ -117,6 +119,8 @@ class Gallery extends Controller {
                 echo "<hr>";
             }
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
+            echo "<p style='color: red; display: none' id='log' name='count'></p>";
+
         } else {
             echo "<p>No photos</p>";
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . 0 . "</p>";
@@ -277,6 +281,7 @@ class Gallery extends Controller {
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        echo "<p style='color: red;' id='log' name='count'></p>";
                     }
                     echo "</div>";
                 } else {
@@ -285,6 +290,7 @@ class Gallery extends Controller {
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        echo "<p style='color: red;' id='log' name='count'></p>";
                     }
                     echo "</div>";
                 }
@@ -296,6 +302,7 @@ class Gallery extends Controller {
                 echo "<hr>";
             }
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
+            echo "<p style='color: red; display: none' id='log' name='count'></p>";
 
         } else if (isset($_POST['prev']) && $_POST['prev']) {
             while ($i >= 0 && $count) {
@@ -340,6 +347,8 @@ class Gallery extends Controller {
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        echo "<p style='color: red' id='log' name='count'></p>";
+
                     }
                     echo "</div>";
                 } else {
@@ -348,6 +357,7 @@ class Gallery extends Controller {
                     if (isset($_SESSION['user'])) {
                         echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
+                        echo "<p style='color: red' id='log' name='count'></p>";
                     }
                     echo "</div>";
                 }
@@ -359,9 +369,12 @@ class Gallery extends Controller {
                 echo "<hr>";
             }
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . $i . "</p>";
+            echo "<p style='color: red; display: none' id='log' name='count'></p>";
+
         } else {
             echo "<p>No photos</p>";
             echo "<p style='display: none; color: black;' id='counter' name='count'>" . 0 . "</p>";
+
         }
         unset($_POST['prev']);
         unset($_POST['next']);

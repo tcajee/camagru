@@ -108,9 +108,9 @@ class Gallery extends Controller {
                     echo "<div class='center comms'>";
                     echo "<p> No comments</p>";
                     if (isset($_SESSION['user'])) {
-                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='input center' id='" . "c" . $images[$i]['id'] . "' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
-                        echo "<p style='color: red;' id='log' name='count'></p>";
+                        echo "<p style='color: red;' id='log" . $images[$i]['id'] . "' name='count'></p>";
                     }
                     echo "</div>";
                 }
@@ -279,9 +279,9 @@ class Gallery extends Controller {
 
                     echo "<div class='comms'>";
                     if (isset($_SESSION['user'])) {
-                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='input center' id='" . "c" . $images[$i]['id'] . "' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
-                        echo "<p style='color: red;' id='log' name='count'></p>";
+                        echo "<p style='color: red;' id='log" . $images[$i]['id'] . "' name='count'></p>";
                     }
                     echo "</div>";
 
@@ -289,9 +289,9 @@ class Gallery extends Controller {
                     echo "<div class='center comms'>";
                     echo "<p> No comments</p>";
                     if (isset($_SESSION['user'])) {
-                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='input center' id='" . "c" . $images[$i]['id'] . "' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
-                        echo "<p style='color: red;' id='log' name='count'></p>";
+                        echo "<p style='color: red;' id='log" . $images[$i]['id'] . "' name='count'></p>";
                     }
                     echo "</div>";
                 }
@@ -349,9 +349,9 @@ class Gallery extends Controller {
 
                     echo "<div class='comms'>";
                     if (isset($_SESSION['user'])) {
-                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='input center' id='" . "c" . $images[$i]['id'] . "' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
-                        echo "<p style='color: red;' id='log' name='count'></p>";
+                        echo "<p style='color: red;' id='log" . $images[$i]['id'] . "' name='count'></p>";
                     }
                     echo "</div>";
 
@@ -359,9 +359,9 @@ class Gallery extends Controller {
                     echo "<div class='center comms'>";
                     echo "<p> No comments</p>";
                     if (isset($_SESSION['user'])) {
-                        echo "<input class='input center' id='commentin' name='next' type='text' placeholder='Add Comment'/><p></p>";
+                        echo "<input class='input center' id='" . "c" . $images[$i]['id'] . "' name='next' type='text' placeholder='Add Comment'/><p></p>";
                         echo "<input class='button text-black grey' id='commentbutton' type='button' name='comment' value='Comment'><p></p>";
-                        echo "<p style='color: red;' id='log' name='count'></p>";
+                        echo "<p style='color: red;' id='log" . $images[$i]['id'] . "' name='count'></p>";
                     }
                     echo "</div>";
                 }

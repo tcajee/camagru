@@ -56,7 +56,7 @@
                         for (let com of comm) {
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
-                            let log = document.getElementById('log');
+                            let log = document.getElementById('log' + postId);
                             commentButton.onclick = function() {
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
@@ -85,7 +85,7 @@
                                         }
                                     }
                                 }
-                                var text = document.getElementById('commentin').value;
+                                var text = document.getElementById('c' + postId).value;
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;
@@ -154,7 +154,7 @@
                         for (let com of comm) {
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
-                            let log = document.getElementById('log');
+                            let log = document.getElementById('log' + postId);
 
                             commentButton.onclick = function() {
                                 const xhr = new XMLHttpRequest();
@@ -183,7 +183,7 @@
                                         }
                                     }
                                 }
-                                var text = document.getElementById('commentin').value;
+                                var text = document.getElementById('c' + postId).value;
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;

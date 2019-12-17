@@ -125,7 +125,7 @@ class Settings extends Controller {
                 $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
                 $headers .= "MIME-Version: 1.0" . "\r\n";
                 $headers .= 'From:noreply@camagru.wtc.hi' . "\r\n";
-                $text = "Hello! <br><br>Please follow the link to verify your account with Camagru: " . $link; 
+                $text = "Hello! <br><br>Please follow the link to verify your new email with Camagru: " . $link; 
                 mail($email, $subject, $text, $headers);
                 unset($_SESSION['user']);
             } else {

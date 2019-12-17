@@ -63,19 +63,6 @@
     </div>
 
         <br />
-
-    <!-- <div id='file'>
-        <canvas id="fileprev" width=320 height=240></canvas>
-    </div> -->
-
-    <!-- <form action="upload/file" method="POST" enctype="multipart/form-data">
-        <input id="image" class="input center" type="file" name="image" /><p></p>
-        <input id="upload_file" class="button text-black grey"  type="submit" value="Upload File"/><p></p>
-        <p id="u_errors" style="display: none; color: red;"></p>
-    </form>
-    <br /> -->
-
-    <!-- <div id="prev1"><canvas id="canvas99" width=320 height=240></canvas></div> -->
     
     <form action="upload/file" method="POST" enctype="multipart/form-data">
         <input id="image" class="input center" type="file" name="image" /><p></p>

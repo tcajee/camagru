@@ -56,7 +56,7 @@
                         for (let com of comm) {
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
-                            let log = document.getElementById('log');
+                            let log = document.getElementById('log' + postId);
                             commentButton.onclick = function() {
                                 const xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange = function(res) {
@@ -67,25 +67,12 @@
                                             log.innerHTML = "";
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
-                                            
-
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-
-
                                         } else {
-                                            
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-                                            console.log("NO RES DATA NEXT COMM");
-
                                           //  window.location.assign('gallery');
                                         }
                                     }
                                 }
-                                var text = document.getElementById('commentin').value;
+                                var text = document.getElementById('c' + postId).value;
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;
@@ -94,8 +81,7 @@
                         }
     
                     } else {
-                        console.log("NO RES DATA MAIN NEXT");
-//                        window.location.assign('gallery');
+                       window.location.assign('gallery');
                     }
                 }
             }
@@ -154,7 +140,7 @@
                         for (let com of comm) {
                             let postId = com.id;
                             let commentButton = com.querySelector('#commentbutton');
-                            let log = document.getElementById('log');
+                            let log = document.getElementById('log' + postId);
 
                             commentButton.onclick = function() {
                                 const xhr = new XMLHttpRequest();
@@ -167,23 +153,12 @@
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
 
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-
-
                                         } else {
-                                            
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-
-                                            console.log("NO RES DATA COMM PREV");
-                                            // window.location.assign('gallery');
+                                            window.location.assign('gallery');
                                         }
                                     }
                                 }
-                                var text = document.getElementById('commentin').value;
+                                var text = document.getElementById('c' + postId).value;
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;
@@ -192,8 +167,7 @@
                         }
 
                     } else {
-                        console.log("NO RES DATA MAIN PREV");
-                        // window.location.assign('gallery');
+                        window.location.assign('gallery');
                     }
                 }
             }
@@ -246,8 +220,7 @@
                                         if (resData) {
                                             likeButton.value = resData;
                                         } else {
-                                            console.log("FAILED LOAD");
-                                            // window.location.assign('gallery');
+                                            window.location.assign('gallery');
                                         }
                                     }
                                 }
@@ -276,24 +249,12 @@
                                             log.style.display = "initial";
 
 
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-
-
                                         } else {
-                                            
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-                                            
-                                            console.log("NO RES DATA COMM LOAD");
-                                            // window.location.assign('gallery');
+                                            window.location.assign('gallery');
                                         }
                                     }
                                 }
                                 var text = document.getElementById('c' + postId).value;
-                                console.log(text);
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;
@@ -302,8 +263,7 @@
                         }
 
                     } else {
-                        console.log("NO RES DATA MAIN LOAD");
-                        // window.location.assign('gallery');
+                        window.location.assign('gallery');
                     }
                 }
             }

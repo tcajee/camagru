@@ -70,13 +70,21 @@ $test_posts = "INSERT INTO posts (`img`, `user`) VALUES
 
 $test_comments = "INSERT INTO comments (`post`, `user`, `text`) VALUES
 				(1, 3, 'You look like crap...'),
+				(1, 3, 'Your mom looks like crap...'),
 				(2, 3, 'Beans?'),
+				(2, 3, 'All the beans!'),
 				(3, 3, 'Broom stick'),
+				(3, 3, 'Schtickit'),
 				(4, 3, 'Great pic!!'),
+				(4, 3, 'Not...'),
 				(5, 4, 'Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment '),
+				(5, 4, 'LONG ASS Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment Test Comment '),
 				(6, 4, 'Booooooom...'),
+				(6, 4, 'Boobies.'),
 				(7, 4, 'Where are the turtles?'),
-				(8, 4, 'Nice hat')
+				(7, 4, 'Dead because of the fucking straws :|'),
+				(8, 4, 'Nice hat'),
+				(8, 4, 'What hat?')
 				";
 
 $statements = ['create_users', 'create_posts', 'create_likes', 'create_comments', 'test_users', 'test_posts', 'test_comments'];

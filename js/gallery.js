@@ -67,20 +67,7 @@
                                             log.innerHTML = "";
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
-                                            
-
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-
-
                                         } else {
-                                            
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-                                            console.log("NO RES DATA NEXT COMM");
-
                                           //  window.location.assign('gallery');
                                         }
                                     }
@@ -167,17 +154,7 @@
                                             log.innerHTML = resData;
                                             log.style.display = "initial";
 
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-
-
                                         } else {
-                                            
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-
                                             console.log("NO RES DATA COMM PREV");
                                             // window.location.assign('gallery');
                                         }
@@ -276,17 +253,7 @@
                                             log.style.display = "initial";
 
 
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-
-
                                         } else {
-                                            
-                                            console.log(postId);
-                                            console.log(text);
-                                            console.log(resData);
-                                            
                                             console.log("NO RES DATA COMM LOAD");
                                             // window.location.assign('gallery');
                                         }

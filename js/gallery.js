@@ -81,8 +81,7 @@
                         }
     
                     } else {
-                        console.log("NO RES DATA MAIN NEXT");
-//                        window.location.assign('gallery');
+                       window.location.assign('gallery');
                     }
                 }
             }
@@ -155,8 +154,7 @@
                                             log.style.display = "initial";
 
                                         } else {
-                                            console.log("NO RES DATA COMM PREV");
-                                            // window.location.assign('gallery');
+                                            window.location.assign('gallery');
                                         }
                                     }
                                 }
@@ -169,8 +167,7 @@
                         }
 
                     } else {
-                        console.log("NO RES DATA MAIN PREV");
-                        // window.location.assign('gallery');
+                        window.location.assign('gallery');
                     }
                 }
             }
@@ -223,8 +220,7 @@
                                         if (resData) {
                                             likeButton.value = resData;
                                         } else {
-                                            console.log("FAILED LOAD");
-                                            // window.location.assign('gallery');
+                                            window.location.assign('gallery');
                                         }
                                     }
                                 }
@@ -254,13 +250,11 @@
 
 
                                         } else {
-                                            console.log("NO RES DATA COMM LOAD");
-                                            // window.location.assign('gallery');
+                                            window.location.assign('gallery');
                                         }
                                     }
                                 }
                                 var text = document.getElementById('c' + postId).value;
-                                console.log(text);
                                 xhr.open('POST', 'gallery/comment');
                                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                 let params = 'postId=' + postId + '&text=' + text;
@@ -269,8 +263,7 @@
                         }
 
                     } else {
-                        console.log("NO RES DATA MAIN LOAD");
-                        // window.location.assign('gallery');
+                        window.location.assign('gallery');
                     }
                 }
             }

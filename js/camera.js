@@ -278,7 +278,6 @@
           var xhr = new XMLHttpRequest;
           xhr.onreadystatechange = function(res) {
             if (this.readyState == 4 && this.status == 200) {
-              // console.log(file);
             }
           };
           xhr.open ('POST', 'upload/upload');

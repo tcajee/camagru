@@ -7,8 +7,8 @@ $drop_database = "DROP DATABASE IF EXISTS camagru;";
 $create_database = "CREATE DATABASE IF NOT EXISTS camagru;";
 
 $create_users = "CREATE TABLE IF NOT EXISTS users (
-		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-		username varchar(255) UNIQUE,
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		username VARCHAR(255) UNIQUE,
 		email VARCHAR(255) UNIQUE,
 		pass VARCHAR(255),
 		fname VARCHAR(255),
@@ -16,31 +16,33 @@ $create_users = "CREATE TABLE IF NOT EXISTS users (
 		photo VARCHAR(255),
 		verified TINYINT DEFAULT 0,
 		notify TINYINT DEFAULT 1,
-		token VARCHAR(255),
-	 	PRIMARY KEY (id)
+		token VARCHAR(255)
 		);";
 
 $create_posts = "CREATE TABLE IF NOT EXISTS posts (
-		id INT NOT NULL AUTO_INCREMENT,
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		img VARCHAR(255),
 		likes INT UNSIGNED DEFAULT 0,
-		user INT REFERENCES users(id),
 		time DATETIME DEFAULT NOW(),
-		PRIMARY KEY (id)
+		user INT,
+		FOREIGN KEY(user) REFERENCES users(id)
 		);";
 
 $create_likes = "CREATE TABLE IF NOT EXISTS likes (
-		id INT NOT NULL AUTO_INCREMENT,
-		user INT REFERENCES users(id),
-		post INT REFERENCES posts(id),
-		PRIMARY KEY (id)
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		user INT,
+		FOREIGN KEY(user) REFERENCES users(id),
+		post INT,
+		FOREIGN KEY(post) REFERENCES posts(id)
 		);";
 
 $create_comments = "CREATE TABLE IF NOT EXISTS comments (
-		post INT REFERENCES posts(id),
-		user INT REFERENCES users(id),
+		user INT,
+		FOREIGN KEY(user) REFERENCES users(id),
 		text LONGBLOB NOT NULL,
-		time DATETIME DEFAULT NOW()
+		time DATETIME DEFAULT NOW(),
+		post INT,
+		FOREIGN KEY(post) REFERENCES posts(id)
 		);";
 
 $test_users = "INSERT INTO `users` (`username`, `email`, `pass`, `fname`, `lname`, `photo`, `verified`, `token`) VALUES

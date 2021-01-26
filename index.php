@@ -8,8 +8,8 @@ define('ROOT', dirname(__FILE__));
 //change verification link path on submission!
 
 // Load config and helpers
-require_once(ROOT . DS. 'config' . DS . 'config.php');
-require_once(ROOT . DS. 'app' . DS . 'lib' . DS . 'helpers' . DS . 'functions.php');
+require_once(ROOT . DS . 'config' . DS . 'config.php');
+require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'helpers' . DS . 'functions.php');
 
 // Autoload classes
 function autoload($className) {

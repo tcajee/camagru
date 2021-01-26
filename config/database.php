@@ -4,7 +4,7 @@
     $DB_DSN = 'mysql:hostname=127.0.0.1;dbname=camagru';
     $DB_USER = 'root';
     // $DB_PASSWORD = '';
-    $DB_PASSWORD = '1234567';
+    $DB_PASSWORD = '';
 
 require_once("tables.php");
 

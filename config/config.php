@@ -11,7 +11,7 @@ define('DEF_LAYOUT', 'default');
 
 // Set to '/' for live sever
 // Has to be the root of the folder
-define('PROOT', '/camagru_git/');
+define('PROOT', '/camagru/');
 
 // Use default layout if none set in controller
 define('SITE_TITLE', 'Camagru');

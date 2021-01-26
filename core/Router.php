@@ -3,7 +3,6 @@
 class Router {
     
     public static function route($url) {
-
         $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]) : DEF_CONTROLLER;
         $controller_name = $controller;
         array_shift($url);

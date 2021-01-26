@@ -6,7 +6,7 @@ class DB {
     private $DB_DSN = 'mysql:hostname=localhost;dbname=camagru';
     private $DB_USER = 'root';
     // private $DB_PASSWORD = '';
-    private $DB_PASSWORD = '1234567';
+    private $DB_PASSWORD = '';
 
     private static $_instance = null;
     private $_pdo;

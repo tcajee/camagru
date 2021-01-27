@@ -29,7 +29,7 @@ class Register extends Controller {
             if (!$this->errors) {
                 $fields = ['username'=>$username, 'email'=>$email, 'pass'=>password_hash($password, PASSWORD_BCRYPT), 'token'=>$token, 'photo'=>'img/profile/def4.jpg']; 
                 $this->_db->insert('users' , $fields);
-                $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $token . "'> Verify </a>";
+                $link = "<a href='http://127.0.0.1:8080/Camagru/register/verify/" . $token . "'> Verify </a>";
                 $this->email($email, $link);
                 echo 'Please check your email for a verification link!';
             } else {

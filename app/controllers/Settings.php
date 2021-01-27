@@ -119,7 +119,7 @@ class Settings extends Controller {
                 $this->_db->update('users', $id, $fields);
 
                 // Email verification
-                $link = "<a href='http://127.0.0.1:8080/Camagru_git/register/verify/" . $_SESSION['user'] . "'> Verify </a>";
+                $link = "<a href='http://127.0.0.1:8080/Camagru/register/verify/" . $_SESSION['user'] . "'> Verify </a>";
 
                 $subject = "Email change verification | Camagru";
                 $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";

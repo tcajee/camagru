@@ -37,62 +37,30 @@ NOTE: This is for setting the project to run on Arch Linux Manjaro using Xampp. 
 
 #### Project structure:
 ```
-Camagru/
+camagru
 ├── app
-│   ├── controllers
-│   │   ├── Gallery.php
-│   │   ├── Home.php 
-│   │   ├── Login.php
-│   │   ├── Logout.php
-│   │   ├── Profile.php
-│   │   ├── Register.php
-│   │   ├── Settings.php
-│   │   └── Upload.php
-│   ├── lib
+│   ├── controllers -> Contains all page-specific back-end functionality
+│   │   └── *.php
+│   ├── lib -> Contains addition helper functionality
 │   │   └── helpers
-│   │       ├── functions.php
-│   │       └── helpers.php
-│   └── views
-│       ├── gallery.php
-│       ├── index.php
+│   │       └── *.php
+│   └── views -> Contains templates and all page-specific layouts
+│       ├── *.php
 │       ├── layouts
-│       │   ├── default.php
-│       │   ├── footer.php
-│       │   └── header.php
-│       ├── login.php
-│       ├── messages.php
-│       ├── profile.php
-│       ├── register.php
-│       ├── settings.php
-│       └── upload.php
-├── config
-│   ├── config.php
-│   ├── database.php
-│   ├── setup.php
-│   └── tables.php
-├── core
-│   ├── Application.php -> Configures error logging and serves as a base class for the controller class.
-│   ├── Controller.php -> Responsible for all Cookie related functionality.
-│   ├── Cookie.php -> Responsible for sanitizing all user inputs before passing to validation.
-│   ├── DB.php -> The primary database class, responsible for configuring a database instance and implementing all CRUD operations.
-│   ├── Input.php -> Responsible for sanitizing all user inputs before passing to validation.
-│   ├── Router.php -> Responsible for setting valid routes and implementing redirects between pages.
-│   ├── Session.php -> Responsible for setting and querying user session information.
-│   ├── Validate.php ->  Responsible for validating all user inputs such as passwords and email addresses.
-│   └── View.php -> The base class for all page specific views, responsible for rendering the view, setting the content, and setting the layout.
-├── css
-│   └── custom.css
-├── img (All images and stickers are stored here)
-├── index.php
-└── js
-   ├── camera.js
-   ├── gallery.js
-   ├── index.js
-   ├── login.js
-   ├── profile.js
-   ├── register.js
-   ├── settings.js
-   └── slide.js
-```
+│       │   └── *.php
+│       └── *.php
+├── config -> Contains all initial application and database functionality
+│   └── *.php
+├── core -> Contains all primary back-end application functionality
+│   └── *.php
+├── css -> Contains all stylesheets
+│   └── *.css
+├── img -> Contains all image files
+│   └── *.png
+│   └── *.jpg
+├── index.php -> Main entry point to the application
+└── js -> Contains all page-specific client-side functionality and AJAX
+   └── *.js
 
+```
 

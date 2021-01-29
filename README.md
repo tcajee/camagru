@@ -39,7 +39,7 @@ NOTE: This is for setting the project to run on Arch Linux Manjaro using Xampp. 
 ```
 camagru
 ├── app
-│   ├── controllers
+│   ├── controllers - 
 │   │   └── *.php
 │   ├── lib
 │   │   └── helpers

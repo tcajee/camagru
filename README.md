@@ -7,7 +7,7 @@ This project was an introduction to the fundamentals of web development, PHP, an
 - XAMPP
 - JavaScript
 
-## Instalation and Setup
+## Installation and Setup
 NOTE: This is for setting the project to run on Arch Linux Manjaro using Xampp. Follow your OS specific instructions for other platforms.
 - Install Xampp:
     ```

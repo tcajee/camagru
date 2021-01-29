@@ -73,4 +73,32 @@ camagru
         - Config/setup.php exists
         - PDO is configured
     - Start the web server.
-    - sdf
+    - Register and account
+    - Login
+    - Webcam
+    - Public Gallery
+    - Settings modification
+    - Delete user's own post
+    - How password stored in Database?
+    - Try inject script.
+    - Try inject SQL
+    - Was AJAX present?
+    
+- The following are the expected outcomes:
+    - Preliminary
+        - The back-end of the source code is written in PHP.
+        - There are no frameworks used in the source code.
+        - You will notice the file config/database.php in the source code.
+        - You will notice the file config/setup.php in the source code.
+        - You will notice we setup our PDO in the file config/database.php
+    - If you start the apache servers from XAMPP and navigate to localhost/(port)camagru you will see the landing page for Camagru.
+    - You can navigate to the signup page, enter your credentials and register an account.
+    - You should be able to login using the credentials you created.
+    - You should be able to navigate to the webcam page and use the webcam after allowing Camagru access to your internal webcam.
+    - You should be able to access the public gallery where you can view, like and comment on other users' posts.
+    - You should be able to modify your settings and details on the setting page.
+    - You should be able to delete your own posts.
+    - The Password should be hashed before being stored in the DB.
+    - No 'Alert' should show up.
+    - No DB information should be displayed.
+    - You can see the use of Ajax in the source code.

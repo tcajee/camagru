@@ -41,7 +41,7 @@ Camagru/
 ├── app
 │   ├── controllers
 │   │   ├── Gallery.php
-│   │   ├── Home.php
+│   │   ├── Home.php 
 │   │   ├── Login.php
 │   │   ├── Logout.php
 │   │   ├── Profile.php
@@ -71,16 +71,15 @@ Camagru/
 │   ├── setup.php
 │   └── tables.php
 ├── core
-│   ├── Application.php
-│   ├── Controller.php
-│   ├── Cookie.php
-│   ├── DB.php
-│   ├── Input.php
-│   ├── Model.php
-│   ├── Router.php
-│   ├── Session.php
-│   ├── Validate.php
-│   └── View.php
+│   ├── Application.php -> Configures error logging and serves as a base class for the controller class.
+│   ├── Controller.php -> Responsible for all Cookie related functionality.
+│   ├── Cookie.php -> Responsible for sanitizing all user inputs before passing to validation.
+│   ├── DB.php -> The primary database class, responsible for configuring a database instance and implementing all CRUD operations.
+│   ├── Input.php -> Responsible for sanitizing all user inputs before passing to validation.
+│   ├── Router.php -> Responsible for setting valid routes and implementing redirects between pages.
+│   ├── Session.php -> Responsible for setting and querying user session information.
+│   ├── Validate.php ->  Responsible for validating all user inputs such as passwords and email addresses.
+│   └── View.php -> The base class for all page specific views, responsible for rendering the view, setting the content, and setting the layout.
 ├── css
 │   └── custom.css
 ├── img (All images and stickers are stored here)

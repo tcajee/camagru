@@ -1,7 +1,13 @@
 # Camagru
 ### A simple clone of Instagram
 
-## Setup
+## Reqiurements
+
+- PHP
+- MAMP / XAMPP
+- JavaScript (AJAX)
+
+## Instalation and Setup
 ### This is for setting the project to run on Arch Linux Manjaro using Xampp
 - Install Xampp
     ```
@@ -22,4 +28,4 @@
 
 - Navigate to [PHP Myadmin](https://localhost/phpmyadmin/) to verify that the database has been populated
 
-- Finally, navigate to [Camagru Home](https://localhost/camagru/) to start using the site.
+- After running the setup you will be redirected to [Camagru Home](https://localhost/camagru/)

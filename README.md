@@ -79,7 +79,7 @@ camagru
     - Public Gallery
     - Settings modification
     - Delete user's own post
-    - How password stored in Database?
+    - Password stored securely in Database?
     - Try inject script.
     - Try inject SQL
     - Was AJAX present?

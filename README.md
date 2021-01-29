@@ -68,8 +68,10 @@ camagru
 
 * The following are tests I ran:<br/>
  1.Preliminary checks<br/>
- **Usage of PHP.<br/>
+    a.Usage of PHP.<br/>
     b.No external frameworks.<br/>
-  c.Config/database.php<br/>
-  d.Config/setup.php<br/>
-  e.PDOs<br/>
+    c.Config/database.php<br/>
+    d.Config/setup.php<br/>
+    e.PDOs<br/>
+ 2.Start the web server.<br/>
+ 3.

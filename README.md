@@ -64,14 +64,13 @@ camagru
 ```
 
 ## Testing
-[https://github.com/tcajee/camagru/blob/master/camagru.pdf](https://github.com/tcajee/camagru/blob/master/camagru.pdf)
-
-* The following are tests I ran:<br/>
- 1.Preliminary checks<br/>
-    a.Usage of PHP.<br/>
-    b.No external frameworks.<br/>
-    c.Config/database.php<br/>
-    d.Config/setup.php<br/>
-    e.PDOs<br/>
- 2.Start the web server.<br/>
- 3.
+[Marking sheet linked here](https://github.com/tcajee/camagru/blob/master/camagru.pdf)
+- The following are test will be run:
+    - Preliminary checks:
+        - Usage of PHP for the back-end
+        - No external frameworks
+        - Config/database.php exists
+        - Config/setup.php exists
+        - PDO is configured
+    - Start the web server.
+    - sdf

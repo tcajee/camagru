@@ -63,3 +63,5 @@ camagru
    └── *.js
 ```
 
+##Testing
+[https://github.com/tcajee/camagru/blob/master/camagru.pdf](https://github.com/tcajee/camagru/blob/master/camagru.pdf)

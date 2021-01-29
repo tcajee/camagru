@@ -37,29 +37,63 @@ NOTE: This is for setting the project to run on Arch Linux Manjaro using Xampp. 
 
 #### Project structure:
 ```
-camagru
+Camagru/
 ├── app
-│   ├── controllers - 
-│   │   └── *.php
+│   ├── controllers
+│   │   ├── Gallery.php
+│   │   ├── Home.php
+│   │   ├── Login.php
+│   │   ├── Logout.php
+│   │   ├── Profile.php
+│   │   ├── Register.php
+│   │   ├── Settings.php
+│   │   └── Upload.php
 │   ├── lib
 │   │   └── helpers
-│   │       └── *.php
+│   │       ├── functions.php
+│   │       └── helpers.php
 │   └── views
-│       ├── *.php
+│       ├── gallery.php
+│       ├── index.php
 │       ├── layouts
-│       │   └── *.php
-│       └── *.php
+│       │   ├── default.php
+│       │   ├── footer.php
+│       │   └── header.php
+│       ├── login.php
+│       ├── messages.php
+│       ├── profile.php
+│       ├── register.php
+│       ├── settings.php
+│       └── upload.php
 ├── config
-│   └── *.php
+│   ├── config.php
+│   ├── database.php
+│   ├── setup.php
+│   └── tables.php
 ├── core
-│   └── *.php
+│   ├── Application.php
+│   ├── Controller.php
+│   ├── Cookie.php
+│   ├── DB.php
+│   ├── Input.php
+│   ├── Model.php
+│   ├── Router.php
+│   ├── Session.php
+│   ├── Validate.php
+│   └── View.php
 ├── css
-│   └── *.css
-├── img 
-│   └── *.png
-├── index.php (Main entry point to program)
+│   └── custom.css
+├── img (All images and stickers are stored here)
+├── index.php
 └── js
-   └── *.js
+   ├── camera.js
+   ├── gallery.js
+   ├── index.js
+   ├── login.js
+   ├── profile.js
+   ├── register.js
+   ├── settings.js
+   └── slide.js
 ```
 
 

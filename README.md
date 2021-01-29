@@ -61,6 +61,5 @@ camagru
 ├── index.php -> Main entry point to the application
 └── js -> Contains all page-specific client-side functionality and AJAX
    └── *.js
-
 ```
 

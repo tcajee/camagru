@@ -65,3 +65,11 @@ camagru
 
 ## Testing
 [https://github.com/tcajee/camagru/blob/master/camagru.pdf](https://github.com/tcajee/camagru/blob/master/camagru.pdf)
+
+* The following are tests I ran:<br/>
+ 1.Preliminary checks<br/>
+  a.Usage of PHP.<br/>
+  b.No external frameworks.<br/>
+  c.Config/database.php<br/>
+  d.Config/setup.php<br/>
+  e.PDOs<br/>

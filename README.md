@@ -15,7 +15,7 @@ NOTE: This is for setting the project to run on Arch Linux Manjaro using Xampp. 
     ```
 - Set up a database user and initialize the database:
     [Mysql Arch Wiki](https://wiki.archlinux.org/index.php/PHP#MySQL/MariaDB)
-- Clone the project into the /opt/lamp/htdocs directory
+- Clone the project into the /opt/xampp/htdocs directory
     ```
     git clone https://github.com/tcajee/camagru.git /opt/xampp/htdocs/camagru
     ```

@@ -1,0 +1,35 @@
+Register:
+
+Client-side:
+    - HTML:
+        - Main body Single div
+        - Input fields for info
+        - button used to initate requests
+        - simple error paragraph at the bottom to display errors asynchronously
+        - Include JS script to add the AJAX functionality
+    - JS (AJAX):
+        - variables for each input pulled from DOM
+        - define registerbutton as submitbutton 
+        - define onclick event for onRegister
+        - on register will create and send a new ajax POST request to server
+        - top block will only run when a respose is received back from the server
+        - Get the result and print out results / errors
+Server-side:
+    - PHP controller: 
+        - reset errors
+        - assign and sanitise inputs
+        - create token used for verification later
+        - run Validation on the user information 
+        - if there are no errors an email will be sent 
+        - otherwise the error details will be sent back with the response
+
+
+
+
+Login:
+
+Settings:
+
+Camera:
+
+Galery:

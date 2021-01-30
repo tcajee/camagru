@@ -20,4 +20,3 @@ define('SITE_TITLE', 'Camagru');
 define('SESSION_NAME', 'KJ4DSHj4kd9sfh3J2DFBrusbFg');
 define('REMEMBER_ME', 'vPI1PAJD2F0bskjdvO97IK3A5sjf');
 define('REMEMBER_ME_EXPIRY', 86400);
-//update config
